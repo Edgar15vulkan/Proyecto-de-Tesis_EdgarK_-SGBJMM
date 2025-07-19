@@ -10,7 +10,7 @@ class Personal extends Model
     protected $table = 'datos_personales'; // Define el nombre de la tabla
     protected $primaryKey = 'personal_id'; // Define la clave primaria
 
-    protected $fillable = [
+    protected $fillable = [  // Define los campos que se pueden llenar masivamente
         'nombre',
         'apellido_paterno',
         'apellido_materno',
