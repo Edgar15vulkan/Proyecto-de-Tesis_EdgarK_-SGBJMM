@@ -31,6 +31,19 @@ export default function AuthenticatedLayout({ header, children }) {
                                     Dashboard
                                 </NavLink>
                             </div>
+
+                            {/* enlace a Personal dentro del menu superior*/}
+                            <div className="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                                <NavLink
+                                    href={route('personal.index')}
+                                    active={route().current('dashboard')}
+                                >
+                                    Personal
+                                </NavLink>
+                            </div>
+
+                            {/* enlace a secciones dentro del menu superior*/}
+
                         </div>
 
                         <div className="hidden sm:ms-6 sm:flex sm:items-center">
