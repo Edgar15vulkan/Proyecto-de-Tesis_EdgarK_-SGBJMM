@@ -53,4 +53,5 @@ export default function Index({personal}) { // Recibe los servicios como props
             </div>
         </AuthenticatedLayout>
     );
+    
 }

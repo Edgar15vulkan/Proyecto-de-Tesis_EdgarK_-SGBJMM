@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
+use App\Models\DatosServicio; // Importar el modelo DatosServicio
 
 class Personal extends Model
 {
@@ -19,4 +20,9 @@ class Personal extends Model
         'fecha_nacimiento',
         'lugar_nacimiento'
     ];
+
+    public function servicio()
+    {
+        return $this->hasOne(DatosServicio::class, 'personal_id'); // Relación uno a uno con DatosServicio                                                                      
+    }
 }

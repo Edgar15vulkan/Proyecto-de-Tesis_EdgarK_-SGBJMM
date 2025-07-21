@@ -37,7 +37,7 @@ const Index = () => {
                 <tbody>
                     {listaPersonal.map((persona) => (
                         <tr key={persona.id}>
-                            <td className="border px-4 py-2">{persona.id}</td>
+                            <td className="border px-4 py-2">{persona.personal_id}</td>
                             <td className="border px-4 py-2">{persona.nombre}</td>
                             <td className="border px-4 py-2">{persona.apellido_paterno}</td>
                             <td className="border px-4 py-2">{persona.apellido_materno}</td>

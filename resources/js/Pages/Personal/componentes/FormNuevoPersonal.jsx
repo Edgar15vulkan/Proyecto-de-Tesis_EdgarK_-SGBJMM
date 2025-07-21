@@ -5,6 +5,8 @@ import {useForm, Link} from '@inertiajs/react';
 export default function Create() {
     const { data, setData, post, processing, errors} = useForm({  /* datos, mod de datos, envio, procesamiento y errores */
         /* variables que maneja del formulario */
+
+        //Datos personales
         nombre: '',
         apellido_paterno: '',
         apellido_materno: '',
@@ -12,6 +14,15 @@ export default function Create() {
         CURP: '',
         fecha_nacimiento: '',
         lugar_nacimiento: '',
+        // Datos de servicio
+        fecha_ingreso: '',
+        cargo: '',
+        rol: '',
+        estado: '',
+        voluntario: false,
+        zona_adscripcion: '',
+        observaciones: '',
+        // Datos de contacto
       
         //nuevo: '',   nueva variable
     });
@@ -26,6 +37,8 @@ export default function Create() {
            <h2 className='text-2xl fornt-bold mb-4 '>Registrar Nuevo Elemento del Personal</h2> {/*titulo del formulario*/}
            <form onSubmit={handleSubmit} className='bg-white p-6 rounded shadow-md'>  {/* define el formulario y usa onsubmit para el envio */}
                {/*inputs del formulario*/} 
+               {/* -------- DATOS PERSONALES ---------- */}
+               <h3 className="text-xl font-semibold mt-6 mb-2">Datos de Servicio</h3>
                {/* Nombres de la persona */}
                <div className='mb-4'>    
                    <label className="block">Nombre(s):</label>   {/*etiqueta para el campo de texto, block hace que label ocupe toda la linea con el input debajo*/} 
@@ -113,8 +126,100 @@ export default function Create() {
                      />
                      {errors.lugar_nacimiento && <span className="text-red-500">{errors.lugar_nacimiento}</span>}
                 </div>
+                {/* -------- DATOS DE SERVICIO ---------- */}
+                <h3 className="text-xl font-semibold mt-6 mb-2">Datos de Servicio</h3>
 
-                {/* Campo nuevo */}
+                {/* Fecha de Ingreso */}
+                <div className='mb-4'>    
+                     <label className="block">Fecha de Ingreso:</label> 
+                     <input   
+                          type="date"  
+                          value={data.fecha_ingreso}
+                          onChange={(e) => setData('fecha_ingreso', e.target.value)}
+                          className="border rounded px-4 py-2 w-full"
+                          placeholder="Fecha de Ingreso" 
+                     />
+                     {errors.fecha_ingreso && <span className="text-red-500">{errors.fecha_ingreso}</span>}
+                </div>
+                {/* Cargo */}
+                <div className='mb-4'>    
+                     <label className="block">Cargo:</label> 
+                     <input   
+                          type="text"  
+                          value={data.cargo}
+                          onChange={(e) => setData('cargo', e.target.value)}
+                          className="border rounded px-4 py-2 w-full"
+                          placeholder="Cargo" 
+                     />
+                     {errors.cargo && <span className="text-red-500">{errors.cargo}</span>}
+                </div>
+                {/* Rol */}
+                <div className='mb-4'>
+                    <label className="block">Rol:</label>
+                    <input
+                        type="text"
+                        value={data.rol}
+                        onChange={(e) => setData('rol', e.target.value)}
+                        className="border rounded px-4 py-2 w-full"
+                        placeholder="Rol"
+                    />
+                    {errors.rol && <span className="text-red-500">{errors.rol}</span>}
+                </div>
+                {/* Estado */}
+                <div className='mb-4'>
+                    <label className="block">Estado:</label>
+                    <select
+                        value={data.estado}
+                        onChange={(e) => setData('estado', e.target.value)}
+                        className="border rounded px-4 py-2 w-full"
+                    >
+                        <option value="">Seleccione</option>
+                        <option value="Activo">Activo</option>
+                        <option value="Inactivo">Inactivo</option>
+                        <option value="Retirado">Retirado</option>
+                        <option value="Suspendido">Suspendido</option>
+                        <option value="Fallecido">Fallecido</option>
+                        <option value="Comision">Comisión</option>
+                    </select>
+                    {errors.estado && <span className="text-red-500">{errors.estado}</span>}
+                </div>
+                {/* Voluntario */}
+                <div className='mb-4'>
+                    <label className="block">Voluntario:</label>
+                    <input
+                        type="checkbox"
+                        checked={data.voluntario}
+                        onChange={(e) => setData('voluntario', e.target.checked)}
+                        className="border rounded px-4 py-2 w-full"
+                        placeholder="Voluntario"
+                    />
+                    {errors.voluntario && <span className="text-red-500">{errors.voluntario}</span>}
+                </div>
+                {/* Zona de Adscripción */}
+                <div className='mb-4'>
+                    <label className="block">Zona de Adscripción:</label>
+                    <input
+                        type="text"
+                        value={data.zona_adscripcion}
+                        onChange={(e) => setData('zona_adscripcion', e.target.value)}
+                        className="border rounded px-4 py-2 w-full"
+                        placeholder="Zona de Adscripción"
+                    />
+                    {errors.zona_adscripcion && <span className="text-red-500">{errors.zona_adscripcion}</span>}    
+                </div>
+                {/* Observaciones */}
+                <div className='mb-4'>
+                    <label className="block">Observaciones:</label>
+                    <textarea
+                        value={data.observaciones}
+                        onChange={(e) => setData('observaciones', e.target.value)}
+                        className="border rounded px-4 py-2 w-full"
+                        placeholder="Observaciones"
+                    />
+                    {errors.observaciones && <span className="text-red-500">{errors.observaciones}</span>}
+                </div>
+
+                {/* -------- DATOS DE CONTACTO ---------- */}
                
                {/* Boton de enviar */}
                <button
