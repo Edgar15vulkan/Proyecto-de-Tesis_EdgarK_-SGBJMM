@@ -11,12 +11,19 @@ class LicenciaConducir extends Model
     protected $primaryKey = 'id'; // Define la clave primaria
 
     protected $fillable = [ // Campos que se pueden llenar masivamente
+        'personal_id',  // Clave foránea que relaciona con el modelo Personal
         'licencia_conducir',
         'tipo',
         'licencia_numero',
         'fecha_expedicion',
         'fecha_vencimiento',
         
-        //'personal_id'  Relación con el modelo Personal
+        
     ];
+
+    // Relación con el modelo Personal
+    public function personal()
+    {
+        return $this->belongsTo(Personal::class, 'personal_id');
+    }
 }

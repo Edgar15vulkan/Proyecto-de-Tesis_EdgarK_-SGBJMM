@@ -57,7 +57,24 @@ class PersonalController extends Controller //Se crea el controlador de personal
             'zona_adscripcion' => 'nullable|string|max:100',
             'observaciones' => 'nullable|string|max:255',
 
+            //datos de contacto
+            'correo_electronico' => 'required|email|max:255',
+            'telefono' => 'nullable|string|max:15',
+            'ciudad' => 'nullable|string|max:100',
+            'colonia' => 'nullable|string|max:100',
+            'calle' => 'nullable|string|max:100',
+            'nombre_contacto_emergencia' => 'nullable|string|max:100',
+            'parentesco_contacto_emergencia' => 'nullable|string|max:50',
+            'celular_contacto_emergencia' => 'nullable|string|max:15',
+
+            // Datos de licencia de conducir
+            'licencia_conducir' => 'required|boolean',
+            'tipo' => 'nullable|in:Tipo A,Tipo B,Tipo C,Tipo D, Tipo E',
+            'licencia_ numero' => 'nullable|string|max:50',
+            'fecha_expedicion' => 'nullable|date',
+            'fecha_vencimiento' => 'nullable|date|after_or_equal:fecha_expedicion',
         ]);
+
         //creación de los datos personales asociados a la persona
         $persona = Personal::create([
             'nombre' => $request->nombre,
@@ -67,7 +84,6 @@ class PersonalController extends Controller //Se crea el controlador de personal
             'CURP' => $request->CURP,
             'fecha_nacimiento' => $request->fecha_nacimiento,
             'lugar_nacimiento' => $request->lugar_nacimiento,
-          
         ]);
         //creación de los datos de servicio asociados a la persona
         $persona->servicio()->create([
@@ -78,8 +94,31 @@ class PersonalController extends Controller //Se crea el controlador de personal
             'estado' => $request->estado,
             'zona_adscripcion' => $request->zona_adscripcion,
             'observaciones' => $request->observaciones,
-
         ]);
+        //creación de los datos de contacto asociados a la persona
+        $persona->contacto()->create([
+            //campos
+            'correo_electronico' => $request->correo_electronico,
+            'telefono' => $request->telefono,
+            'ciudad' => $request->ciudad,
+            'colonia' => $request->colonia,
+            'calle' => $request->calle,
+            'nombre_contacto_emergencia' => $request->nombre_contacto_emergencia,
+            'parentesco_contacto_emergencia' => $request->parentesco_contacto_emergencia, 
+            'celular_contacto_emergencia' => $request->celular_contacto_emergencia, 
+        ]);
+        
+        //creación de los datos de licencia de conducir asociados a la persona
+        $persona->LicenciaConducir()->create([
+            //campos
+            'licencia_conducir' => $request->licencia_conducir,
+            'tipo' => $request->tipo,
+            'licencia_numero' => $request->licencia_numero,
+            'fecha_expedicion' => $request->fecha_expedicion,
+            'fecha_vencimiento' => $request->fecha_vencimiento,
+        ]);
+
+
         //redireccionar a la vista de ventas con mensaje de exito
         return redirect()->route('personal.index')->with('success', 'Personal creado exitosamente.');
     }

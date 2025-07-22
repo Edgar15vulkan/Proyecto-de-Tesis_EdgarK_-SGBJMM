@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\DatosServicio; // Importar el modelo DatosServicio
+use App\Models\DatosContacto; // Importar el modelo DatosContacto
+use App\Models\LicenciaConducir; // Importar el modelo LicenciaConducir
 
 class Personal extends Model
 {
@@ -21,8 +23,20 @@ class Personal extends Model
         'lugar_nacimiento'
     ];
 
+    // Relación uno a uno con DatosServicio
     public function servicio()
     {
         return $this->hasOne(DatosServicio::class, 'personal_id'); // Relación uno a uno con DatosServicio                                                                      
+    }
+
+    // Relación uno a uno con DatosContacto
+    public function contacto()
+    {
+        return $this->hasOne (DatosContacto::class, 'personal_id', 'personal_id'); // Relación uno a uno con DatosContacto
+    }
+    // Relación uno a muchos con LicenciaConducir
+    public function licenciaConducir()
+    {
+        return $this->hasOne(LicenciaConducir::class, 'personal_id');
     }
 }
