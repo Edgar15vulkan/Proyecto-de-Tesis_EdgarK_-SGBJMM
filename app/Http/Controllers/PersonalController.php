@@ -11,21 +11,21 @@ use Inertia\Response;
 class PersonalController extends Controller //Se crea el controlador de personal
 {
     
-    //Muestra la lista de servicios
-    public function Index(Request $request)
+    //Muestrar una tabla con los registros de personal
+    public function Index(Request $request)  //Recibe un objeto Request para manejar los datos de la solicitud
     {   
-        $query = Personal :: query();
+        $query = Personal :: with(['servicio', 'contacto', 'licencia']); // Creamos una consulta base para el modelo Personal
  
         //si hay un parametro buscar, busca el personal por id
         if ($request ->has('search') && is_numeric($request ->search)) {
-            $query->where('id', $request->search);
+            $query->where('personal_id', $request->search);
         } 
  
         $personal = $query -> paginate(5)->withQueryString(); //Mandamos a la vista que se paginen 5 o mas registros por pagina y que mantenga la cadena de consulta para el paginador
-        //retornar la vista de ventas con los registros obtenidos
+        //retornar la vista de personal con los registros obtenidos
         return Inertia::render('Personal/personalVista', [    //referencia de la vista
             'personal' => $personal
-        ]); //renderiza la ubicación y vista de ventas *no tocar*
+        ]); //renderiza la ubicación y vista de personal *no tocar*
     }
     //Create para la creacion de registros con formulario
     public function create(): Response
@@ -123,9 +123,9 @@ class PersonalController extends Controller //Se crea el controlador de personal
         return redirect()->route('personal.index')->with('success', 'Personal creado exitosamente.');
     }
     //Eliminar un registro de cliente
-    public function destroy($id)
+    public function destroy($personal_id)
         {
-            $persona = Personal::findOrFail($id);
+            $persona = Personal::findOrFail($personal_id);
             $persona->delete();
 
         return redirect()->route('personal.index')->with('success', 'Personal eliminado correctamente.');

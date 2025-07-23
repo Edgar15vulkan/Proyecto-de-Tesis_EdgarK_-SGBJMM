@@ -26,11 +26,23 @@ export default function Index({personal}) { // Recibe los servicios como props
                     <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg p-6">
 
                         {/* Botón para añadir nuevo servicio */}
-                        <div className='bg-blue-100 p-4 rounded mb-4'>
-                            <h2 className='text-2xl font-semibold mb-3'>Nuevo Personal</h2>
+                        <div className='bg-blue-100 p-4 rounded mb-4 space-x-20'>
+                            <h2 className='text-2xl font-semibold mb-3'>Acciones rápidas</h2>
                             <Link href={route('personal.create')}> {/* Verificar ruta en web.php*/}
+                                <button className=" hover:brightness-90 text-black font-bold py-2 px-4 rounded-lg transition duration-300"
+                                style={{ backgroundColor: '#FBC02D' }}
+                                type="button">Añadir Nuevo Personal
+                                </button>
+                            </Link>
+                              <Link href={route('personal.create')}> {/* Verificar ruta en web.php*/}
                                 <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300"
-                                type="button">Añadir Personal
+                                type="button">Gestionar Grupos
+                                </button>
+                            </Link>
+                              <Link href={route('personal.create')}> {/* Verificar ruta en web.php*/}
+                                <button className="hover:brightness-90 text-white font-bold py-2 px-4 rounded-lg transition duration-300"
+                                style={{ backgroundColor: '#FB2E2E'}}
+                                type="button">Lista de Asistencias
                                 </button>
                             </Link>
                         </div>

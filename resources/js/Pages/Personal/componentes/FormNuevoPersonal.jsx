@@ -441,7 +441,7 @@ export default function Create() {
                {processing && <span className="ml-2">Procesando...</span>}  {/*Texto de carga*/}
                {errors.general && <span className="text-red-500">{errors.general}</span>}  {/*Texto de error*/}
 
-               {/* Enlace para volver a la lista de ventas */}
+               {/* Enlace para volver a Personal Vista */}
                <Link href={route('personal.index')} className="ml-4">
                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300"
                    type="button">Cancelar registro de Personal</button>

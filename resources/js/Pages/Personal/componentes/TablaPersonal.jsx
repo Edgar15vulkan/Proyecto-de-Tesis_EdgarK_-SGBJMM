@@ -21,13 +21,15 @@ const Index = () => {
                     <tr>
                         <th className="border px-4 py-2">ID</th>
                         <th className="border px-4 py-2">Nombre(s)</th>
-                        <th className="border px-4 py-2">Apellido Paterno</th>
-                        <th className="border px-4 py-2">Apellido Materno</th>
-                        <th className="border px-4 py-2">Sexo</th>
-                        <th className="border px-4 py-2">CURP</th>
-                        <th className="border px-4 py-2">Fecha de Nacimiento</th>
+                        <th className="border px-4 py-2">Apellidos(s)</th>
+                
+                        <th className="border px-4 py-2">Cargo</th>
+                        <th className="border px-4 py-2">Grupo</th>
+                        <th className="border px-4 py-2">Estado</th>
+                        {/*<th className="border px-4 py-2">CURP</th>
+                        *<th className="border px-4 py-2">Fecha de Nacimiento</th>
                         <th className="border px-4 py-2">Lugar de Nacimiento</th>
-                        {/* Agregar más encabezados según los campos de la tabla */}
+                         Agregar más encabezados según los campos de la tabla */}
 
              
                      
@@ -39,25 +41,25 @@ const Index = () => {
                         <tr key={persona.id}>
                             <td className="border px-4 py-2">{persona.personal_id}</td>
                             <td className="border px-4 py-2">{persona.nombre}</td>
-                            <td className="border px-4 py-2">{persona.apellido_paterno}</td>
-                            <td className="border px-4 py-2">{persona.apellido_materno}</td>
-                            <td className="border px-4 py-2">{persona.sexo}</td>
-                            <td className="border px-4 py-2">{persona.CURP}</td>
+                            <td className="border px-4 py-2">{persona.apellido_paterno} {persona.apellido_materno}</td> {/* Concatenar apellido paterno y materno */}
+      
+                            <td className="border px-4 py-2">{persona.servicio ? persona.servicio.cargo : 'sin cargo'}</td>
+                            <td className="border px-4 py-2">{persona.servicio ? persona.servicio.estado : 'sin estado'}</td>
                             <td className="border px-4 py-2">{persona.fecha_nacimiento}</td>
-                            <td className="border px-4 py-2">{persona.lugar_nacimiento}</td>
-                            {/* Aquí puedes agregar más celdas según los campos de la tabla */}
+                            {/*<td className="border px-4 py-2">{persona.lugar_nacimiento}</td>
+                             -- Aquí puedes agregar más celdas según los campos de la tabla */}
                   
 
                             <td className="p-2 border flex space-x-2">
                                 {/* Botón Ver detalles */}
-                                <Link href= {route("personal.index", persona.id)}>
+                                <Link href= {route("personal.index", persona.peprsonal_id)}>
                                     <button className="bg-blue-500 hover:bg-blue-700 text-white py-1 px-3 rounded">
                                         Leer
                                     </button>
                                 </Link>
 
                                 {/* Botón Editar */}
-                               <Link href={route("personal.index", persona.id)}>
+                               <Link href={route("personal.index", persona.personal_id)}>
                                     <button className="bg-yellow-500 hover:bg-yellow-700 text-white py-1 px-3 rounded">
                                         Editar
                                     </button>
@@ -65,9 +67,9 @@ const Index = () => {
                                     
                                 {/* Botón Eliminar */}
                                 <button 
-                                    onClick={() => handleDelete(persona.id)} 
+                                    onClick={() => handleDelete(persona.personal_id)}   //Actualizar campo según el ID  de la tabla
                                     className="bg-red-500 hover:bg-red-700 text-white py-1 px-3 rounded">
-                                    Eliminar
+                                    Eliminar 🗑
                                 </button>
 
                                 

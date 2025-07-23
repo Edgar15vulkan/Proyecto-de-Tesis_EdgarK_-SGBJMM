@@ -35,7 +35,7 @@ class Personal extends Model
         return $this->hasOne (DatosContacto::class, 'personal_id', 'personal_id'); // Relación uno a uno con DatosContacto
     }
     // Relación uno a muchos con LicenciaConducir
-    public function licenciaConducir()
+    public function licencia()
     {
         return $this->hasOne(LicenciaConducir::class, 'personal_id');
     }
