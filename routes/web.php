@@ -7,6 +7,7 @@ use Inertia\Inertia;
 
 //controladores
 use App\Http\Controllers\PersonalController;    // Controlador de Personal
+use App\Http\Controllers\DocumentoPersonalController;
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -31,7 +32,17 @@ Route::post('/personal', [PersonalController::class, "store"])->name('personal.s
                             //Se declara la ruta para guardar personal
 Route::delete('/personal/{id}', [PersonalController::class, 'destroy'])->name('personal.destroy'); //Se agrega la ruta de eliminar personal
                             //Se declara la ruta de eliminar personal en la ruta
+//rutas de documentos-personal
 
+Route::get('/documentos-personal', [DocumentoPersonalController::class, 'index'])->name('documentos-personal.index');
+
+Route::post('/documentos-personal', [DocumentoPersonalController::class, 'store'])->name('documentos-personal.store');
+
+Route::get('/personal/{id}/documentos', [DocumentoPersonalController::class, 'gestionar'])->name('documentos-personal.gestionar');
+
+Route::get('/documentos-personal/{id}/descargar', [DocumentoPersonalController::class, 'descargar'])->name('documentos-personal.descargar');
+
+Route::delete('/documentos-personal/{id}', [DocumentoPersonalController::class, 'destroy'])->name('documentos-personal.destroy');
 
 //
 Route::middleware('auth')->group(function () {

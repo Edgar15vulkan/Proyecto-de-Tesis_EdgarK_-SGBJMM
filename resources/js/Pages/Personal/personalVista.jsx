@@ -15,7 +15,7 @@ export default function Index({personal}) { // Recibe los servicios como props
         <AuthenticatedLayout
             header={
                 <h2 className="text-xl font-semibold leading-tight text-gray-800">
-                    Personal 
+                    Gestionar Personal
                 </h2>
             }
         >
@@ -34,26 +34,32 @@ export default function Index({personal}) { // Recibe los servicios como props
                                 type="button">Añadir Nuevo Personal
                                 </button>
                             </Link>
-                              <Link href={route('personal.create')}> {/* Verificar ruta en web.php*/}
+                            <Link href={route('personal.create')}> {/* Verificar ruta en web.php*/}
                                 <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300"
                                 type="button">Gestionar Grupos
                                 </button>
                             </Link>
-                              <Link href={route('personal.create')}> {/* Verificar ruta en web.php*/}
+                            <Link href={route('personal.create')}> {/* Verificar ruta en web.php*/}
                                 <button className="hover:brightness-90 text-white font-bold py-2 px-4 rounded-lg transition duration-300"
                                 style={{ backgroundColor: '#FB2E2E'}}
                                 type="button">Lista de Asistencias
                                 </button>
                             </Link>
+                            <Link href={route('documentos-personal.store')}>
+                                <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300"
+                                type='button'>Gestionar documentos
+                                </button>
+                            </Link>
+
                         </div>
 
-                        {/* Buscador de clientes */}
+                        {/* Buscador de personal por ID */}
                         <div className='bg-green-100 p-4 rounded mb-4'>
                             <h2 className='text-2xl font-semibold mb-3'>Buscar personal por ID</h2>
                             <BuscadorPersonal /> {/* Verificar ruta en web.php*/}
                         </div>
 
-                        {/* Mostrar los clientes  */}
+                        {/* Mostrar el personal registrado en una tabla  */}
                         <div className="bg-gray-100 p-4 rounded mb-4">
                             <h2 className='text-2xl font-semibold mb-3'>Personal de Estación registrado</h2>
                             Aqui se muestra una tabla paginada del personal de la estación

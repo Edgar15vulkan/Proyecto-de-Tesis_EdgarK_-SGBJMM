@@ -22,10 +22,11 @@ const Index = () => {
                         <th className="border px-4 py-2">ID</th>
                         <th className="border px-4 py-2">Nombre(s)</th>
                         <th className="border px-4 py-2">Apellidos(s)</th>
-                
-                        <th className="border px-4 py-2">Cargo</th>
                         <th className="border px-4 py-2">Grupo</th>
+                        <th className="border px-4 py-2">Cargo</th>
+                        
                         <th className="border px-4 py-2">Estado</th>
+                        <th className="border px-4 py-2">Fecha Ingreso</th>
                         {/*<th className="border px-4 py-2">CURP</th>
                         *<th className="border px-4 py-2">Fecha de Nacimiento</th>
                         <th className="border px-4 py-2">Lugar de Nacimiento</th>
@@ -42,7 +43,7 @@ const Index = () => {
                             <td className="border px-4 py-2">{persona.personal_id}</td>
                             <td className="border px-4 py-2">{persona.nombre}</td>
                             <td className="border px-4 py-2">{persona.apellido_paterno} {persona.apellido_materno}</td> {/* Concatenar apellido paterno y materno */}
-      
+                            <td className="border px-4 py-2">NA</td>
                             <td className="border px-4 py-2">{persona.servicio ? persona.servicio.cargo : 'sin cargo'}</td>
                             <td className="border px-4 py-2">{persona.servicio ? persona.servicio.estado : 'sin estado'}</td>
                             <td className="border px-4 py-2">{persona.fecha_nacimiento}</td>

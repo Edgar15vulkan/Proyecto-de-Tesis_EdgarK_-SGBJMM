@@ -1,5 +1,6 @@
 /*Importaciones */
 import {useForm, Link} from '@inertiajs/react';
+import React, {useState} from 'react';
 
 /*Uso de use form */
 export default function Create() {
@@ -7,22 +8,27 @@ export default function Create() {
         /* variables que maneja del formulario */
 
         //Datos personales
-        nombre: '',
-        apellido_paterno: '',
-        apellido_materno: '',
-        sexo: '',
-        CURP: '',
-        fecha_nacimiento: '',
-        lugar_nacimiento: '',
+        personal: {
+            nombre: '',
+            apellido_paterno: '',
+            apellido_materno: '',
+            sexo: '',
+            CURP: '',
+            fecha_nacimiento: '',
+            lugar_nacimiento: '',
+        },
         // Datos de servicio
-        fecha_ingreso: '',
-        cargo: '',
-        rol: '',
-        estado: '',
-        voluntario: false,
-        zona_adscripcion: '',
-        observaciones: '',
+        servicio: {
+            fecha_ingreso: '',
+            cargo: '',
+            rol: '',
+            estado: '',
+            voluntario: false,
+            zona_adscripcion: '',
+            observaciones: '',
+        },
         // Datos de contacto
+        contacto: {
         correo_electronico: '',
         telefono: '',
         ciudad: '',
@@ -31,15 +37,28 @@ export default function Create() {
         nombre_contacto_emergencia: '',
         parentesco_contacto_emergencia: '',
         celular_contacto_emergencia: '',
-        // Datos de licencia de conducir
+        },
+             // Datos de licencia de conducir
+        licencia: {
         licencia_conducir:'',
         tipo:'',
         licencia_numero:'',
         fecha_expedicion:'',
         fecha_vencimiento:'',
-      
-        //nuevo: '',   nueva variable
+        },
+
+        //Datos de documentos
+        documentos: {
+            tipo_documento: '',
+            nombre_documento: '',
+            archivo: '',
+            fecha_entrega: '',
+            entregado: false,
+        },
     });
+
+ 
+
     /* funcion para manejar el cambio de los inputs */
     const handleSubmit = (e) => {             /* funcion para enviar el formulario */
         e.preventDefault();                  /* previene el comportamiento por defecto del formulario y evita que la pagina se sobrecargue*/
@@ -48,7 +67,7 @@ export default function Create() {
     return (
         /*contenedor para el formulario*/ 
        <div className='container mx-auto p-4'>
-           <h2 className='text-2xl fornt-bold mb-4 '>Registrar Nuevo Elemento del Personal</h2> {/*titulo del formulario*/}
+           <h2 className='text-2xl font-bold mb-4 '>Registrar Nuevo Elemento del Personal</h2> {/*titulo del formulario*/}
            <form onSubmit={handleSubmit} className='bg-white p-6 rounded shadow-md'>  {/* define el formulario y usa onsubmit para el envio */}
                {/*inputs del formulario*/} 
                {/* -------- DATOS PERSONALES ---------- */}
@@ -427,7 +446,9 @@ export default function Create() {
                     {errors.fecha_vencimiento && <span className="text-red-500">{errors.fecha_vencimiento}</span>}
                 </div> 
 
-
+                {/* -------- DATOS DE DOCUMENTOS PERSONALES ---------- */}
+                <h3 className="text-xl font-semibold mt-6 mb-2">Documentos personales</h3>
+               
 
 
                 {/* -------- BOTONES DE ACCIÓN ---------- */}

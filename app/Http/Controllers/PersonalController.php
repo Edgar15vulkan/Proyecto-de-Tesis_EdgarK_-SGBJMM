@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use App\Models\Personal; // Importar el modelo Personal
-use App\Models\DatosServicio; // Importar el modelo DatosServicio
 use Illuminate\Http\Request; //Request para validar formulario
 use Inertia\Inertia;
 use Inertia\Response;
@@ -109,7 +108,7 @@ class PersonalController extends Controller //Se crea el controlador de personal
         ]);
         
         //creación de los datos de licencia de conducir asociados a la persona
-        $persona->LicenciaConducir()->create([
+        $persona->licencia()->create([
             //campos
             'licencia_conducir' => $request->licencia_conducir,
             'tipo' => $request->tipo,
@@ -119,10 +118,10 @@ class PersonalController extends Controller //Se crea el controlador de personal
         ]);
 
 
-        //redireccionar a la vista de ventas con mensaje de exito
+        //redireccionar a la vista de personal con mensaje de exito
         return redirect()->route('personal.index')->with('success', 'Personal creado exitosamente.');
     }
-    //Eliminar un registro de cliente
+    //Eliminar un registro de personal
     public function destroy($personal_id)
         {
             $persona = Personal::findOrFail($personal_id);
