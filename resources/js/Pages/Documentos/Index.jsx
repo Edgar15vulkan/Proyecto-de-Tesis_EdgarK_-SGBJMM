@@ -4,7 +4,7 @@ import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import DocumentosForm from './componentes/DocumentosForm';
 import TablaDocumentos from './componentes/TablaDocumentos';
 
-const Index = ({ auth, documentos }) => {
+const Index = ({ auth, documentos, personal_id, }) => {
     const { data, setData, post, processing, reset } = useForm ({   
         documentos: [
             {
@@ -65,7 +65,8 @@ const Index = ({ auth, documentos }) => {
         <div className="py-12">
             <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
                 <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg p-6">
-                    <h1 className='text-xl font-bold mb-4'>Subir nuevo documento</h1>
+                    {/*<h1 className='text-xl font-bold mb-4'>Subir nuevo documento</h1>
+                    
                     <form onSubmit={handleSubmit}>
                     <DocumentosForm
                         personalId= {personal_id}
@@ -80,11 +81,18 @@ const Index = ({ auth, documentos }) => {
                         Guardar Documentos
                     </button>
                     </form>
+                    */}
                     {/* TablaDocumentos*/}
                     <h2 className="text-lg font-semibold mt-6"> Documentos cargados </h2>
                     <TablaDocumentos
                         documentos = {documentos}
                          />
+
+                    {/* Botón enlace para el formulario */}
+                    <div>
+                        
+                    </div>
+
                 </div>
             </div>
         </div>

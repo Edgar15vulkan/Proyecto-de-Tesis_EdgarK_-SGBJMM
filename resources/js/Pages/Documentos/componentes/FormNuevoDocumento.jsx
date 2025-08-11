@@ -1,8 +1,8 @@
 //importaciones 
-import { useForm, Link } from '@inertiajs/react';
+import { useForm, Link, usePage } from '@inertiajs/react';
 import React, { useState } from 'react';
 
-const DocumentosForm = ({ onDocumentoSubido, personalId, personas }) => {
+const FormNuevoDocumento = ({ onDocumentoSubido, personalId, personas }) => {
     const {data, setData, post, processing, reset, errors} = useForm({
         tipo_documento: "",
         nombre_documento: "",
@@ -35,6 +35,9 @@ const DocumentosForm = ({ onDocumentoSubido, personalId, personas }) => {
         });
     };
 
+    const {personas} = usePage().props;
+    
+
     return (
         <form onSubmit={handleSubmit} className="mt-4 space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
@@ -44,7 +47,7 @@ const DocumentosForm = ({ onDocumentoSubido, personalId, personas }) => {
                     value={data.personal_id}
                     onChange={(e) => setData('personal_id', e.target.value)}
                 >
-                    {personas?.map((p) => (
+                    {personas.map((p) => (
                         <option key={p.id} value={p.id}>
                             {p.nombre}
                         </option>
@@ -93,5 +96,5 @@ const DocumentosForm = ({ onDocumentoSubido, personalId, personas }) => {
     );
 };
 
-export default DocumentosForm;
+export default FormNuevoDocumento;
 

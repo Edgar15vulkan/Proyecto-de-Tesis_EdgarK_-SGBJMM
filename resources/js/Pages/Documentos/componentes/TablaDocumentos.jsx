@@ -3,17 +3,20 @@ import { router } from '@inertiajs/react';
 import { Button } from '@headlessui/react';
 
 const TablaDocumentos = ({ documentos }) => {
-    const handleDescargar = (id) => {
-        window.open(route('documentos-personal.descargar', id), '_blank');
+    //const handleDescargar = (id) => {
+        //window.open(route('documentos-personal.descargar', id), '_blank');
+    //};
 
+    const handleGestionar = (id) => {
+        router.gestionar(route('documentos-personal.gestionar', id));
     };
 
-    const handleEliminar = (id) => {
-        if (confirm('¿Seguro que deseas eliminar éste documento?')) {
-            router.delete(route('documentos-personal.destroy', id));
-
-        }
-    };
+    // acción eliminar documento por id
+    //const handleEliminar = (id) => {
+        //if (confirm('¿Seguro que deseas eliminar éste documento?')) {
+            //router.delete(route('documentos-personal.destroy', id));
+        //}
+    //};
 
     return (
         <table className='container mx-auto p-4'>
@@ -35,9 +38,17 @@ const TablaDocumentos = ({ documentos }) => {
                         <td className='p-2 border'>{doc.fecha_entrega}</td>
                         <td className='p-2 border'>{doc.entregado ? 'Si' : 'No'}</td>
                         <td className='p-2 border'>{doc.archivo}</td>
+                        {/* --------------Acciones de la Tabla Documentos - Resumen -----------*/}
                         <td className='p-2 border space-x-2'>
+                            {/*--- Acción de gestionar ---*/}
+                            <button 
+                                onClick = {() => handleGestionar(doc.id)}
+                                className = 'text-green-600 hover:underline'
+                            >
+                                Gestionar
+                            </button>
 
-
+                            {/*   --------- Acciones de descargar y eliminar documento   ----------------
                             <button
                                 onClick = {() => handleDescargar(doc.id)}
                                 className= 'text-blue-600 hover:underline'
@@ -50,6 +61,7 @@ const TablaDocumentos = ({ documentos }) => {
                             >
                                 Eliminar
                             </button>
+                            */}
                         </td>
                     </tr>
                 ))}
