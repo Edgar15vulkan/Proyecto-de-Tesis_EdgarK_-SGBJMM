@@ -14,13 +14,16 @@ use App\Models\User;
 
 class DocumentoPersonalController extends Controller
 {
+    //Metódo Index para mostrar los documentos personales
     public function index()
     {   
-        $documentos = DocumentoPersonal::all(); 
+        $query = Personal:: with (['documentos']); //crear consulta del modelo Personal con documentos
+        $documentos = DocumentoPersonal::all();
+        $personal = $query-> paginate(5)->withQueryString(); 
         return Inertia::render('Documentos/Index', 
         [            
             'documentos' => DocumentoPersonal::all(),
-            'personas' => Personal::all(),
+            'personal' => $personal
 
         ]);
     }
@@ -56,10 +59,23 @@ class DocumentoPersonalController extends Controller
 
     }
 
+    //función de mostrar los documentos de una sola persona
+    public function show($personal_id)
+    {
+        $personal = Personal::findOrFail($personal_id); //busca el personal por id
+        $documentos = DocumentoPersonal::where('personal_id', $personal_id)->get();
+
+        return Inertia('Documentos/componentes/Detalle', [
+            'personal' => $personal,
+            'documentos' => $documentos
+        ]);                             
+    }
+
     //Gestionar documento
     public function gestionar($id)
     {
         $documentos = DocumentoPersonal::where('personal_id', $id)->get();
+        
         return Inertia::render('Documentos/Index', [
             'documentos' => $documentos,
             'personal_id' => $id

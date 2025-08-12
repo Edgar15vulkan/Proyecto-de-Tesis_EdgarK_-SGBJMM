@@ -25,23 +25,23 @@ class Personal extends Model
     ];
 
     // Relación uno a uno con DatosServicio
-    public function servicio()
+    public function servicios()
     {
         return $this->hasOne(DatosServicio::class, 'personal_id'); // Relación uno a uno con DatosServicio                                                                      
     }
 
     // Relación uno a uno con DatosContacto
-    public function contacto()
+    public function contactos()
     {
         return $this->hasOne (DatosContacto::class, 'personal_id', 'personal_id'); // Relación uno a uno con DatosContacto
     }
     // Relación uno a muchos con LicenciaConducir
-    public function licencia()
+    public function licencias()
     {
         return $this->hasOne(LicenciaConducir::class, 'personal_id');
     }
     // Relación uno a muchos con DocumentosPersonal
-    public function documento()
+    public function documentos()
     {
         return $this->hasMany(DocumentoPersonal::class, 'personal_id'); // Relación uno a muchos con DocumentosPersonal
     }

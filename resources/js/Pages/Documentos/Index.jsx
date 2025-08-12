@@ -2,7 +2,8 @@ import React from 'react';
 import {Head ,useForm} from '@inertiajs/react';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import DocumentosForm from './componentes/DocumentosForm';
-import TablaDocumentos from './componentes/TablaDocumentos';
+//import TablaDocumentos from './componentes/TablaDocumentos';
+import TablaResumenDoc from './componentes/TablaResumenDoc';
 
 const Index = ({ auth, documentos, personal_id, }) => {
     const { data, setData, post, processing, reset } = useForm ({   
@@ -83,8 +84,8 @@ const Index = ({ auth, documentos, personal_id, }) => {
                     </form>
                     */}
                     {/* TablaDocumentos*/}
-                    <h2 className="text-lg font-semibold mt-6"> Documentos cargados </h2>
-                    <TablaDocumentos
+                    <h2 className="text-lg font-semibold mt-6"> Tabla resumen de documentos (checklist) </h2>
+                    <TablaResumenDoc
                         documentos = {documentos}
                          />
 

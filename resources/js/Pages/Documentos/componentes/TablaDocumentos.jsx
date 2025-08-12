@@ -8,7 +8,7 @@ const TablaDocumentos = ({ documentos }) => {
     //};
 
     const handleGestionar = (id) => {
-        router.gestionar(route('documentos-personal.gestionar', id));
+        router.gestionar(route('', id));
     };
 
     // acción eliminar documento por id
@@ -22,7 +22,7 @@ const TablaDocumentos = ({ documentos }) => {
         <table className='container mx-auto p-4'>
             <thead className='bg-gray-100'>
                 <tr>
-                    <th className='p-2 border'>Tipo</th>
+                    <th className='p-2 border'></th>
                     <th className= 'p-2 border'>Nombre </th>
                     <th className= 'p-2 border'>Fecha de entrega </th>
                     <th className= 'p-2 border'>Entregado </th>

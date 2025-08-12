@@ -36,6 +36,10 @@ Route::delete('/personal/{id}', [PersonalController::class, 'destroy'])->name('p
 
 Route::get('/documentos-personal', [DocumentoPersonalController::class, 'index'])->name('documentos-personal.index');
 
+//ruta para mostrar los documentos de una sola persona
+Route::get('/documentos-personal/{personal}', [DocumentoPersonalController::class, 'show'])
+    ->name('documentos-personal.show');
+
 Route::post('/documentos-personal', [DocumentoPersonalController::class, 'store'])->name('documentos-personal.store');
 
 Route::get('/personal/{id}/documentos', [DocumentoPersonalController::class, 'gestionar'])->name('documentos-personal.gestionar');

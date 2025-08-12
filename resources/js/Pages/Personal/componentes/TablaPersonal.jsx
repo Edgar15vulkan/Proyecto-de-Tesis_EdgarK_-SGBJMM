@@ -3,8 +3,8 @@ import { Head, usePage, Link, router } from "@inertiajs/react";
 import React from "react";
 
 const Index = () => {
-    const { personal } = usePage().props; // Obtener los clientes desde las props de la página
-    const listaPersonal = personal?.data || []; //Array real de clientes
+    const { personal } = usePage().props; // Obtener al personal desde las props de la página
+    const listaPersonal = personal?.data || []; //Array real de personal
     const handleDelete = (id) => {
         if (confirm('¿Estas seguro de que quieres eliminar este servicio?')){
             router.delete(route('personal.destroy', id), {
