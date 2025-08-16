@@ -1,7 +1,7 @@
 import React from 'react';
 import {Head ,useForm} from '@inertiajs/react';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
-import DocumentosForm from './componentes/DocumentosForm';
+
 //import TablaDocumentos from './componentes/TablaDocumentos';
 import TablaResumenDoc from './componentes/TablaResumenDoc';
 
@@ -66,23 +66,7 @@ const Index = ({ auth, documentos, personal_id, }) => {
         <div className="py-12">
             <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
                 <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg p-6">
-                    {/*<h1 className='text-xl font-bold mb-4'>Subir nuevo documento</h1>
                     
-                    <form onSubmit={handleSubmit}>
-                    <DocumentosForm
-                        personalId= {personal_id}
-                        documentosIniciales = {documentos}
-                        onDocumentosChange = {(nuevosDocs ) => setData('documentos', nuevosDocs)}
-                    />
-                    <button
-                        type= 'submit'
-                        disabled={processing}
-                        className= "mt-4 bg-blue-600 text-white px-4 py-2 rounded"
-                    >
-                        Guardar Documentos
-                    </button>
-                    </form>
-                    */}
                     {/* TablaDocumentos*/}
                     <h2 className="text-lg font-semibold mt-6"> Tabla resumen de documentos (checklist) </h2>
                     <TablaResumenDoc

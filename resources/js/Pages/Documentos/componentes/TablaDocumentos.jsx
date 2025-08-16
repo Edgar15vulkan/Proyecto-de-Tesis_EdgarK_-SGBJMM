@@ -2,7 +2,8 @@ import React from 'react';
 import { router } from '@inertiajs/react';
 import { Button } from '@headlessui/react';
 
-const TablaDocumentos = ({ documentos }) => {
+
+const TablaDocumentos = ({ documentos, }) => {
     //const handleDescargar = (id) => {
         //window.open(route('documentos-personal.descargar', id), '_blank');
     //};
@@ -21,7 +22,7 @@ const TablaDocumentos = ({ documentos }) => {
     return (
         <table className='container mx-auto p-4'>
             <thead className='bg-gray-100'>
-                <tr>
+                <tr className='text-left'>
                     <th className='p-2 border'></th>
                     <th className= 'p-2 border'>Nombre </th>
                     <th className= 'p-2 border'>Fecha de entrega </th>

@@ -32,8 +32,8 @@ Route::post('/personal', [PersonalController::class, "store"])->name('personal.s
                             //Se declara la ruta para guardar personal
 Route::delete('/personal/{id}', [PersonalController::class, 'destroy'])->name('personal.destroy'); //Se agrega la ruta de eliminar personal
                             //Se declara la ruta de eliminar personal en la ruta
+                            
 //rutas de documentos-personal
-
 Route::get('/documentos-personal', [DocumentoPersonalController::class, 'index'])->name('documentos-personal.index');
 
 //ruta para mostrar los documentos de una sola persona

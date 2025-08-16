@@ -13,7 +13,7 @@ class PersonalController extends Controller //Se crea el controlador de personal
     //Muestrar una tabla con los registros de personal
     public function Index(Request $request)  //Recibe un objeto Request para manejar los datos de la solicitud
     {   
-        $query = Personal :: with(['servicio', 'contacto', 'licencia']); // Creamos una consulta base para el modelo Personal
+        $query = Personal :: with(['servicios', 'contactos', 'licencias','documentos']); // Creamos una consulta base para el modelo Personal
  
         //si hay un parametro buscar, busca el personal por id
         if ($request ->has('search') && is_numeric($request ->search)) {
@@ -39,6 +39,7 @@ class PersonalController extends Controller //Se crea el controlador de personal
         //validación de datos de formulario
        $validated = $request->validate([
             //datos personales
+            
             'nombre' => 'required|string|max:255',
             'apellido_paterno' => 'required|string|max:255',
             'apellido_materno' => 'nullable|string|max:255',
@@ -85,7 +86,7 @@ class PersonalController extends Controller //Se crea el controlador de personal
             'lugar_nacimiento' => $request->lugar_nacimiento,
         ]);
         //creación de los datos de servicio asociados a la persona
-        $persona->servicio()->create([
+        $persona->servicios()->create([
             'fecha_ingreso' => $request->fecha_ingreso,
             'cargo' => $request->cargo,
             'rol' => $request->rol,
@@ -95,7 +96,7 @@ class PersonalController extends Controller //Se crea el controlador de personal
             'observaciones' => $request->observaciones,
         ]);
         //creación de los datos de contacto asociados a la persona
-        $persona->contacto()->create([
+        $persona->contactos()->create([
             //campos
             'correo_electronico' => $request->correo_electronico,
             'telefono' => $request->telefono,
@@ -108,7 +109,7 @@ class PersonalController extends Controller //Se crea el controlador de personal
         ]);
         
         //creación de los datos de licencia de conducir asociados a la persona
-        $persona->licencia()->create([
+        $persona->licencias()->create([
             //campos
             'licencia_conducir' => $request->licencia_conducir,
             'tipo' => $request->tipo,

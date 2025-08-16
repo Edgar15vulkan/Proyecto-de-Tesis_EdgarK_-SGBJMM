@@ -1,15 +1,24 @@
 //importaciones 
-import { useForm, Link, usePage } from '@inertiajs/react';
-import React, { useState } from 'react';
+import { useForm } from '@inertiajs/react';
+import React, {useState} from 'react';
 
-const FormNuevoDocumento = ({ onDocumentoSubido, personalId, personas }) => {
+const FormNuevoDocumento = ({ onDocumentoSubido, personalId, personal}) => {
+
+
+
     const {data, setData, post, processing, reset, errors} = useForm({
-        tipo_documento: "",
-        nombre_documento: "",
+        //campos del formulario
+        documentos: {
+        personal_id: personal.id,
+        tipo_documento: '',
+        nombre_documento: '',
         archivo: null,
-        personal_id: personalId,
+        entregado: false,
+        fecha_entrega: '',
+    
+        } //viene cargado desde la vista Detalle.jsx
     });
-
+    
     const opcionesTipoDocumento = [
         'Acta de Nacimiento',
         'INE',
@@ -26,37 +35,21 @@ const FormNuevoDocumento = ({ onDocumentoSubido, personalId, personas }) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        post(route('documentos-personal.store'), {
+        post(route('documentos-personal.store', data), {
             forceFormData: true,
             onSuccess: () => {
-                onDocumentoSubido(); //recargar documentos desde el padre
+                onDocumentoSubido(); //recargar documentos desde el padre   
                 reset();
+                if (onDocumentoSubido) onDocumentoSubido(); //se recarga la tabla de documentos
             },
         });
     };
-
-    const {personas} = usePage().props;
     
-
     return (
         <form onSubmit={handleSubmit} className="mt-4 space-y-4">
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
 
-                {/*Seleccionar persona a la que pertenece el documento */}
-                <select 
-                    value={data.personal_id}
-                    onChange={(e) => setData('personal_id', e.target.value)}
-                >
-                    {personas.map((p) => (
-                        <option key={p.id} value={p.id}>
-                            {p.nombre}
-                        </option>
-                    ))}
-                </select>
-                
-
-
-                {/*Seleccionar tipo de documento */}
+                {/*-----------Seleccionar tipo de documento ------------*/}
                 <select
                     value={data.tipo_documento}
                     onChange={(e) => setData('tipo_documento', e.target.value)}
@@ -69,7 +62,7 @@ const FormNuevoDocumento = ({ onDocumentoSubido, personalId, personas }) => {
                         </option>
                     ))}
                 </select>
-
+                {/* ----------Nombre del documento----------- */}
                 <input 
                     type="text"
                     placeholder="Nombre del documento"
@@ -77,22 +70,46 @@ const FormNuevoDocumento = ({ onDocumentoSubido, personalId, personas }) => {
                     onChange={(e) => setData('nombre_documento', e.target.value)}
                     className="border p-2 rounded w-full"
                 />
-                <input
-                    type="file"
-                    onChange={(e) => setData('archivo', e.target.files[0])}
-                    className="border p-2 rounded w-full"
-                />
+                {/* --------Adjuntar archivo -------------- */}
+                <div >
+                    <input
+                        type="file"
+                        onChange={(e) => setData('archivo', e.target.files[0])}
+                        className="border p-2 rounded w-full"
+                    />
+                </div>
+                {/* ----- entregado fisicamente ------ */}
+                <div >
+                    <label>Entregado físicamente  </label>
+                    <input
+                        type="checkbox"
+                        checked={data.entregado}
+                        onChange={(e) => setData('entregado', e.target.checked)}
+                        className="mr-2"
+                    />
+                </div>
+                {/*-----Fecha de entrega ----- */}
+                <div>
+                    <label>Fecha de entrega (copia fisica)</label>
+                    <input
+                        type="date"
+                        value={data.fecha_entrega}
+                        onChange={(e) => setData('fecha_entrega', e.target.value)}
+                        className="border p-2 rounded w-full"
+                    />
+                </div>
+
             </div>
             <button
                 type="submit"
+                className={`bg-blue-500 text-white px-4 py-2 rounded ${processing ? 'opacity-50 cursor-not-allowed' : ''}`}
                 disabled={processing}
-                className="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700"
-
             >
-                Subir
+                Subir Documento
             </button>
+            {processing && <span className="ml-2">Procesando...</span>}
+            {errors.general && <span className="text-red-500">{errors.general}</span>}
         </form>
-        
     );
 };
 

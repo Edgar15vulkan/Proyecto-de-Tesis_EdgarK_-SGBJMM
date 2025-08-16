@@ -11,11 +11,12 @@ use App\Models\DocumentoPersonal;
 use App\Models\Personal;
 use App\Http\Controllers\Auth;
 use App\Models\User;
+use Illuminate\Auth\Events\Validated;
 
 class DocumentoPersonalController extends Controller
 {
     //Metódo Index para mostrar los documentos personales
-    public function index()
+    public function index(Request $request)
     {   
         $query = Personal:: with (['documentos']); //crear consulta del modelo Personal con documentos
         $documentos = DocumentoPersonal::all();
@@ -27,35 +28,45 @@ class DocumentoPersonalController extends Controller
 
         ]);
     }
+    //crear un nuevo documento
+    public function create(): Response
+    {
+        return Inertia::render('Documentos/componentes/FormNuevoDocumento');//renderiza la ubicación del formulario
+             //cargar todos los registros de personal
+    }
 
 
-    //guardar documento
+    //guardar nuevo documento del formulario
     public function store(Request $request) //
     {
-        $validator = Validator::make ($request->all(),[
+        $validated = $request->validate([
+            //validar datos del formulario
+            'personal_id' => 'required|exists:datos_personales,id',
             'tipo_documento' => 'required|string|max:255',
             'nombre_documento' => 'required|string|max:255',
             'archivo' => 'required|file|mimes:pdf,doc,docx,jpg,jpeg,png|max:2048',
-            'personal_id' => 'required|exists:datos_personales,id',
-            
+            'entregado' => 'required|boolean',
+            'fecha_entrega' => 'required|date',
+            'personal_id' => 'required|exists:datos_personales,id', //FK personal 
+        
         ]);
-
-        if ($validator->fails()) {
-            return back()->withErrors ($validator)->withInput();
-        }
-
+        //creación de los datos del documento asociado a la persona
         $ruta = $request ->file('archivo')->store('documentos/personal', 'public');
 
-        DocumentoPersonal::create([
-            'tipo_documento' => $request -> tipo_documento, 
-            'nombre_documento' => $request -> nombre_documento,
-            'archivo' => $ruta, 
-            'entregado' => true,
-            'fecha_entrega' => now(),
-            'personal_id' => $request -> personal_id,
-        ]);
 
-        return back()->with('success', 'Documento cargado correctamente.');
+        //crear el documento usando la relación con personal
+        DocumentoPersonal::create([
+
+            'personal_id' => $validated['personal_id'],
+            'tipo_documento' => $validated['tipo_documento'], 
+            'nombre_documento' =>$validated['nombre_documento'],
+            'ruta_documento' => $ruta,
+            'entregado' => $validated['entregado'],
+            'fecha_entrega' => $validated['fecha_entrega'],
+           
+        ]);
+        //redireccionar a la vista de documentos detalle con mensaje de exito
+        return redirect()->route('documentos-personal.index')->with('success', 'Documento creado exitosamente.');
 
     }
 
