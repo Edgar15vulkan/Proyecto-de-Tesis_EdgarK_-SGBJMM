@@ -65,14 +65,16 @@ export default function Create() {
         post('/personal', data);               /* envia los datos al servidor -backend    -revisar ruta en c de error*/
     };
     return (
-        /*contenedor para el formulario*/ 
+        /*-------contenedor para el formulario------*/ 
        <div className='container mx-auto p-4'>
-           <h2 className='text-2xl font-bold mb-4 '>Registrar Nuevo Elemento del Personal</h2> {/*titulo del formulario*/}
-           <form onSubmit={handleSubmit} className='bg-white p-6 rounded shadow-md'>  {/* define el formulario y usa onsubmit para el envio */}
+               {/*titulo del formulario*/}
+           <h2 className='text-2xl font-bold mb-4 '>Registrar Nuevo elemento del Personal</h2> 
+               {/* -define el formulario y usa onsubmit para el envio ----*/}
+           <form onSubmit={handleSubmit} className='bg-white p-6 rounded shadow-md'>  
                {/*inputs del formulario*/} 
-               {/* -------- DATOS PERSONALES ---------- */}
+               {/* -------- DATOS PERSONALES // subtitulo  ---------- */}
                <h3 className="text-xl font-semibold mt-6 mb-2">Datos Personales</h3>
-               {/* Nombres de la persona */}
+               {/*-------Nombres de la persona -----*/}
                <div className='mb-4'>    
                    <label className="block">Nombre(s):</label>   {/*etiqueta para el campo de texto, block hace que label ocupe toda la linea con el input debajo*/} 
                    <input   
@@ -87,28 +89,28 @@ export default function Create() {
 
                 {/* Apellido Paterno */}
                 <div className='mb-4'>    
-                     <label className="block">Apellido Paterno:</label> 
-                     <input   
-                          type="text"  
-                          value={data.apellido_paterno}
-                          onChange={(e) => setData('apellido_paterno', e.target.value)}
-                          className="border rounded px-4 py-2 w-full"
-                          placeholder="Apellido Paterno" 
-                     />
-                     {errors.apellido_paterno && <span className="text-red-500">{errors.apellido_paterno}</span>}
+                    <label className="block">Apellido Paterno:</label> 
+                    <input   
+                        type="text"  
+                        value={data.apellido_paterno}
+                        onChange={(e) => setData('apellido_paterno', e.target.value)}
+                        className="border rounded px-4 py-2 w-full"
+                        placeholder="Apellido Paterno" 
+                    />
+                    {errors.apellido_paterno && <span className="text-red-500">{errors.apellido_paterno}</span>}
                 </div>
 
                 {/* Apellido Materno */}
                 <div className='mb-4'>    
-                     <label className="block">Apellido Materno:</label> 
-                     <input   
-                          type="text"  
-                          value={data.apellido_materno}
-                          onChange={(e) => setData('apellido_materno', e.target.value)}
-                          className="border rounded px-4 py-2 w-full"
-                          placeholder="Apellido Materno" 
-                     />
-                     {errors.apellido_materno && <span className="text-red-500">{errors.apellido_materno}</span>}
+                    <label className="block">Apellido Materno:</label> 
+                    <input   
+                        type="text"  
+                        value={data.apellido_materno}
+                        onChange={(e) => setData('apellido_materno', e.target.value)}
+                        className="border rounded px-4 py-2 w-full"
+                        placeholder="Apellido Materno" 
+                    />
+                    {errors.apellido_materno && <span className="text-red-500">{errors.apellido_materno}</span>}
                 </div>
 
                 {/* Sexo */}
