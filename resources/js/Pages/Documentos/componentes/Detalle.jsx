@@ -57,13 +57,14 @@ const Detalle = () => {
                     <div className="bg-gray-100 p-4 rounded mb-4">
                         <div className="bg-blue-100 p-4 rounded mb-4 space-x-20">
                         <h2 className="text-2xl font-semibold mb-3">Nuevo documento</h2>
-                        Ingrese los datos requeridos para añadir un nuevo documento.
-                        <FormNuevoDocumento
-                            personal={personal}
-                            personalId={personal.id}
-                            onDocumentoSubido = {() => router.reload({only: ['documentos'] })}
-                             
-                        /> 
+               
+                        <Link href={route('documentos-personal.create', {personal: personal.personal_id} )}>
+                            <button className="hover:brightness-90 text-black font-bold py-2 px-4 rounded-lg transition duration-300"
+                            style={{backgroundColor: '#FBC02D'}}
+                            type="button">
+                                Añadir nuevo Documento
+                            </button>
+                        </Link>
                         </div>
                     </div>    
                 </div>

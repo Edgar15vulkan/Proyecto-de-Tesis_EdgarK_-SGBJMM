@@ -29,45 +29,50 @@ class DocumentoPersonalController extends Controller
         ]);
     }
     //crear un nuevo documento
-    public function create(): Response
-    {
-        return Inertia::render('Documentos/componentes/FormNuevoDocumento');//renderiza la ubicación del formulario
-             //cargar todos los registros de personal
-    }
+        public function create(): Response
+        {
+            $personales = Personal::all(); // traer todos los registros
+            return Inertia::render('Documentos/componentes/CreateDoc', [
+                'personales' => $personales,
+            ]);
+        }
+
 
 
     //guardar nuevo documento del formulario
     public function store(Request $request) //
     {
+        // 1️⃣ Validar los campos
         $validated = $request->validate([
-            //validar datos del formulario
-            'personal_id' => 'required|exists:datos_personales,id',
+            'personal_id' => 'required|exists:datos_personales,personal_id', // ajusta si tu tabla se llama diferente
             'tipo_documento' => 'required|string|max:255',
             'nombre_documento' => 'required|string|max:255',
-            'archivo' => 'required|file|mimes:pdf,doc,docx,jpg,jpeg,png|max:2048',
-            'entregado' => 'required|boolean',
-            'fecha_entrega' => 'required|date',
-            'personal_id' => 'required|exists:datos_personales,id', //FK personal 
-        
+            'archivo' => 'nullable|file|mimes:pdf,doc,docx,png,jpg,jpeg|max:2048',
+            'entregado' => 'boolean',
+            'fecha_entrega' => 'nullable|date',
         ]);
-        //creación de los datos del documento asociado a la persona
-        $ruta = $request ->file('archivo')->store('documentos/personal', 'public');
 
+        // 2️⃣ Guardar archivo si viene
+        $rutaArchivo = null;
+        if ($request->hasFile('archivo')) {
+            $rutaArchivo = $request->file('archivo')->store('documentos', 'public'); 
+            // Se guarda en storage/app/public/documentos
+        }
 
-        //crear el documento usando la relación con personal
-        DocumentoPersonal::create([
-
+        // 3️⃣ Crear el registro en BD
+        $documento = DocumentoPersonal::create([
             'personal_id' => $validated['personal_id'],
-            'tipo_documento' => $validated['tipo_documento'], 
-            'nombre_documento' =>$validated['nombre_documento'],
-            'ruta_documento' => $ruta,
-            'entregado' => $validated['entregado'],
-            'fecha_entrega' => $validated['fecha_entrega'],
-           
+            'tipo_documento' => $validated['tipo_documento'],
+            'nombre_documento' => $validated['nombre_documento'],
+            'ruta_documento' => $rutaArchivo, // guarda la ruta para poder descargarlo luego
+            'entregado' => $validated['entregado'] ?? false,
+            'fecha_entrega' => $validated['fecha_entrega'] ?? null,
         ]);
-        //redireccionar a la vista de documentos detalle con mensaje de exito
-        return redirect()->route('documentos-personal.index')->with('success', 'Documento creado exitosamente.');
 
+        // 4️⃣ Redirigir o devolver respuesta
+        return redirect()
+            ->back()
+            ->with('success', 'Documento cargado correctamente.');
     }
 
     //función de mostrar los documentos de una sola persona
@@ -97,23 +102,25 @@ class DocumentoPersonalController extends Controller
     {
         $documento = DocumentoPersonal::findOrFail($id);
 
-        if (!Storage::disk('public')->exists($documento->archivo)){
-            abort(404, 'archivo no encontrado.');
+        if (!Storage::disk('public')->exists($documento->ruta_documento)) {
+            abort(404, 'Archivo no encontrado.');
         }
-        $ruta = Storage::disk('public')->path($documento->archivo);
+
+        $ruta = Storage::disk('public')->path($documento->ruta_documento);
         return response()->download($ruta);
     }
+
     //Eliminar documento
     public function destroy($id)
     {
         $documento = DocumentoPersonal::findOrFail($id);
 
-        if (Storage::exists($documento->archivo)) {
-            Storage::delete ($documento->archivo);
+        if (Storage::disk('public')->exists($documento->ruta_documento)) {
+            Storage::disk('public')->delete($documento->ruta_documento);
         }
 
         $documento->delete();
 
         return back()->with('success', 'Documento eliminado');
-    }
+}
 }

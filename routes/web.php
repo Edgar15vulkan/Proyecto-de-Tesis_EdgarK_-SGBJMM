@@ -39,8 +39,12 @@ Route::get('/documentos-personal', [DocumentoPersonalController::class, 'index']
 //ruta para mostrar los documentos de una sola persona
 Route::get('/documentos-personal/{personal}', [DocumentoPersonalController::class, 'show'])
     ->name('documentos-personal.show');
+//crear nuevo documento
+Route::get('/documentos-personal/{personal}/create',[DocumentoPersonalController::class, 'create'])
+    ->name('documentos-personal.create');
 
-Route::post('/documentos-personal', [DocumentoPersonalController::class, 'store'])->name('documentos-personal.store');
+Route::post('/documentos-personal', [DocumentoPersonalController::class, 'store'])
+->name('documentos-personal.store');
 
 Route::get('/personal/{id}/documentos', [DocumentoPersonalController::class, 'gestionar'])->name('documentos-personal.gestionar');
 
