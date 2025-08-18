@@ -1,4 +1,4 @@
-import { useForm , Link} from '@inertiajs/react';
+import { useForm , Link, router} from '@inertiajs/react';
 import React from 'react';
 
 export default function Create({ onDocumentoSubido, personalId, personales }) {
@@ -33,6 +33,7 @@ export default function Create({ onDocumentoSubido, personalId, personales }) {
             onSuccess: () => {
                 reset();
                 if (onDocumentoSubido) onDocumentoSubido(); // actualiza la tabla de documentos
+                router.visit(route('documentos-personal.index'))
             },
         });
     };

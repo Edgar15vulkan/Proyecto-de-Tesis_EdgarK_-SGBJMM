@@ -29,7 +29,9 @@ const Detalle = () => {
                                     <tr>
                                         <th className="p-2 border"> Nombre documento</th>
                                         <th className="p-2 border"> Entregado</th>
+                                        <th className="p-2 border"> Fecha de entrega</th>
                                         <th className="p-2 border"> Archivo</th>
+                                        <th className="p-2 border"> Acciones</th>
 
                                     </tr>
                                 </thead> {/*------ FIN ENCABEZADO TABLA------- */}
@@ -39,7 +41,32 @@ const Detalle = () => {
                                             <tr key={doc.id}>
                                                 <td className="p-2 border">{doc.nombre_documento}</td>
                                                 <td className="p-2 border">{doc.entregado ? 'Sí' : 'No'}</td>
+                                                <td className="p-2 border">{doc.fecha_entrega}</td>
                                                 <td className="p-2 border">{doc.ruta_documento || 'Sin archivo'}</td>
+                                                
+                                                {/*--------Botones de Acción--------*/}
+                                                <td className="p-2 border flex space-x-2">
+                                                    {/* Botón Ver detalles */}
+                                                    <Link href= {route("documentos-personal.index", doc.id)}>
+                                                        <button className="bg-blue-500 hover:bg-blue-700 text-white py-1 px-3 rounded">
+                                                            Leer
+                                                        </button>
+                                                    </Link>
+                    
+                                                    {/* Botón Editar */}
+                                                    <Link href={route("documentos-personal.index", doc.id)}>
+                                                        <button className="bg-yellow-500 hover:bg-yellow-700 text-white py-1 px-3 rounded">
+                                                            Editar
+                                                        </button>
+                                                    </Link>
+                                                        
+                                                    {/* Botón Eliminar */}
+                                                    <button 
+                                                        onClick={() => handleDelete(persona.personal_id)}   //Actualizar campo según el ID  de la tabla
+                                                        className="bg-red-500 hover:bg-red-700 text-white py-1 px-3 rounded">
+                                                        Eliminar 
+                                                    </button>
+                                                </td>
                                             </tr>    
                                         ))
                                     ) : (

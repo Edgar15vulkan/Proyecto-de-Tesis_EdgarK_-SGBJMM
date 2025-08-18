@@ -53,7 +53,7 @@ const Index = () => {
 
                             <td className="p-2 border flex space-x-2">
                                 {/* Botón Ver detalles */}
-                                <Link href= {route("personal.index", persona.peprsonal_id)}>
+                                <Link href= {route("personal.index", persona.personal_id)}>
                                     <button className="bg-blue-500 hover:bg-blue-700 text-white py-1 px-3 rounded">
                                         Leer
                                     </button>
@@ -72,8 +72,6 @@ const Index = () => {
                                     className="bg-red-500 hover:bg-red-700 text-white py-1 px-3 rounded">
                                     Eliminar 🗑
                                 </button>
-
-                                
                             </td>
                             
                         </tr>
