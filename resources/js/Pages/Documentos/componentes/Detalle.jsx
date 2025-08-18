@@ -41,7 +41,7 @@ const Detalle = () => {
                                             <tr key={doc.id}>
                                                 <td className="p-2 border">{doc.nombre_documento}</td>
                                                 <td className="p-2 border">{doc.entregado ? 'Sí' : 'No'}</td>
-                                                <td className="p-2 border">{doc.fecha_entrega}</td>
+                                                <td className="p-2 border">{doc.fecha_entrega || 'NA'}</td>
                                                 <td className="p-2 border">{doc.ruta_documento || 'Sin archivo'}</td>
                                                 
                                                 {/*--------Botones de Acción--------*/}
