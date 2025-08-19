@@ -20,6 +20,7 @@ class DocumentoPersonalController extends Controller
     {   
         $query = Personal:: with (['documentos']); //crear consulta del modelo Personal con documentos
         $documentos = DocumentoPersonal::all();
+        // Tabla de documentos por persona tipo resumen
         $personal = $query-> paginate(5)->withQueryString(); 
         return Inertia::render('Documentos/Index', 
         [            

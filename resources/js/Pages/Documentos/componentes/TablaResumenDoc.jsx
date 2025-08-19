@@ -54,6 +54,21 @@ const TablaResumenDoc = ({ documentos }) => {
                     })}
                 </tbody>
             </table>
+            {/*Paginación */}
+            <div className="flex justify-center mt-4">
+                {personal?.links?.map((link, index) => (
+                    <Link
+                        key={index}
+                        href={link.url || '#'}
+                        className={`mx-1 px-4 py-2 rounded ${
+                        link.active
+                        ? 'bg-blue-500 text-white'
+                        : 'bg-gray-200 text-gray-700 hover:bg-gray-300'
+                        }`}
+                        dangerouslySetInnerHTML={{__html: link.label}}                        
+                    />
+                ))}
+            </div>  {/* Fin de la paginación */}
         </div>
     );
 };
