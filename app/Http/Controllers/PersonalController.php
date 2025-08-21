@@ -71,7 +71,7 @@ class PersonalController extends Controller //Se crea el controlador de personal
             // Datos de licencia de conducir
             'licencia_conducir' => 'required|boolean',
             'tipo' => 'nullable|in:Tipo A,Tipo B,Tipo C,Tipo D, Tipo E',
-            'licencia_ numero' => 'nullable|string|max:50',
+            'licencia_numero' => 'nullable|string|max:50',
             'fecha_expedicion' => 'nullable|date',
             'fecha_vencimiento' => 'nullable|date|after_or_equal:fecha_expedicion',
         ]);
