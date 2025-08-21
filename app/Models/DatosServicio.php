@@ -25,7 +25,7 @@ class DatosServicio extends Model
 
 public function personal()
 {
-    return $this->belongsTo(Personal::class, 'personal_id'); // Relación inversa con Personal
+    return $this->belongsTo(Personal::class, 'personal_id', 'personal_id'); // Relación inversa con Personal
 }
 
 }

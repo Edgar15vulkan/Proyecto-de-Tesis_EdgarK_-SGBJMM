@@ -18,7 +18,7 @@ class DocumentoPersonalController extends Controller
     //Metódo Index para mostrar los documentos personales
     public function index(Request $request)
     {   
-        $query = Personal:: with (['documentos']); //crear consulta del modelo Personal con documentos
+        $query = Personal:: with (['documentos', 'servicios', 'contactos', 'licencias']); //crear consulta del modelo Personal con documentos
         $documentos = DocumentoPersonal::all();
         // Tabla de documentos por persona tipo resumen
         $personal = $query-> paginate(5)->withQueryString(); 

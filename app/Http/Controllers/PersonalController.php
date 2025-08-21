@@ -3,17 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Models\Personal; // Importar el modelo Personal
+use App\Models\DatosServicio; // importar el modelo de DatosServicio
 use Illuminate\Http\Request; //Request para validar formulario
 use Inertia\Inertia;
 use Inertia\Response;
 
 class PersonalController extends Controller //Se crea el controlador de personal
 {
-    
+    // -------- INDEX --------
     //Muestrar una tabla con los registros de personal
     public function Index(Request $request)  //Recibe un objeto Request para manejar los datos de la solicitud
     {   
-        $query = Personal :: with(['servicios', 'contactos', 'licencias','documentos']); // Creamos una consulta base para el modelo Personal
+        $query = Personal::with(['servicios', 'contactos', 'licencias','documentos']); // Creamos una consulta base para el modelo Personal
  
         //si hay un parametro buscar, busca el personal por id
         if ($request ->has('search') && is_numeric($request ->search)) {
@@ -26,14 +27,14 @@ class PersonalController extends Controller //Se crea el controlador de personal
             'personal' => $personal
         ]); //renderiza la ubicación y vista de personal *no tocar*
     }
-    //Create para la creacion de registros con formulario
+    //Create para la creacion de registros con formulario    -------- CREATE -------
     public function create(): Response
     {
         //retornar la vista de crear venta
         return Inertia::render('Personal/componentes/CreatePage'); //renderiza la ubicación y vista del formulario de nuevo cliente
     }
 
-    //Guarda una nueva persona en la base de datos
+    //Guarda una nueva persona en la base de datos    -------- STORE -------
     public function store(Request $request)
     {
         //validación de datos de formulario
@@ -122,7 +123,20 @@ class PersonalController extends Controller //Se crea el controlador de personal
         //redireccionar a la vista de personal con mensaje de exito
         return redirect()->route('personal.index')->with('success', 'Personal creado exitosamente.');
     }
-    //Eliminar un registro de personal
+
+
+
+    //Mostrar a detalle una persona    ------- SHOW --------
+    public function show($personal_id)
+    {
+        $persona = Personal::with(['servicios', 'contactos', 'licencias', 'documentos'])->findOrFail($personal_id);
+   
+        return Inertia::render('Personal/componentes/Show', [
+            'persona' => $persona
+        ]);
+    }
+
+    //Eliminar un registro de personal    ---- DESTROY -------
     public function destroy($personal_id)
         {
             $persona = Personal::findOrFail($personal_id);

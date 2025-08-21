@@ -5,6 +5,8 @@ import React from "react";
 const Index = () => {
     const { personal } = usePage().props; // Obtener al personal desde las props de la página
     const listaPersonal = personal?.data || []; //Array real de personal
+
+    // ---- Función para manejar la eliminación de un personal del sistema ----
     const handleDelete = (id) => {
         if (confirm('¿Estas seguro de que quieres eliminar este servicio?')){
             router.delete(route('personal.destroy', id), {
@@ -38,29 +40,29 @@ const Index = () => {
                     </tr>
                 </thead>
                 <tbody>
-                    {listaPersonal.map((persona) => (
+                    {listaPersonal.map((persona, ) => (
                         <tr key={persona.id}>
                             <td className="border px-4 py-2">{persona.personal_id}</td>
                             <td className="border px-4 py-2">{persona.nombre}</td>
                             <td className="border px-4 py-2">{persona.apellido_paterno} {persona.apellido_materno}</td> {/* Concatenar apellido paterno y materno */}
-                            <td className="border px-4 py-2">NA</td>
-                            <td className="border px-4 py-2">{persona.servicio ? persona.servicio.cargo : 'sin cargo'}</td>
-                            <td className="border px-4 py-2">{persona.servicio ? persona.servicio.estado : 'sin estado'}</td>
-                            <td className="border px-4 py-2">{persona.fecha_nacimiento}</td>
+                            <td className="border px-4 py-2">N/A</td>
+                            <td className="border px-4 py-2">{persona?.servicios?.cargo || 'sin cargo'}</td>
+                            <td className="border px-4 py-2">{persona?.servicios?.estado || 'sin estado'}</td>
+                            <td className="border px-4 py-2">{persona?.servicios?.fecha_ingreso || 'N/A'}</td>
                             {/*<td className="border px-4 py-2">{persona.lugar_nacimiento}</td>
                              -- Aquí puedes agregar más celdas según los campos de la tabla */}
                   
 
                             <td className="p-2 border flex space-x-2">
                                 {/* Botón Ver detalles */}
-                                <Link href= {route("personal.index", persona.personal_id)}>
+                                <Link href= {route("personal.show", persona.personal_id)}>
                                     <button className="bg-blue-500 hover:bg-blue-700 text-white py-1 px-3 rounded">
-                                        Leer
+                                        Ver
                                     </button>
                                 </Link>
 
                                 {/* Botón Editar */}
-                               <Link href={route("personal.index", persona.personal_id)}>
+                               <Link href={route("personal.show", persona.personal_id)}>
                                     <button className="bg-yellow-500 hover:bg-yellow-700 text-white py-1 px-3 rounded">
                                         Editar
                                     </button>
@@ -70,7 +72,7 @@ const Index = () => {
                                 <button 
                                     onClick={() => handleDelete(persona.personal_id)}   //Actualizar campo según el ID  de la tabla
                                     className="bg-red-500 hover:bg-red-700 text-white py-1 px-3 rounded">
-                                    Eliminar 🗑
+                                    Eliminar 
                                 </button>
                             </td>
                             
