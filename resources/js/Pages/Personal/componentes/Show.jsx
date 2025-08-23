@@ -86,7 +86,7 @@ export default function Show({persona}) { // Recibe los servicios como props
                             </div>
                         </div>
 
-                        {/* -------Mostrar DATOS DE CONTACTOS ----- */}
+                        {/* -------Mostrar DATOS DE LICENCIAS ----- */}
                        <div  className="bg-white shadow-md rounded-2xl p-4 mb-4">
                             <h1 className="text-lg font-bold text-red-600 mb-2"> LICENCIA DE CONDUCIR:</h1>
                             <div className="grid grid-cols-2 gap-4 text-sm">

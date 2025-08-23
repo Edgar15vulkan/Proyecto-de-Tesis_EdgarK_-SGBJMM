@@ -62,7 +62,7 @@ const Index = () => {
                                 </Link>
 
                                 {/* Botón Editar */}
-                               <Link href={route("personal.show", persona.personal_id)}>
+                               <Link href={route("personal.edit", persona.personal_id)}>
                                     <button className="bg-yellow-500 hover:bg-yellow-700 text-white py-1 px-3 rounded">
                                         Editar
                                     </button>

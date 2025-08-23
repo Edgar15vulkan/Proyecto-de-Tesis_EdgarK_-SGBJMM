@@ -6,11 +6,12 @@ use App\Models\Personal; // Importar el modelo Personal
 use App\Models\DatosServicio; // importar el modelo de DatosServicio
 use Illuminate\Http\Request; //Request para validar formulario
 use Inertia\Inertia;
+use Illuminate\Validation\Rule;
 use Inertia\Response;
 
 class PersonalController extends Controller //Se crea el controlador de personal
 {
-    // -------- INDEX --------
+    // ----------------------------------- INDEX ------------------------------------------
     //Muestrar una tabla con los registros de personal
     public function Index(Request $request)  //Recibe un objeto Request para manejar los datos de la solicitud
     {   
@@ -27,14 +28,15 @@ class PersonalController extends Controller //Se crea el controlador de personal
             'personal' => $personal
         ]); //renderiza la ubicación y vista de personal *no tocar*
     }
-    //Create para la creacion de registros con formulario    -------- CREATE -------
+    // ------------------------------------- CREATE --------------------------------------------------------
+    //Create para la creacion de registros con formulario   
     public function create(): Response
     {
         //retornar la vista de crear venta
         return Inertia::render('Personal/componentes/CreatePage'); //renderiza la ubicación y vista del formulario de nuevo cliente
     }
-
-    //Guarda una nueva persona en la base de datos    -------- STORE -------
+    // ------------------------------------- STORE ---------------------------------------------------------
+    //Guarda una nueva persona en la base de datos   
     public function store(Request $request)
     {
         //validación de datos de formulario
@@ -118,15 +120,13 @@ class PersonalController extends Controller //Se crea el controlador de personal
             'fecha_expedicion' => $request->fecha_expedicion,
             'fecha_vencimiento' => $request->fecha_vencimiento,
         ]);
-
-
         //redireccionar a la vista de personal con mensaje de exito
         return redirect()->route('personal.index')->with('success', 'Personal creado exitosamente.');
     }
 
 
-
-    //Mostrar a detalle una persona    ------- SHOW --------
+    // ------------------------------------- SHOW -------------------------------------------
+    //Mostrar a detalle una persona  
     public function show($personal_id)
     {
         $persona = Personal::with(['servicios', 'contactos', 'licencias', 'documentos'])->findOrFail($personal_id);
@@ -136,7 +136,76 @@ class PersonalController extends Controller //Se crea el controlador de personal
         ]);
     }
 
-    //Eliminar un registro de personal    ---- DESTROY -------
+     // ------------------------------------- EDIT -------------------------------------------
+    //Editar la información de una persona  
+    public function edit($personal_id)
+    {
+        $persona = Personal::with(['servicios', 'contactos', 'licencias', 'documentos'])->findOrFail($personal_id);
+   
+        return Inertia::render('Personal/componentes/Edit', [
+            'persona' => $persona
+        ]);
+    }
+    //--------------------------------------UPDATE --------------------------------------------
+    //Actualizar la información de una persona
+    public function update(Request $request, $id)
+    {
+       
+        $request->validate([
+            'nombre' => 'required|string|max:255',
+            'apellido_paterno' => 'required|string|max:255',
+            'apellido_materno' => 'nullable|string|max:255',
+            'sexo' => 'required|in:Masculino,Femenino,Otro',
+            'CURP' => [
+                'required',
+                'string',
+                'max:18',
+                Rule::unique('datos_personales', 'CURP')->ignore($id, 'personal_id'),
+            ],  //validación de CURP, debe ser único
+            'fecha_nacimiento' => 'required|date',
+            'lugar_nacimiento' => 'required|string|max:100',
+
+            //validar datos de servicio
+            'servicios' => 'required|array',
+            'servicios.fecha_ingreso' => 'required|date',
+            'servicios.cargo' => 'nullable|string|max:100',
+            'servicios.rol' => 'nullable|string|max:100',
+            'servicios.estado' => 'required|in:Activo,Inactivo,Retirado,Suspendido,Fallecido,Comision',
+            'servicios.voluntario' => 'nullable|boolean',
+            'servicios.zona_adscripcion' => 'nullable|string|max:100',
+            'servicios.observaciones' => 'nullable|string|max:255',
+        ]);
+        //actualizar datos personales
+        $persona = Personal::findOrFail($id);
+
+        //ajustar voluntario
+        $servicios['voluntario'] = !empty($servicios['voluntario']) ? 1 : 0;
+
+        //actualizar datos personales
+        $persona->update($request->only([
+            'nombre',
+            'apellido_paterno',
+            'apellido_materno',
+            'CURP',
+            'sexo',
+            'fecha_nacimiento',
+            'lugar_nacimiento',
+
+        
+        ]));
+
+        //actualizar o crear  datos de servicio
+        $persona->servicios()->updateOrCreate(
+                ['personal_id' => $persona->personal_id],
+                $request->input('servicios', [])
+            );
+        
+            return redirect()->route('personal.show', $id)
+                ->with('success', 'Información actualizada correctamente.');
+    }
+
+    //-------------------------------------- DESTROY -------------------------------------------
+    //Eliminar un registro de personal    
     public function destroy($personal_id)
         {
             $persona = Personal::findOrFail($personal_id);
@@ -144,5 +213,4 @@ class PersonalController extends Controller //Se crea el controlador de personal
 
         return redirect()->route('personal.index')->with('success', 'Personal eliminado correctamente.');
     }
-
 }
