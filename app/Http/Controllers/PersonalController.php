@@ -174,12 +174,30 @@ class PersonalController extends Controller //Se crea el controlador de personal
             'servicios.voluntario' => 'nullable|boolean',
             'servicios.zona_adscripcion' => 'nullable|string|max:100',
             'servicios.observaciones' => 'nullable|string|max:255',
+
+            //validar datos de contacto
+            'contactos' => 'required|array',
+            'contactos.correo_electronico' => 'required|email|max:255',
+            'contactos.telefono' => 'nullable|string|max:15',
+            'contactos.ciudad' => 'nullable|string|max:100',
+            'contactos.colonia' => 'nullable|string|max:100',
+            'contactos.calle' => 'nullable|string|max:100',
+            'contactos.nombre_contacto_emergencia' => 'nullable|string|max:100',
+            'contactos.parentesco_contacto_emergencia' => 'nullable|string|max:50',
+            'contactos.celular_contacto_emergencia' => 'nullable|string|max:15',
+            
+            //validar datos de licencias
+            'licencias' => 'required|array',
+            'licencias.licencia_conducir' => 'required|boolean',
+            'licencias.tipo' => 'nullable|in:Tipo A,Tipo B,Tipo C,Tipo D, Tipo E',
+            'licencias.licencia_numero' => 'nullable|string|max:50',
+            'licencias.fecha_expedicion' => 'nullable|date',
+            'licencias.fecha_vencimiento' => 'nullable|date|after_or_equal:fecha_expedicion',
+
         ]);
+
         //actualizar datos personales
         $persona = Personal::findOrFail($id);
-
-        //ajustar voluntario
-        $servicios['voluntario'] = !empty($servicios['voluntario']) ? 1 : 0;
 
         //actualizar datos personales
         $persona->update($request->only([
@@ -190,18 +208,38 @@ class PersonalController extends Controller //Se crea el controlador de personal
             'sexo',
             'fecha_nacimiento',
             'lugar_nacimiento',
-
-        
         ]));
 
-        //actualizar o crear  datos de servicio
+         //-----ajustar voluntario----
+        $servicios = $request->input('servicios', []);
+        $servicios['voluntario'] = !empty($servicios['voluntario']) ? 1 : 0;
+
+
+        //-----actualizar o crear  datos de servicio--------
         $persona->servicios()->updateOrCreate(
-                ['personal_id' => $persona->personal_id],
-                $request->input('servicios', [])
-            );
+            ['personal_id' => $persona->personal_id],
+            $servicios
+        );
         
-            return redirect()->route('personal.show', $id)
-                ->with('success', 'Información actualizada correctamente.');
+        //-----Datos de contactos-------
+        $contactos = $request->input('contactos', []);
+        $persona->contactos()->updateOrCreate(
+            ['personal_id' => $persona->personal_id],
+            $contactos
+        );
+        
+        //----datos de licencias-----
+        $licencias = $request->input('licencias', []);
+        $licencias['licencia_conducir'] = !empty($licencias['licencia_conducir']) ? 1 : 0;
+
+        $persona->licencias()->updateOrCreate(
+            ['personal_id' => $persona->personal_id],
+            $licencias
+        );
+
+        //---------RETURN -----------------
+        return redirect()->route('personal.show', $id)
+            ->with('success', 'Información actualizada correctamente.');
     }
 
     //-------------------------------------- DESTROY -------------------------------------------

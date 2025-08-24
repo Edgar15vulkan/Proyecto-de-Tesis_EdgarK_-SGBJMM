@@ -23,11 +23,29 @@ const Edit = ({ persona }) => {
             cargo: persona.servicios?.cargo || "",
             rol: persona.servicios?.rol || "",
             estado: persona.servicios?.estado || "",
-            voluntario: persona.servicios?.voluntario || "",
+            voluntario: Number(persona.servicios?.voluntario || 0),
             zona_adscripcion: persona.servicios?.zona_adscripcion || "",
             observaciones: persona.servicios?.observaciones || "",
+        },
+        //datos de contacto
+        contactos: {
+            correo_electronico: persona.contactos?.correo_electronico || "",
+            telefono: persona.contactos?.telefono || "",
+            ciudad: persona.contactos?.ciudad || "",
+            colonia: persona.contactos?.colonia || "",
+            calle: persona.contactos?.calle || "",
+            nombre_contacto_emergencia: persona.contactos?.nombre_contacto_emergencia || "",
+            parentesco_contacto_emergencia: persona.contactos?.parentesco_contacto_emergencia || "",
+            celular_contacto_emergencia: persona.contactos?.celular_contacto_emergencia || "",
+        },
 
-        }
+        licencias: {
+            licencia_conducir: persona.licencias?.licencia_conducir || "",
+            tipo: persona.licencias?.tipo || "",
+            licencia_numero: persona.licencias?.licencia_numero || "",
+            fecha_expedicion: persona.licencias?.fecha_expedicion || "",
+            fecha_vencimiento: persona.licencias?.fecha_vencimiento || "",
+        },
     });
 
     //mensaje 
@@ -55,11 +73,16 @@ const Edit = ({ persona }) => {
             <Head title="Editar personal" />
             {/* Contenedor principal */}
             <div className="py-12">
-                <div className="mx-auto max-w-7xl sm:px6 lg:px-8 mb-4">
-                    <div className="overflow-hidden bg-white shadow-md rounded-2xl p-4 mb-4">
-                        
-                        <h1 className="text-lg font-bold mb-4">Editar Personal</h1>
-                        <form onSubmit={handleSubmit}>
+                {/* Cuerpo del formulario */}
+                <div className="mx-auto max-w-4xl sm:px6 lg:px-8">
+
+                    <div className="bg-white overflow-hidden shadow-sm sm:rounded-lg p-6">
+                        {/* Titulo y texto encabezado del formulario */}
+                        <h2 className="text-2xl font-semibold mb-3">Editar Personal</h2>
+                        <p className="mb-4">Complete el formulario para registrar un nuevo personal de la estación.</p>
+                        <form onSubmit={handleSubmit} className='bg-white overflow-hidden shadow-sm sm:rounded-lg p-6'>
+                            
+                            <h3 className="text-xl font-semibold mt-6 mb-2">Datos Personales</h3>
                             <div className="mb-4">
                                 <label className="block font-semibold">Nombre</label>
                                 <input
@@ -119,6 +142,7 @@ const Edit = ({ persona }) => {
                             </div>
 
                             {/*---------------------- Datos de servicio ------------------*/}
+                            <h3 className="text-xl font-semibold mt-6 mb-2">Datos de servicio</h3>
                             {/* Fecha de ingreso */}
                             <div className="mb-4">
                                 <label className="block font-semibold">Fecha de ingreso</label>
@@ -191,9 +215,10 @@ const Edit = ({ persona }) => {
                             
                             {/* Voluntario checkbox */}
                             <div className="mb-4 flex items-center gap-2">
+                                <label className="font-semibold">Voluntario</label>
                                 <input
                                     type="checkbox"
-                                    checked={!!data.servicios.voluntario}
+                                    checked={Number(data.servicios.voluntario) === 1}
                                     onChange={(e) =>
                                         setData("servicios", {
                                             ...data.servicios,
@@ -201,7 +226,7 @@ const Edit = ({ persona }) => {
                                         })
                                     }
                                 />
-                                <label className="font-semibold">Voluntario</label>
+                            
                             </div>
                             
                              {/* Zona de adscripción */}
@@ -234,7 +259,205 @@ const Edit = ({ persona }) => {
                                     className="border p-2 w-full rounded"
                                 />
                             </div>
+                            <h3 className="text-xl font-semibold mt-6 mb-2">Datos de Contacto</h3>
+                            {/*--------------- Datos de contacto -----------*/}
+                            {/* --------Correo electronico---- */}
+                            <div className='mb-4'>
+                                <label className="block">Correo Electrónico:</label>
+                                <input
+                                    type="email"
+                                    value={data.contactos.correo_electronico}
+                                    onChange={(e) => 
+                                        setData('contactos', {
+                                            ...data.contactos,
+                                            correo_electronico: e.target.value, 
+                                        })
+                                    }
+                                    className="border rounded px-4 py-2 w-full"
+                                />
+                            </div>
 
+                            {/*------- Teléfono------ */}
+                            <div className='mb-4'>
+                                <label className="block">Teléfono:</label>
+                                <input
+                                    type="text"
+                                    value={data.contactos.telefono}
+                                    onChange={(e) =>
+                                        setData('contactos', {
+                                            ...data.contactos,
+                                            telefono: e.target.value,
+                                        })
+                                    }
+                                    className="border rounded px-4 py-2 w-full"
+                                />
+                            </div>
+
+                            {/*---- Ciudad ----- */} 
+                            <div className='mb-4'>
+                                <label className="block">Ciudad:</label>
+                                <input
+                                    type="text"
+                                    value={data.contactos.ciudad}
+                                    onChange={(e) => 
+                                        setData('contactos', {
+                                            ...data.contactos,
+                                            ciudad: e.target.value,
+                                        })
+                                    }
+                                    className="border rounded px-4 py-2 w-full"
+                                />
+                            </div>
+
+                            {/* Colonia */}
+                            <div className='mb-4'>
+                                <label className="block">Colonia:</label>
+                                <input
+                                    type="text"
+                                    value={data.contactos.colonia}
+                                    onChange={(e) =>
+                                        setData('contactos', {
+                                            ...data.contactos,
+                                            colonia: e.target.value,
+                                        })
+                                    }
+                                    className="border rounded px-4 py-2 w-full"
+                                />
+                            </div>
+
+                            {/* Calle */}
+                            <div className='mb-4'>
+                                <label className="block">Calle:</label>
+                                <input
+                                    type="text"
+                                    value={data.contactos.calle}
+                                    onChange={(e) => 
+                                        setData('contactos', {
+                                            ...data.contactos,
+                                            calle: e.target.value,
+                                        })
+                                    }
+                                    className="border rounded px-4 py-2 w-full"
+                                />
+                            </div>
+
+                            {/* Nombre de Contacto de Emergencia */}
+                            <div className='mb-4'>
+                                <label className="block">Nombre de Contacto de Emergencia:</label>
+                                <input
+                                    type="text"
+                                    value={data.contactos.nombre_contacto_emergencia}
+                                    onChange={(e) => 
+                                        setData('contactos', {
+                                            ...data.contactos,
+                                            nombre_contacto_emergencia: e.target.value
+                                        })
+                                    }
+                                    className="border rounded px-4 py-2 w-full"
+                                />
+                            </div>
+
+                            {/* Parentesco de Contacto de Emergencia */}
+                            <div className='mb-4'>
+                                <label className="block">Parentesco de Contacto de Emergencia:</label>
+                                <input
+                                    type="text"
+                                    value={data.parentesco_contacto_emergencia}
+                                    onChange={(e) => setData('parentesco_contacto_emergencia', e.target.value)}
+                                    className="border rounded px-4 py-2 w-full"
+                                    placeholder="Parentesco de Contacto de Emergencia"
+                                />
+                                {errors.parentesco_contacto_emergencia && <span className="text-red-500">{errors.parentesco_contacto_emergencia}</span>}
+                            </div>
+
+                            {/* Celular de Contacto de Emergencia */}
+                            <div className='mb-4'>
+                                <label className="block">Celular de Contacto de Emergencia:</label>
+                                <input
+                                    type="text"
+                                    value={data.celular_contacto_emergencia}
+                                    onChange={(e) => setData('celular_contacto_emergencia', e.target.value)}
+                                    className="border rounded px-4 py-2 w-full"
+                                    placeholder="Celular de Contacto de Emergencia"
+                                />
+                                {errors.celular_contacto_emergencia && <span className="text-red-500">{errors.celular_contacto_emergencia}</span>}
+                            </div>
+
+                            {/* -------- DATOS DE LICENCIA DE CONDUCRI (UNO A UNO) ---------- */}
+                            <h3 className="text-xl font-semibold mt-6 mb-2">Datos de Licencia de Conducir</h3>
+                            {/*¿tiene Licencia de Conducir? */}
+                            <div className='mb-4'>
+                                <label className="block">¿Tiene licencia de conducir? (si no tiene deje los siguientes campos vacíos ):</label>
+                                <select
+                                    value={data.licencia_conducir}
+                                    onChange={(e) => setData('licencia_conducir', e.target.value === 'true')}
+                                    className = "border rounded px-4 py-2 w-full"
+                                >
+                                    <option value="">Seleccione</option>
+                                    <option value="true">Sí</option>
+                                    <option value="false">No</option>
+                                </select>
+                                {errors.licencia_conducir && <span className="text-red-500">{errors.licencia_conducir}</span>}
+                            </div>       
+                                
+                            {/* Tipo de Licencia */}
+                            <div className='mb-4'>
+                                <label className="block">Tipo de Licencia:</label>
+                                <select
+                                    value={data.tipo}
+                                    onChange={(e) => setData('tipo', e.target.value)}
+                                    className="border rounded px-4 py-2 w-full"
+                                >
+                                    <option value="">Seleccione</option>
+                                    <option value="Tipo A">Tipo A</option>
+                                    <option value="Tipo B">Tipo B</option>
+                                    <option value="Tipo C">Tipo C</option>
+                                    <option value="Tipo D">Tipo D</option>
+                                    <option value="Tipo E">Tipo E</option>
+                                </select>
+                                {errors.tipo && <span className="text-red-500">{errors.tipo}</span>}
+                            </div>
+
+                            {/* Número de Licencia */}
+                            <div className='mb-4'>
+                                <label className="block">Número de Licencia:</label>
+                                <input
+                                    type="text"
+                                    value={data.licencia_numero}
+                                    onChange={(e) => setData('licencia_numero', e.target.value)}
+                                    className="border rounded px-4 py-2 w-full"
+                                    placeholder="Número de Licencia"
+                                />
+                                {errors.licencia_numero && <span className="text-red-500">{errors.licencia_numero}</span>}
+                            </div>
+
+                            {/* Fecha de Expedición */}
+                            <div className='mb-4'>
+                                <label className="block">Fecha de Expedición:</label>
+                                <input
+                                    type="date"
+                                    value={data.fecha_expedicion}
+                                    onChange={(e) => setData('fecha_expedicion', e.target.value)}
+                                    className="border rounded px-4 py-2 w-full"
+                                    placeholder="Fecha de Expedición"
+                                />
+                                {errors.fecha_expedicion && <span className="text-red-500">{errors  .fecha_expedicion}</span>}
+                            </div>
+
+                            {/* Fecha de Vencimiento */}
+                            <div className='mb-4'>
+                                <label className="block">Fecha de Vencimiento:</label>
+                                <input
+                                    type="date"
+                                    value={data.fecha_vencimiento}
+                                    onChange={(e) => setData('fecha_vencimiento', e.target.value)}
+                                    className="border rounded px-4 py-2 w-full"
+                                    placeholder="Fecha de Vencimiento"
+                                />
+                                {errors.fecha_vencimiento && <span className="text-red-500">{errors.fecha_vencimiento}</span>}
+                            </div> 
+
+                            {/* -------- DATOS DE DOCUMENTOS PERSONALES ---------- */}
                            
 
 
