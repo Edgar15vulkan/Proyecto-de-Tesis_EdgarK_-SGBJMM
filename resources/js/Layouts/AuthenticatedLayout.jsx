@@ -24,11 +24,17 @@ export default function AuthenticatedLayout({ header, children }) {
 
                 {/* ------ Enlaces del menu lateral --------- */}
                 <nav className="flex-1 p-4 space-y-2">
+
                     {/*---------- Boton del menu lateral a Dashboard -------------*/}
-                    <NavLink href={route('dashboard')} active={route().current('dashboard')}>
-                        <div className="flex items-center gap-2">
-                            <Home className='w-5 h-5'/> Dashboard
-                        </div>
+                    <NavLink 
+                        href={route('dashboard')}
+                        active={route().current('dashboard')}
+                        className={({ isActive }) =>
+                            `w-full flex items-center justify-between gap-2 px-3 py-2 rounded-md transition text-white  hover:bg-red-500 
+                            ${isActive ? "bg-red-600 text-white" : "hover:bg-red-500"}`
+                        }
+                    >
+                        <Home className='w-5 h-5'/> Dashboard
                     </NavLink>
 
                     {/*------- Menu personal con submenú ------------ */}
@@ -53,40 +59,33 @@ export default function AuthenticatedLayout({ header, children }) {
                             >
 
                             {/*-------- Formulario Nuevo personal------ */}
-                            <Link href={route('personal.create')} className="flex items-center gap-2 px-2 py-1 hover:bg-gray-700 rounded">
+                            <Link href={route('personal.create')} className="flex items-center gap-3 px-3 py-1 rounded-md hover:bg-red-500 transition">
                                 <Plus className="w-6 h-6 "/> Nuevo personal
                             </Link>
 
                             {/*------- Personal Index tabla ----- */}
-                            <Link href={route('personal.index')} className="flex items-center gap-2 px-2 py-1 hover:bg-gray-700 rounded">
+                            <Link href={route('personal.index')} className="flex items-center gap-2 px-3 py-1 rounded-md hover:bg-red-500 transition">
                                 <List className='w-6 h-6'/> Lista de personal
                             </Link>
 
                              {/*------ Documentos ------ */}
-                            <Link href={route('documentos-personal.index')} className="flex items-center gap-2 px-2 py-1 hover:bg-gray-700 rounded">
-                                <Folder className="w-4 h-4"/> Documentos de personal
+                            <Link href={route('documentos-personal.index')} className="flex items-center gp-2 px-2 py-1 rounded-md hover:bg-red-500 transition">
+                                <Folder className="w-4 h-4"/>  Documentos de personal
                             </Link>
                         </div>
                     
 
                     {/* ------- Reportes de incidentes ------------*/}
-                    <NavLink href="#" active={route().current('documentos')}>
-                        <div className="w-full flex items-center justify-between px-3 py-2 rounded-md hover:bg-red-500 hover:text">
-                            <FileText className="w-5 h-5" /> Documentos
-                        </div>
-                    </NavLink>
+                    <button
+                        onClick={() => toggleMenu("reportes")}
+                        className={'w-full flex items-center justify-between px-3 py-2 rounded-md  hover:bg-red-500 transition'}
+                    >
+                        <span className="flex items-center gap-2">
+                            <FileText className="w-5 h-5" /> Reportes de Incidentes
+                        </span>
+                    </button>
 
-                    {/* Configuración */}
-                    <NavLink href="#" active={route().current('configuracion')}>
-                        <div className="flex items-center gap-2  hover:bg-red-500 hover:text">
-                            <span className="flex items-center gap-2">
-                                <Settings className="w-5 h-5" /> Configuración
-                            </span>
-                        </div>
-                    </NavLink>
-
-                    {/* puedes añadir más secciones */}
-
+                    {/*------------------- Vehiculos ------------*/}
                     <button
                         onClick={() => toggleMenu("vehiculos")}
                         className={'w-full flex items-center justify-between px-3 py-2 rounded-md hover:bg-red-500 transition'}
@@ -96,6 +95,19 @@ export default function AuthenticatedLayout({ header, children }) {
                         </span>
                         
                     </button>
+
+                    {/*--------------- Configuración ------------- */}
+                     {/*---------- Boton del menu lateral a Dashboard -------------*/}
+                    <NavLink 
+                        href={route('dashboard')}
+                        active={route().current('dashboard')}
+                        className={({ isActive }) =>
+                            `w-full flex items-center justify-between gap-2 px-3 py-2 rounded-md transition text-white  hover:bg-red-500 
+                            ${isActive ? "bg-red-600 text-white" : "hover:bg-red-500"}`
+                        }
+                    >
+                        <Settings className='w-5 h-5'/> Configuración
+                    </NavLink>
 
                 </nav>
             </aside>
