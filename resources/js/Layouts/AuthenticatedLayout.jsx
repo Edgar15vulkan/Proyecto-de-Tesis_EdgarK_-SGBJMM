@@ -4,7 +4,7 @@ import NavLink from '@/Components/NavLink';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
 import { Link, usePage } from '@inertiajs/react';
 import { useState } from 'react';
-import { ChevronDown, Users, FileText, Settings, Home } from 'lucide-react';
+import { Plus, List, Folder ,ChevronDown, Users, FileText, Settings, Home } from 'lucide-react';
 
 export default function AuthenticatedLayout({ header, children }) {
     const user = usePage().props.auth.user;  
@@ -34,50 +34,68 @@ export default function AuthenticatedLayout({ header, children }) {
                     {/*------- Menu personal con submenú ------------ */}
                     <button
                         onClick={() => toggleMenu("personal")}
-                        className={'w-full flex items-center justify-between px-3 py-2 rounded-md hover:bg-gray-700 transition'}
+                        className={'w-full flex items-center justify-between px-3 py-2 rounded-md hover:bg-red-500 transition'}
                     >
                         <span className="flex items-center gap-2">
                             <Users className="w-5 h-5"/> Personal
                         </span>
-                        <ChevronDown
+                        {/* ------------- menu Desplegable -------------- */}
+                        <ChevronDown 
                             className={`w-4 h-4 transform transition-transform ${open === "personal" ? "rotate-180" : ""}`}
                         />
                     </button>
-                    {open === "personal" && (
-                        <div className="ml-8 flex flex-col text-sm">
+
+                    
+                        <div 
+                            className={`ml-8 flex flex-col text-sm overflow-hidden transition-all duration-300 ${
+                            open === "personal" ? "max-h-40" : "max-h-0"
+                                }`}
+                            >
 
                             {/*-------- Formulario Nuevo personal------ */}
-                            <Link href={route('personal.create')} className="px-2 py-1 hover:bg-gray-700 rounded">
-                                ➕ Nuevo
+                            <Link href={route('personal.create')} className="flex items-center gap-2 px-2 py-1 hover:bg-gray-700 rounded">
+                                <Plus className="w-6 h-6 "/> Nuevo personal
                             </Link>
 
                             {/*------- Personal Index tabla ----- */}
-                            <Link href={route('personal.index')} className="px-2 py-1 hover:bg-gray-700 rounded">
-                                📋 Lista
+                            <Link href={route('personal.index')} className="flex items-center gap-2 px-2 py-1 hover:bg-gray-700 rounded">
+                                <List className='w-6 h-6'/> Lista de personal
                             </Link>
 
                              {/*------ Documentos ------ */}
-                            <Link href={route('documentos-personal.index')} className="px-2 py-1 hover:bg-gray-700 rounded">
-                                📂 Documentos
+                            <Link href={route('documentos-personal.index')} className="flex items-center gap-2 px-2 py-1 hover:bg-gray-700 rounded">
+                                <Folder className="w-4 h-4"/> Documentos de personal
                             </Link>
                         </div>
-                    )}
+                    
 
                     {/* ------- Reportes de incidentes ------------*/}
                     <NavLink href="#" active={route().current('documentos')}>
-                        <div className="flex items-center gap-2">
+                        <div className="w-full flex items-center justify-between px-3 py-2 rounded-md hover:bg-red-500 hover:text">
                             <FileText className="w-5 h-5" /> Documentos
                         </div>
                     </NavLink>
 
                     {/* Configuración */}
                     <NavLink href="#" active={route().current('configuracion')}>
-                        <div className="flex items-center gap-2">
-                            <Settings className="w-5 h-5" /> Configuración
+                        <div className="flex items-center gap-2  hover:bg-red-500 hover:text">
+                            <span className="flex items-center gap-2">
+                                <Settings className="w-5 h-5" /> Configuración
+                            </span>
                         </div>
                     </NavLink>
 
                     {/* puedes añadir más secciones */}
+
+                    <button
+                        onClick={() => toggleMenu("vehiculos")}
+                        className={'w-full flex items-center justify-between px-3 py-2 rounded-md hover:bg-red-500 transition'}
+                    >
+                        <span className="flex items-center gap-2">
+                            <Users className="w-5 h-5"/> Vehiculos
+                        </span>
+                        
+                    </button>
 
                 </nav>
             </aside>
@@ -114,7 +132,7 @@ export default function AuthenticatedLayout({ header, children }) {
                                             </svg>
                                         </button>
                                     </Dropdown.Trigger>
-                                    
+
                                     <Dropdown.Content>
                                         <Dropdown.Link href={route('profile.edit')}>Perfil</Dropdown.Link>
                                         <Dropdown.Link href={route('logout')} method="post" as="button">

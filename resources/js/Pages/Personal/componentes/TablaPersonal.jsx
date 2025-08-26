@@ -29,6 +29,7 @@ const Index = () => {
                         
                         <th className="border px-4 py-2">Estado</th>
                         <th className="border px-4 py-2">Fecha Ingreso</th>
+                        
                         {/*<th className="border px-4 py-2">CURP</th>
                         *<th className="border px-4 py-2">Fecha de Nacimiento</th>
                         <th className="border px-4 py-2">Lugar de Nacimiento</th>
