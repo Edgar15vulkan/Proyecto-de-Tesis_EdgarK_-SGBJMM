@@ -17,8 +17,8 @@ export default function AuthenticatedLayout({ header, children }) {
     return (
         <div className="min-h-screen flex bg-gray-400"> {/* Color de fondo */}
             {/* SIDEBAR */}
-            <aside className="hidden md:flex md:flex-col w-64 bg-gray-700 text-white shadow-lg ">  {/* Color de barra menu lateral */}
-                <div className='p-4 text-lg font-bold border-b border-gray-600'>
+            <aside className="  fixed h-screen w-64 bg-gray-700 text-white shadow-lg ">  {/* Color de barra menu lateral */}
+                <div className='p-4 text-lg font-bold border-b border-gray-400'>
                     🚒 Sistema Bomberos José Maria Morelos
                 </div>
 
@@ -88,16 +88,21 @@ export default function AuthenticatedLayout({ header, children }) {
                     {/*------------------- Vehiculos ------------*/}
                     <button
                         onClick={() => toggleMenu("vehiculos")}
-                        className={'w-full flex items-center justify-between px-3 py-2 rounded-md hover:bg-red-500 transition'}
+                        className={'w-full flex items-center justify-between px-3 py-2 rounded-md hover:bg-red-500 transition '}
                     >
-                        <span className="flex items-center gap-2">
+                        <span className="flex items-center gap-2 ">
                             <Users className="w-5 h-5"/> Vehiculos
                         </span>
                         
                     </button>
 
+                    {/* --------------Linea divisora de sección del menu-------------------- */}
+                    <div className="text-lg font-bold border-b border-gray-400 p-10">
+                        <p></p>
+                    </div>
                     {/*--------------- Configuración ------------- */}
                      {/*---------- Boton del menu lateral a Dashboard -------------*/}
+                  
                     <NavLink 
                         href={route('dashboard')}
                         active={route().current('dashboard')}
@@ -108,14 +113,15 @@ export default function AuthenticatedLayout({ header, children }) {
                     >
                         <Settings className='w-5 h-5'/> Configuración
                     </NavLink>
+                    
 
                 </nav>
             </aside>
 
             {/* CONTENIDO PRINCIPAL */}
-            <div className="flex-1 flex flex-col">
+            <div className="flex-1 ml-60 flex flex-col">
                 {/* NAVBAR SUPERIOR */}
-                <nav className="border-b border-gray-100 bg-red-700"> {/* Color del menu superior */}
+                <nav className="border-b border-gray-100 bg-red-700 fixed top-0 right-0 left-64 z-20"> {/* Color del menu superior */}
                     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                         <div className="flex h-16 justify-between items-center">
                             {/* Links visibles solo en móvil */}
@@ -159,15 +165,15 @@ export default function AuthenticatedLayout({ header, children }) {
 
                 {/* HEADER (título de página) */}
                 {header && (
-                    <header className="bg-red-400 shadow"> {/* Color del encabezado de la pagina */}
-                        <div className="mx-auto max-w-7xl px-4 py-6 sm:px-6 lg:px-8">
+                    <header className="bg-red-400 shadow fixed top-16 right-0 left-64 z-20 h-14 flex-items-center"> {/* Color del encabezado de la pagina */}
+                        <div className="mx-auto max-w-7xl px-4 py-4 sm:px-6 lg:px-8">
                             {header}
                         </div>
                     </header>
                 )}
 
                 {/* CONTENIDO */}
-                <main className="flex-1 p-6">{children}</main>
+                <main className="flex-1 overflow-y-auto p-6 mt-32">{children}</main>
             </div>
         </div>
     );
