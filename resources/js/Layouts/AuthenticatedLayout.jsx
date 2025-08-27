@@ -15,7 +15,7 @@ export default function AuthenticatedLayout({ header, children }) {
     const [showingNavigationDropdown, setShowingNavigationDropdown] = useState(false);
 
     return (
-        <div className="min-h-screen flex bg-gray-300"> {/* Color de fondo */}
+        <div className="min-h-screen flex bg-gray-400"> {/* Color de fondo */}
             {/* SIDEBAR */}
             <aside className="hidden md:flex md:flex-col w-64 bg-gray-700 text-white shadow-lg ">  {/* Color de barra menu lateral */}
                 <div className='p-4 text-lg font-bold border-b border-gray-600'>
@@ -58,19 +58,19 @@ export default function AuthenticatedLayout({ header, children }) {
                                 }`}
                             >
 
-                            {/*-------- Formulario Nuevo personal------ */}
-                            <Link href={route('personal.create')} className="flex items-center gap-3 px-3 py-1 rounded-md hover:bg-red-500 transition">
-                                <Plus className="w-6 h-6 "/> Nuevo personal
-                            </Link>
-
                             {/*------- Personal Index tabla ----- */}
                             <Link href={route('personal.index')} className="flex items-center gap-2 px-3 py-1 rounded-md hover:bg-red-500 transition">
                                 <List className='w-6 h-6'/> Lista de personal
                             </Link>
 
-                             {/*------ Documentos ------ */}
-                            <Link href={route('documentos-personal.index')} className="flex items-center gp-2 px-2 py-1 rounded-md hover:bg-red-500 transition">
-                                <Folder className="w-4 h-4"/>  Documentos de personal
+                            {/*-------- Formulario Nuevo personal------ */}
+                            <Link href={route('personal.create')} className="flex items-center gap-2 px-3 py-1 rounded-md hover:bg-red-500 transition">
+                                <Plus className="w-6 h-6 "/> Nuevo personal
+                            </Link>
+
+                            {/*------ Documentos ------ */}
+                            <Link href={route('documentos-personal.index')} className="flex items-center gap-2 px-3 py-1 rounded-md hover:bg-red-500 transition">
+                                <Folder className="w-6 h-6"/>  Documentos de personal
                             </Link>
                         </div>
                     

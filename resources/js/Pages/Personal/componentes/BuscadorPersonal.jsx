@@ -14,7 +14,7 @@ const BuscadorPersonal = () => {
     };
 
     return (
-        <div className="mb-4">
+        <div className="mb-1">
             <form onSubmit={handleSubmit} className="flex items-center">
                 <input
                     type="text"
@@ -25,7 +25,7 @@ const BuscadorPersonal = () => {
                 />
                 <button
                     type="submit"
-                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg ml-2"
+                    className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-1 px-4 rounded-lg ml-2"
                 >
                     Buscar
                 </button>

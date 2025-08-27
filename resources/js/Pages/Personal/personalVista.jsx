@@ -6,34 +6,35 @@ import PersonalTabla         from './componentes/TablaPersonal'; // Importar el 
 import BuscadorPersonal      from './componentes/BuscadorPersonal'; // Importar el componente BuscadorCliente de Clientes/BuscadorCliente.jsx
 import React from 'react';
 
-export default function Index({personal}) { // Recibe los servicios como props
+export default function Index({personal}) { // Recibe al personal como props
 
      //mensajes de consola
-        console.log("Personal:", personal); // muestra los servicios en la consola
+        console.log("Personal:", personal); // muestra al personal en la consola
 
+        {/* ------------- Encabezado de la pagina ---------------- */}
     return (
         <AuthenticatedLayout
             header={
                 <h2 className="text-xl font-semibold leading-tight text-gray-800"> {/* Color del texto */}
-                    Gestionar Personal
+                    Lista del personal registrado
                 </h2>
             }
         >
             <Head title="Personal" />
 
-            <div className="py-12">
+            <div className="py-5    ">
                 <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
-                    <div className="overflow-hidden bg-gray-200 shadow-sm sm:rounded-lg p-6">  {/*Bordes del contenido principal */}
+                     {/*Bordes del contenido principal */}
 
-                        {/*----------- Botón para añadir nuevo servicio -----------------*/}
+                        {/*----------- Botón para añadir nuevo servicio -----------------
                         <div className='bg-gray-100 p-4 rounded mb-4 space-x-20'>
-                            <h2 className='text-2xl font-semibold mb-3'>Acciones rápidas</h2>
-                            <Link href={route('personal.create')}> {/* Verificar ruta en web.php*/}
+                            {/*<h2 className='text-2xl font-semibold mb-3'>Acciones rápidas</h2>
+                            <Link href={route('personal.create')}> {/* Verificar ruta en web.php
                                 <button className=" hover:brightness-90 text-black font-bold py-2 px-4 rounded-lg transition duration-300"
                                 style={{ backgroundColor: '#FBC02D' }}
                                 type="button">Añadir Nuevo Personal
                                 </button>
-                            </Link>
+                            </Link>  
                             {/* ------------- Gestionar grupos -------------------------------
                             <Link href={route('personal.create')}> {/* Verificar ruta en web.php
                                 <button className="hover:brightness-90 text-black font-bold py-2 px-4 rounded-lg transition duration-300"
@@ -51,7 +52,7 @@ export default function Index({personal}) { // Recibe los servicios como props
                             </Link>
                             */}
 
-                            {/* -----------------------Gestionar documentos ------------------ */}
+                            {/* -----------------------Gestionar documentos ------------------ 
                             <Link href={route('documentos-personal.store')}>
                                 <button className="hover:brightness-90 text-black font-bold py-2 px-4 rounded-lg transition duration-300"
                                 style={{ backgroundColor: '#FBC02D'}}
@@ -59,12 +60,13 @@ export default function Index({personal}) { // Recibe los servicios como props
                                 </button>
                             </Link>
 
-                        </div>
+                            
+
+                        </div> */}
 
                         {/*---------- Buscador de personal por ID ----------*/}
-                        <div className='bg-gray
-                        -100 p-4 rounded mb-4'>
-                            <h2 className='text-2xl font-semibold mb-3'>Buscar personal por ID</h2>
+                        <div className='bg-gray-100 p-4 rounded mb-4'>
+                            <h2 className='text-2xl font-semibold mb-4'>Buscar personal por ID</h2>
                             <BuscadorPersonal /> {/* Verificar ruta en web.php*/}
                         </div>
 
@@ -75,7 +77,7 @@ export default function Index({personal}) { // Recibe los servicios como props
                             <PersonalTabla personal = {personal} /> {/* Verificar ruta en web.php*/} 
                         </div>
 
-                    </div>
+                    
                 </div>
             </div>
         </AuthenticatedLayout>
