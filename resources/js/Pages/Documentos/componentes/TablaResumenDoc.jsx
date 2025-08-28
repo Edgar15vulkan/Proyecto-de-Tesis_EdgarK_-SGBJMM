@@ -19,10 +19,13 @@ const TablaResumenDoc = ({ documentos }) => {
                         <th className='p-2 border'>ID Personal</th>
                         <th className= 'p-2 border'>Nombre(s) </th>
                         <th className= 'p-2 border'>Apellidos </th>
-                        <th className= 'p-2 border'>Entregado </th>
-                        <th className= 'p-2 border'>Nombre_doc</th>
-                        <th className= 'p-2 border'>Tipo_doc</th>
-                        <th className= 'p-2 border'>Archivo </th>
+                        <th className= 'p-2 border'>INE </th>
+                        <th className= 'p-2 border'>CURP</th>
+                        <th className= 'p-2 border'>RFC </th>
+                        <th className= 'p-2 border'>Acta de Nac.</th>
+                        <th className= 'p-2 border'>Certificado estudios </th>
+                        <th className= 'p-2 border'>Certificado médico </th>
+                        <th className= 'p-2 border'>Antecedentes no penal. </th>
 
                         <th className= 'p-2 border'>Acciones </th>
                     </tr>
@@ -35,19 +38,23 @@ const TablaResumenDoc = ({ documentos }) => {
                             <td className='p-2 border'>{persona.personal_id}</td>
                             <td className='p-2 border'>{persona.nombre}</td>
                             <td className='p-2 border'>{persona.apellido_paterno} {persona.apellido_materno}</td>
-                            <td className='p-2 border'>{documento.entregado ? 'Sí' : 'No'}</td>
-                            <td className='p-2 border'>{documento.nombre_documento || 'Sin documento'}</td>
-                            <td className='p-2 border'>{documento.archivo}</td>
-                            <td className='p-2 border'>{documento.tipo_documento}</td>
+                            <td className='p-2 border'>NO</td>
+                            <td className='p-2 border'>NO</td>
+                            <td className='p-2 border'>NO</td>
+                            <td className='p-2 border'>NO</td>
+                            <td className= 'p-2 border'>NO </td>
+                            <td className= 'p-2 border'>NO </td>
+                            <td className= 'p-2 border'>NO </td>
                             {/* --------------Acciones de la Tabla Documentos - Resumen -----------*/}
                             <td className='p-2 border space-x-2'>
                                 {/*--- Acción de gestionar ---*/}
                                 <button 
                                     onClick = {() => handleGestionar(persona.personal_id)}
-                                    className = 'text-green-600 hover:underline'
+                                    className = 'bg-green-500 hover:bg-green-700 text-white py-1 px-3 rounded'
                                 >
                                     Gestionar
                                 </button>
+
                             </td>
                         </tr>
                         );

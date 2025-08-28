@@ -17,6 +17,22 @@ const Detalle = () => {
         >
             <Head title="Documentos de personal"/>
 
+            {/* Formulario de nuevo documento  */}
+                <div className="bg-gray-100 p-4 rounded mb-4">
+                    <div className="bg-blue-100 p-4 rounded mb-4 space-x-5">
+                    <h2 className="text-2xl font-semibold mb-3">Nuevo documento</h2>
+            
+                    <Link href={route('documentos-personal.create', {personal: personal.personal_id} )}>
+                        <button className="hover:brightness-90 text-black font-bold py-2 px-4 rounded-lg transition duration-300"
+                        style={{backgroundColor: '#FBC02D'}}
+                        type="button">
+                            Añadir nuevo Documento
+                        </button>
+                    </Link>
+                    </div>
+                </div> 
+
+            {/*---------------- Tabla de documentos personaes ------------ */}
             <div className="py-12">
                 <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
                     <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg p-6">
@@ -27,6 +43,7 @@ const Detalle = () => {
                             <table className="table-auto w-full border">
                                 <thead className="bg-gray-100">  {/*------ ENCABEZADO TABLA------- */}
                                     <tr>
+                                        <th className="p-2 border">Tipo de documento</th>
                                         <th className="p-2 border"> Nombre documento</th>
                                         <th className="p-2 border"> Entregado</th>
                                         <th className="p-2 border"> Fecha de entrega</th>
@@ -39,6 +56,7 @@ const Detalle = () => {
                                     {documentos.length > 0 ? (
                                         documentos.map((doc) => (
                                             <tr key={doc.id}>
+                                                <td className="p-2 border">{doc.tipo_documento}</td>
                                                 <td className="p-2 border">{doc.nombre_documento}</td>
                                                 <td className="p-2 border">{doc.entregado ? 'Sí' : 'No'}</td>
                                                 <td className="p-2 border">{doc.fecha_entrega || 'NA'}</td>
@@ -49,14 +67,14 @@ const Detalle = () => {
                                                     {/* Botón Ver detalles */}
                                                     <Link href= {route("documentos-personal.index", doc.id)}>
                                                         <button className="bg-blue-500 hover:bg-blue-700 text-white py-1 px-3 rounded">
-                                                            Leer
+                                                            Ver
                                                         </button>
                                                     </Link>
                     
                                                     {/* Botón Editar */}
                                                     <Link href={route("documentos-personal.index", doc.id)}>
-                                                        <button className="bg-yellow-500 hover:bg-yellow-700 text-white py-1 px-3 rounded">
-                                                            Editar
+                                                        <button className="bg-green-500 hover:bg-yellow-700 text-white py-1 px-3 rounded">
+                                                            Descargar
                                                         </button>
                                                     </Link>
                                                         
@@ -80,20 +98,7 @@ const Detalle = () => {
                             </table>
                         </div>
                     </div>
-                    {/* Formulario de nuevo documento  */}
-                    <div className="bg-gray-100 p-4 rounded mb-4">
-                        <div className="bg-blue-100 p-4 rounded mb-4 space-x-20">
-                        <h2 className="text-2xl font-semibold mb-3">Nuevo documento</h2>
-               
-                        <Link href={route('documentos-personal.create', {personal: personal.personal_id} )}>
-                            <button className="hover:brightness-90 text-black font-bold py-2 px-4 rounded-lg transition duration-300"
-                            style={{backgroundColor: '#FBC02D'}}
-                            type="button">
-                                Añadir nuevo Documento
-                            </button>
-                        </Link>
-                        </div>
-                    </div>    
+                       
                 </div>
             </div>
         </AuthenticatedLayout>
