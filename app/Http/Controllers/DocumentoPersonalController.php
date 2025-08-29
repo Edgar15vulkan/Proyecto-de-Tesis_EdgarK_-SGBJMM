@@ -29,7 +29,7 @@ class DocumentoPersonalController extends Controller
 
         ]);
     }
-    //crear un nuevo documento
+    // crear un nuevo documento
         public function create(): Response
         {
             $personales = Personal::all(); // traer todos los registros
@@ -43,7 +43,7 @@ class DocumentoPersonalController extends Controller
     //guardar nuevo documento del formulario
     public function store(Request $request) //
     {
-        // 1️⃣ Validar los campos
+        // 1 Validar los campos
         $validated = $request->validate([
             'personal_id' => 'required|exists:datos_personales,personal_id', // ajusta si tu tabla se llama diferente
             'tipo_documento' => 'required|string|max:255',
@@ -53,27 +53,23 @@ class DocumentoPersonalController extends Controller
             'fecha_entrega' => 'nullable|date',
         ]);
 
-        // 2️⃣ Guardar archivo si viene
-        $rutaArchivo = null;
-        if ($request->hasFile('archivo')) {
-            $rutaArchivo = $request->file('archivo')->store('documentos', 'public'); 
-            // Se guarda en storage/app/public/documentos
-        }
+        // 2 Guardar archivo en storage/app/public/documentos
 
-        // 3️⃣ Crear el registro en BD
+        $path = $request->file('archivo')->store('documentos', 'public');
+
+
+        //  3 Crear el registro en BD
         $documento = DocumentoPersonal::create([
             'personal_id' => $validated['personal_id'],
             'tipo_documento' => $validated['tipo_documento'],
             'nombre_documento' => $validated['nombre_documento'],
-            'ruta_documento' => $rutaArchivo, // guarda la ruta para poder descargarlo luego
+            'archivo' => $path, // guarda la ruta relativa
             'entregado' => $validated['entregado'] ?? false,
             'fecha_entrega' => $validated['fecha_entrega'] ?? null,
         ]);
 
-        // 4️⃣ Redirigir o devolver respuesta
-        return redirect()
-            ->back()
-            ->with('success', 'Documento cargado correctamente.');
+        // Redirigir o devolver respuesta
+        return back()->with('success', 'Documento cargado correctamente.');
     }
 
     //función de mostrar los documentos de una sola persona
