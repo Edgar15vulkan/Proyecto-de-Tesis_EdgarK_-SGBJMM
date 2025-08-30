@@ -99,12 +99,13 @@ class DocumentoPersonalController extends Controller
     {
         $documento = DocumentoPersonal::findOrFail($id);
 
-        if (!Storage::disk('public')->exists($documento->ruta_documento)) {
+        if (!$documento ->archivo || !Storage::disk('public')-> exists($documento->archivo)){
             abort(404, 'Archivo no encontrado.');
         }
+        $ruta = Storage::disk('public')->path($documento->archivo);
 
-        $ruta = Storage::disk('public')->path($documento->ruta_documento);
-        return response()->download($ruta);
+        //opcional
+        return response()->download($ruta, $documento->nombre_documento . '.' . pathinfo($ruta, PATHINFO_EXTENSION));
     }
 
     //Eliminar documento
@@ -112,12 +113,13 @@ class DocumentoPersonalController extends Controller
     {
         $documento = DocumentoPersonal::findOrFail($id);
 
-        if (Storage::disk('public')->exists($documento->ruta_documento)) {
-            Storage::disk('public')->delete($documento->ruta_documento);
+        if ($documento->archivo && Storage::disk('public')->exists($documento->archivo)) {
+            Storage::disk('public')->delete($documento->archivo);
+
         }
 
         $documento->delete();
 
         return back()->with('success', 'Documento eliminado');
-}
+    }
 }

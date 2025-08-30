@@ -1,3 +1,4 @@
+//Importar dependencias
 import React from 'react';
 import AuthenticatedLayout
  from '@/Layouts/AuthenticatedLayout';
@@ -6,6 +7,13 @@ import FormNuevoDocumento from './FormNuevoDocumento';
 
 const Detalle = () => {
     const { personal, documentos} = usePage().props; //obtener los datos de personal y documentos desde las props
+
+    //------------------Funcion eliminar documento -------------
+    const handleDelete = (id) => {
+        if (confirm("¿Seguro que quieres eliminar este documento?")) {
+            router.delete(route("documentos-personal.destroy", id));
+        }
+    };
 
     return (
         <AuthenticatedLayout
@@ -80,7 +88,7 @@ const Detalle = () => {
                                                         
                                                     {/* Botón Eliminar */}
                                                     <button 
-                                                        onClick={() => handleDelete(persona.personal_id)}   //Actualizar campo según el ID  de la tabla
+                                                        onClick={() => handleDelete(doc.id)}   //Actualizar campo según el ID  de la tabla
                                                         className="bg-red-500 hover:bg-red-700 text-white py-1 px-3 rounded">
                                                         Eliminar 
                                                     </button>
