@@ -3,7 +3,7 @@ import React from 'react';
 import AuthenticatedLayout
  from '@/Layouts/AuthenticatedLayout';
 import {usePage, Head, Link, router} from '@inertiajs/react';
-import FormNuevoDocumento from './FormNuevoDocumento';
+import { formatearFecha } from '@/Utils/fechas';
 
 const Detalle = () => {
     const { personal, documentos} = usePage().props; //obtener los datos de personal y documentos desde las props
@@ -26,10 +26,8 @@ const Detalle = () => {
             <Head title="Documentos de personal"/>
 
             {/* Formulario de nuevo documento  */}
-                <div className="bg-gray-100 p-4 rounded mb-4">
-                    <div className="bg-blue-100 p-4 rounded mb-4 space-x-5">
-                    <h2 className="text-2xl font-semibold mb-3">Nuevo documento</h2>
-            
+                <div className="bg-gray-100 p-4 rounded mb-1 flex-items-center">
+                    <h2 className="text-2xl font-semibold mb-3">Acciones</h2>
                     <Link href={route('documentos-personal.create', {personal: personal.personal_id} )}>
                         <button className="hover:brightness-90 text-black font-bold py-2 px-4 rounded-lg transition duration-300"
                         style={{backgroundColor: '#FBC02D'}}
@@ -37,7 +35,6 @@ const Detalle = () => {
                             Añadir nuevo Documento
                         </button>
                     </Link>
-                    </div>
                 </div> 
 
             {/*---------------- Tabla de documentos personaes ------------ */}
@@ -67,17 +64,7 @@ const Detalle = () => {
                                                 <td className="p-2 border">{doc.tipo_documento}</td>
                                                 <td className="p-2 border">{doc.nombre_documento}</td>
                                                 <td className="p-2 border">{doc.entregado ? 'Sí' : 'No'}</td>
-                                                {/* --------Ajustar formato de fecha ----------gjit*/}
-                                                <td className="p-2 border">
-                                                    {doc.fecha_entrega
-                                                        ? new Date(doc.fecha_entrega).toLocaleDateString("es-MX", {
-                                                            day: "2-digit",
-                                                            month: "long",
-                                                            year: "numeric"
-                                                        })
-                                                    : "Sin fecha"}
-                                                </td>
-
+                                                <td className="p-2 border">{formatearFecha(doc.fecha_entrega)}</td>
                                                 <td className="p-2 border">{doc.ruta_documento || 'Sin archivo'}</td>
                                                 
                                                 {/*--------Botones de Acción--------*/}

@@ -2,7 +2,7 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head, usePage, Link, router } from '@inertiajs/react';
 import { useState } from 'react';
-
+import { formatearFecha } from '@/Utils/fechas';
 import React from 'react';
 
 export default function Show({persona}) { // Recibe los servicios como props
@@ -37,7 +37,7 @@ export default function Show({persona}) { // Recibe los servicios como props
                                 <p><b>Apellidos</b> {persona.apellido_paterno} {persona.apellido_materno}</p>
                                 <p><b>Sexo:</b> {persona.sexo}</p>
                                 <p><b>CURP:</b> {persona.CURP}</p>
-                                <p><b>Fecha de nacimiento:</b>{persona.fecha_nacimiento}</p>
+                                <p><b>Fecha de nacimiento:</b>{formatearFecha(persona.fecha_nacimiento)}</p>
                                 <p><b>Lugar de nacimiento:</b> {persona.lugar_nacimiento}</p>
                             </div>
                         </div>
@@ -48,7 +48,7 @@ export default function Show({persona}) { // Recibe los servicios como props
                             <div className="grid grid-cols-2 gap-4 text-sm">
                                 {persona.servicios ? (
                                     <div>
-                                        <p><b>Fecha de ingreso: </b>{persona.servicios.fecha_ingreso || 'N/A'}</p>
+                                        <p><b>Fecha de ingreso: </b>{formatearFecha(persona.servicios.fecha_ingreso)}</p>
                                         <p><b>Cargo: </b>{persona.servicios.cargo || 'N/A'}</p>
                                         <p><b>Rol: </b>{persona.servicios.rol || 'N/A'}</p>
                                         <p><b>Voluntario: </b>{persona.servicios.voluntario ? 'Sí' : 'No'}</p>
@@ -95,8 +95,8 @@ export default function Show({persona}) { // Recibe los servicios como props
                                         <p><b>¿Tiene licencia de conducir?: </b>{persona.licencias.licencia_conducir || 'N/A'}</p>
                                         <p><b>Tipo de licencia: </b>{persona.licencias.tipo || 'N/A'}</p>
                                         <p><b>Número de licencia: </b>{persona.licencias.licencia_numero || 'N/A'}</p>
-                                        <p><b>Fecha de expedición: </b>{persona.licencias.fecha_expedicion || 'N/A'}</p>
-                                        <p><b>Fecha de Vencimiento: </b>{persona.licencias.fecha_vencimiento || 'N/A'}</p>
+                                        <p><b>Fecha de expedición: </b>{formatearFecha(persona.licencias.fecha_expedicion)}</p>
+                                        <p><b>Fecha de Vencimiento: </b>{formatearFecha(persona.licencias.fecha_vencimiento)}</p>
                                     
                                     </div>
                                 ) : (
