@@ -72,22 +72,24 @@ const Detalle = () => {
                                                 
                                                 {/*--------Botones de Acción--------*/}
                                                 <td className="p-2 border flex space-x-2">
-                                                    {/* --------Botón Ver detalles -------*/}
-                                                    <Link href= {route("documentos-personal.index", doc.id)}>
-                                                        <button className="bg-blue-500 hover:bg-blue-700 text-white py-1 px-3 rounded">
-                                                            Ver
-                                                        </button>
-                                                    </Link>
+
+                                                    {/* --------Botón Ver documento -------*/}
+                                                    <a
+                                                        href={route("documentos-personal.ver", doc.id)}
+                                                        className="bg-blue-500 hover:bg-blue-700 text-white py-1 px-3 rounded"
+                                                    >
+                                                        Ver
+                                                    </a>
                     
-                                                    {/*---------- Botón Descargar----- */}
+                                                    {/*---------- Botón Descargar documento----- */}
                                                     <a 
                                                         href={route("documentos-personal.descargar", doc.id)}
-                                                        className="bg-green-500 hover:bg-yellow-700 text-white py-1 px-3 rounded"   
+                                                        className="bg-green-500 hover:bg-green-700 text-white py-1 px-3 rounded"   
                                                     >
                                                         Descargar
                                                     </a>
                                                         
-                                                    {/*----- Botón Eliminar----- */}
+                                                    {/*----- Botón Eliminar documento----- */}
                                                     <button 
                                                         onClick={() => handleDelete(doc.id)}   //Actualizar campo según el ID  de la tabla
                                                         className="bg-red-500 hover:bg-red-700 text-white py-1 px-3 rounded">

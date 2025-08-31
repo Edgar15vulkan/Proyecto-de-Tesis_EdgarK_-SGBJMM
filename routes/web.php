@@ -67,6 +67,10 @@ Route::post('/documentos-personal', [DocumentoPersonalController::class, 'store'
 Route::get('/personal/{id}/documentos', [DocumentoPersonalController::class, 'gestionar'])
     ->name('documentos-personal.gestionar');
 
+//---------------------- ruta para Ver documentos ---------------
+Route::get('/documentos-personal/{id}/ver', [DocumentoPersonalController::class, 'ver'])
+    ->name('documentos-personal.ver');
+
 //--------------------- ruta descargar documentos ----------------
 Route::get('/documentos-personal/{documento}/descargar', [DocumentoPersonalController::class, 'descargar'])
     ->name('documentos-personal.descargar');

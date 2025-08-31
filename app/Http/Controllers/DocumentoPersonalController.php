@@ -49,7 +49,7 @@ class DocumentoPersonalController extends Controller
             'personal_id' => 'required|exists:datos_personales,personal_id', // ajusta si tu tabla se llama diferente
             'tipo_documento' => 'required|string|max:255',
             'nombre_documento' => 'required|string|max:255',
-            'archivo' => 'nullable|file|mimes:pdf,doc,docx,png,jpg,jpeg|max:2048',
+            'archivo' => 'nullable|file|mimes:pdf,doc,docx,png,jpg,jpeg|max:10240',
             'entregado' => 'boolean',
             'fecha_entrega' => 'nullable|date',
         ]);
@@ -73,7 +73,7 @@ class DocumentoPersonalController extends Controller
         return back()->with('success', 'Documento cargado correctamente.');
     }
 
-    //función de mostrar los documentos de una sola persona
+    //--------función de mostrar los documentos de una sola persona--------------
     public function show($personal_id)
     {
         $personal = Personal::findOrFail($personal_id); //busca el personal por id
@@ -95,18 +95,27 @@ class DocumentoPersonalController extends Controller
             'personal_id' => $id
         ]);
     }
-    //Descargar documento
+
+    //--------------Ver documento -----------------
+    public function ver($id)
+    {
+        $documento = DocumentoPersonal::findOrFail($id);
+
+        if (!$documento->archivo || !Storage::disk('public')->exists($documento->archivo)) {
+            abort(404, 'Archivo no encontrado.');
+        }
+        $ruta = Storage::disk('public')->path($documento->archivo);
+        return response()->file($ruta);
+    }
+
+    //--------------Descargar documento------------
     public function descargar(DocumentoPersonal $documento)
     {
-      
         if (!$documento ->archivo || !Storage::disk('public')->exists($documento->archivo)){
             abort(404, 'El archivo no existe o no fue cargado.');
-
         }
         //Descargar con nombre legible
         //$rutaAbsoluta = Storage::disk('public')->path($documento->archivo);
-
-        
         return response()->download(
             Storage::disk('public')->path($documento->archivo),
             $documento->nombre_documento . '.' . pathinfo($documento->archivo, PATHINFO_EXTENSION)
