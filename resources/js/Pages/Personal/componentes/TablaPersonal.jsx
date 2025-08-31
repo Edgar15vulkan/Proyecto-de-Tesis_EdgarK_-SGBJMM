@@ -49,7 +49,16 @@ const Index = () => {
                             <td className="border px-4 py-2">N/A</td>
                             <td className="border px-4 py-2">{persona?.servicios?.cargo || 'sin cargo'}</td>
                             <td className="border px-4 py-2">{persona?.servicios?.estado || 'sin estado'}</td>
-                            <td className="border px-4 py-2">{persona?.servicios?.fecha_ingreso || 'N/A'}</td>
+                            {/*--------- formatear fecha de ingreso ----------- */}
+                            <td className="border px-4 py-2">
+                                {persona?.servicios?.fecha_ingreso
+                                    ? new Date(persona?.servicios?.fecha_ingreso).toLocaleDateString("es-MX", {
+                                        day: "2-digit",
+                                        month: "long",
+                                        year: "numeric"
+                                    })
+                                    : 'Sin fecha'}
+                            </td>
                             {/*<td className="border px-4 py-2">{persona.lugar_nacimiento}</td>
                              -- Aquí puedes agregar más celdas según los campos de la tabla */}
                   

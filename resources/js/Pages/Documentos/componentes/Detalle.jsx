@@ -67,7 +67,17 @@ const Detalle = () => {
                                                 <td className="p-2 border">{doc.tipo_documento}</td>
                                                 <td className="p-2 border">{doc.nombre_documento}</td>
                                                 <td className="p-2 border">{doc.entregado ? 'Sí' : 'No'}</td>
-                                                <td className="p-2 border">{doc.fecha_entrega || 'NA'}</td>
+                                                {/* --------Ajustar formato de fecha ----------gjit*/}
+                                                <td className="p-2 border">
+                                                    {doc.fecha_entrega
+                                                        ? new Date(doc.fecha_entrega).toLocaleDateString("es-MX", {
+                                                            day: "2-digit",
+                                                            month: "long",
+                                                            year: "numeric"
+                                                        })
+                                                    : "Sin fecha"}
+                                                </td>
+
                                                 <td className="p-2 border">{doc.ruta_documento || 'Sin archivo'}</td>
                                                 
                                                 {/*--------Botones de Acción--------*/}
