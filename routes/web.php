@@ -47,24 +47,33 @@ Route::put('/personal/{id}', [PersonalController::class, 'update'])->name('perso
 Route::delete('/personal/{id}', [PersonalController::class, 'destroy'])->name('personal.destroy'); 
                          
                             
-//----------------Rutas de Documentos-personal--------------------
-Route::get('/documentos-personal', [DocumentoPersonalController::class, 'index'])->name('documentos-personal.index');
+//----------------Rutas de Documentos-personal  TODOS   --------------------
+Route::get('/documentos-personal', [DocumentoPersonalController::class, 'index'])
+    ->name('documentos-personal.index');
 
-//ruta para mostrar los documentos de una sola persona
+//--------ruta para mostrar los documentos de una sola persona---------
 Route::get('/documentos-personal/{personal}', [DocumentoPersonalController::class, 'show'])
     ->name('documentos-personal.show');
-//crear nuevo documento
+
+//--------------crear nuevo documento------------
 Route::get('/documentos-personal/{personal}/create',[DocumentoPersonalController::class, 'create'])
     ->name('documentos-personal.create');
 
+//------------- ruta guardar documentos ------------------
 Route::post('/documentos-personal', [DocumentoPersonalController::class, 'store'])
 ->name('documentos-personal.store');
 
-Route::get('/personal/{id}/documentos', [DocumentoPersonalController::class, 'gestionar'])->name('documentos-personal.gestionar');
+//--------------------- ruta gestionar documentos --------------
+Route::get('/personal/{id}/documentos', [DocumentoPersonalController::class, 'gestionar'])
+    ->name('documentos-personal.gestionar');
 
-Route::get('/documentos-personal/{id}/descargar', [DocumentoPersonalController::class, 'descargar'])->name('documentos-personal.descargar');
+//--------------------- ruta descargar documentos ----------------
+Route::get('/documentos-personal/{documento}/descargar', [DocumentoPersonalController::class, 'descargar'])
+    ->name('documentos-personal.descargar');
 
-Route::delete('/documentos-personal/{id}', [DocumentoPersonalController::class, 'destroy'])->name('documentos-personal.destroy');
+//--------------------- ruta eliminar documentos -------------------
+Route::delete('/documentos-personal/{id}', [DocumentoPersonalController::class, 'destroy'])
+    ->name('documentos-personal.destroy');
 
 //
 Route::middleware('auth')->group(function () {

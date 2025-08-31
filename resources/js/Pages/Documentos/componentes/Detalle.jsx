@@ -72,21 +72,22 @@ const Detalle = () => {
                                                 
                                                 {/*--------Botones de Acción--------*/}
                                                 <td className="p-2 border flex space-x-2">
-                                                    {/* Botón Ver detalles */}
+                                                    {/* --------Botón Ver detalles -------*/}
                                                     <Link href= {route("documentos-personal.index", doc.id)}>
                                                         <button className="bg-blue-500 hover:bg-blue-700 text-white py-1 px-3 rounded">
                                                             Ver
                                                         </button>
                                                     </Link>
                     
-                                                    {/* Botón Editar */}
-                                                    <Link href={route("documentos-personal.index", doc.id)}>
-                                                        <button className="bg-green-500 hover:bg-yellow-700 text-white py-1 px-3 rounded">
-                                                            Descargar
-                                                        </button>
-                                                    </Link>
+                                                    {/*---------- Botón Descargar----- */}
+                                                    <a 
+                                                        href={route("documentos-personal.descargar", doc.id)}
+                                                        className="bg-green-500 hover:bg-yellow-700 text-white py-1 px-3 rounded"   
+                                                    >
+                                                        Descargar
+                                                    </a>
                                                         
-                                                    {/* Botón Eliminar */}
+                                                    {/*----- Botón Eliminar----- */}
                                                     <button 
                                                         onClick={() => handleDelete(doc.id)}   //Actualizar campo según el ID  de la tabla
                                                         className="bg-red-500 hover:bg-red-700 text-white py-1 px-3 rounded">

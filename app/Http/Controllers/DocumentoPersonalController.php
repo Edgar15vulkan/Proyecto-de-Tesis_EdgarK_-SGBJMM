@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+
 use Inertia\Inertia;
 use Inertia\Response;
 //Importar modelos
@@ -95,17 +96,21 @@ class DocumentoPersonalController extends Controller
         ]);
     }
     //Descargar documento
-    public function descargar($id)
+    public function descargar(DocumentoPersonal $documento)
     {
-        $documento = DocumentoPersonal::findOrFail($id);
+      
+        if (!$documento ->archivo || !Storage::disk('public')->exists($documento->archivo)){
+            abort(404, 'El archivo no existe o no fue cargado.');
 
-        if (!$documento ->archivo || !Storage::disk('public')-> exists($documento->archivo)){
-            abort(404, 'Archivo no encontrado.');
         }
-        $ruta = Storage::disk('public')->path($documento->archivo);
+        //Descargar con nombre legible
+        //$rutaAbsoluta = Storage::disk('public')->path($documento->archivo);
 
-        //opcional
-        return response()->download($ruta, $documento->nombre_documento . '.' . pathinfo($ruta, PATHINFO_EXTENSION));
+        
+        return response()->download(
+            Storage::disk('public')->path($documento->archivo),
+            $documento->nombre_documento . '.' . pathinfo($documento->archivo, PATHINFO_EXTENSION)
+        );
     }
 
     //Eliminar documento
