@@ -17,7 +17,7 @@ const Index = () => {
         };
 
     return (
-        <div className="overflow-x-auto">
+        <div className="overflow-x-auto">  {/* overflow-x-auto añade scrollbar a la tabla si se alarga */}
             <h2 className="text-2xl font-bold mb-4"> </h2>
             <table className="table-auto w-full border">
                 <thead>

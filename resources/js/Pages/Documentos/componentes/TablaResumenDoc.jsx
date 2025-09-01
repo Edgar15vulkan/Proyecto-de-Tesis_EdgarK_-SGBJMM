@@ -1,50 +1,45 @@
 import React from 'react';
 import { router, Link, usePage } from '@inertiajs/react';
-import { Button } from '@headlessui/react';
+import { CheckCircle, XCircle } from 'lucide-react';
 
-const TablaResumenDoc = ({ documentos }) => {
+const TablaResumenDoc = () => {
 
-    const { personal } = usePage().props; // Obtener al personal desde las props de la página
-    const listaPersonal = personal?.data || []; //Array real de clientes
-    
+    const { personal, tiposDocumentos} = usePage().props; // Obtener al personal desde las props de la página
+    const listaPersonal = personal?.data || []; //Array real de personal
+    //Gestionar
     const handleGestionar = (personalId) => {
         router.get(route('documentos-personal.show', personalId));
     };
 
     return (
-        <div>
+        <div className='overflow-x-auto'>   {/* ---scrollbar de la tabla */}
             <table className='container mx-auto p-4'>
                 <thead className='bg-gray-100'>
                     <tr>
                         <th className='p-2 border'>ID Personal</th>
                         <th className= 'p-2 border'>Nombre(s) </th>
                         <th className= 'p-2 border'>Apellidos </th>
-                        <th className= 'p-2 border'>INE </th>
-                        <th className= 'p-2 border'>CURP</th>
-                        <th className= 'p-2 border'>RFC </th>
-                        <th className= 'p-2 border'>Acta de Nac.</th>
-                        <th className= 'p-2 border'>Certificado estudios </th>
-                        <th className= 'p-2 border'>Certificado médico </th>
-                        <th className= 'p-2 border'>Antecedentes no penal. </th>
-
+                        {tiposDocumentos.map((tipo) => (
+                            <th key={tipo} className='p-2 border'>{tipo}</th>
+                        ))}
                         <th className= 'p-2 border'>Acciones </th>
                     </tr>
                 </thead>
                 <tbody>
-                    {listaPersonal.map((persona) => {
-                        const documento = documentos.find(d => d.personal_id === persona.id) || {};
-                        return (
-                        <tr key={persona.id ?? documento.id}>
+                    {listaPersonal.map((persona) => (
+                        <tr key={persona.personal_id}>
                             <td className='p-2 border'>{persona.personal_id}</td>
                             <td className='p-2 border'>{persona.nombre}</td>
                             <td className='p-2 border'>{persona.apellido_paterno} {persona.apellido_materno}</td>
-                            <td className='p-2 border'>NO</td>
-                            <td className='p-2 border'>NO</td>
-                            <td className='p-2 border'>NO</td>
-                            <td className='p-2 border'>NO</td>
-                            <td className= 'p-2 border'>NO </td>
-                            <td className= 'p-2 border'>NO </td>
-                            <td className= 'p-2 border'>NO </td>
+                            {tiposDocumentos.map((tipo) => (
+                                <td key={tipo} className='p-2 border text-center'>
+                                    {persona.resumenDocumentos?.[tipo] ? (
+                                        <CheckCircle className='text-green-500 inline w-5 h-5'/>
+                                    ) : (
+                                        <XCircle className='text-red-500 inline w-5 h-5'/>
+                                    )}
+                                </td>
+                            ))}
                             {/* --------------Acciones de la Tabla Documentos - Resumen -----------*/}
                             <td className='p-2 border space-x-2'>
                                 {/*--- Acción de gestionar ---*/}
@@ -54,11 +49,9 @@ const TablaResumenDoc = ({ documentos }) => {
                                 >
                                     Gestionar
                                 </button>
-
                             </td>
                         </tr>
-                        );
-                    })}
+                    ))}
                 </tbody>
             </table>
             {/*Paginación */}

@@ -44,15 +44,15 @@ const Detalle = () => {
                         <h1 className="text-xl font-bold mb-4">
                             Documentos de {personal.nombre} {personal.apellido_paterno} {personal.apellido_materno}
                         </h1>
-                        <div className="bg-gray-100 p-4 rounded mb-4 space-x-20">
+                        <div className="bg-gray-100 p-4 rounded mb-4 space-x-20 overflow-x-auto">  {/* overflow-x-auto */}
                             <table className="table-auto w-full border">
                                 <thead className="bg-gray-100">  {/*------ ENCABEZADO TABLA------- */}
                                     <tr>
+                                        <th className="p-2 border">ID documento</th>
                                         <th className="p-2 border">Tipo de documento</th>
                                         <th className="p-2 border"> Nombre documento</th>
                                         <th className="p-2 border"> Entregado</th>
                                         <th className="p-2 border"> Fecha de entrega</th>
-                                        <th className="p-2 border"> Archivo</th>
                                         <th className="p-2 border"> Acciones</th>
 
                                     </tr>
@@ -61,11 +61,12 @@ const Detalle = () => {
                                     {documentos.length > 0 ? (
                                         documentos.map((doc) => (
                                             <tr key={doc.id}>
+                                                <td className="p-2 border">{doc.id}</td>
                                                 <td className="p-2 border">{doc.tipo_documento}</td>
                                                 <td className="p-2 border">{doc.nombre_documento}</td>
                                                 <td className="p-2 border">{doc.entregado ? 'Sí' : 'No'}</td>
                                                 <td className="p-2 border">{formatearFecha(doc.fecha_entrega)}</td>
-                                                <td className="p-2 border">{doc.ruta_documento || 'Sin archivo'}</td>
+                                             
                                                 
                                                 {/*--------Botones de Acción--------*/}
                                                 <td className="p-2 border flex space-x-2">

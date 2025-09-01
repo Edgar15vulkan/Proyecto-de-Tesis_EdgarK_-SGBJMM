@@ -23,6 +23,12 @@ export default function Create({ onDocumentoSubido, personalId, personales }) {
         'Licencia de conducir',
         'Pasaporte',
         'Certificado médico',
+        //Solicitud de empleo
+        //Constancia de no inmobiliario
+        //Curriculum Vitae
+        //Carta de recomendación
+        //Cartilla militar
+        //FOTO
         'Otros',
     ];
 

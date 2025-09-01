@@ -19,15 +19,45 @@ class DocumentoPersonalController extends Controller
     //Metódo Index para mostrar los documentos personales
     public function index(Request $request)
     {   
+        //-------- relación de personal con documentos ---------
         $query = Personal:: with (['documentos', 'servicios', 'contactos', 'licencias']); //crear consulta del modelo Personal con documentos
-        $documentos = DocumentoPersonal::all();
-        // Tabla de documentos por persona tipo resumen
-        $personal = $query-> paginate(5)->withQueryString(); 
-        return Inertia::render('Documentos/Index', 
-        [            
-            'documentos' => DocumentoPersonal::all(),
-            'personal' => $personal
+        $persona = Personal::with('documentos')->first();
+        //dd($persona->toArray());
 
+        $documentos = DocumentoPersonal::all();
+        // ------paginación ----------- Tabla de documentos por persona tipo resumen
+        $personal = $query-> paginate(5)->withQueryString(); 
+        //--------catalogo de tipo de documentos-----------
+        $tiposDocumentos = [
+            'Acta de Nacimiento',
+            'INE',
+            'CURP',
+            'RFC',
+            'Comprobante de domicilio',
+            'Certificado de estudios',
+            'Carta de antecedentes no penales',
+            'Licencia de conducir',
+            //'Pasaporte',
+            'Certificado médico',
+            //'Otros',
+        ];
+        //-------- resumen para cada persona ----------
+        $personal->getCollection()->transform(function ($persona) use ($tiposDocumentos) {
+            $estadoDocumentos = [];
+            foreach ($tiposDocumentos as $tipo) {
+                $estadoDocumentos[$tipo] = $persona->documentos
+                    ->where('tipo_documento', $tipo)  //verficar con la columna de la tabla 
+                    ->isNotEmpty();
+            }
+            //Agregar al objeto persona una propiedad nueva
+            $persona->resumenDocumentos = $estadoDocumentos;
+            return $persona;
+        });
+
+        //-------renderiza vista----------
+        return Inertia::render('Documentos/Index', [            
+            'personal' => $personal,
+            'tiposDocumentos' => $tiposDocumentos,
         ]);
     }
     // crear un nuevo documento
