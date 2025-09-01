@@ -121,7 +121,7 @@ export default function AuthenticatedLayout({ header, children }) {
             {/* CONTENIDO PRINCIPAL */}
             <div className="flex-1 ml-60 flex flex-col">
                 {/* NAVBAR SUPERIOR */}
-                <nav className="border-b border-gray-100 bg-red-700 fixed top-0 right-0 left-64 z-20"> {/* Color del menu superior */}
+                <nav className="border-b border-gray-300 bg-red-700 fixed top-0 right-0 left-64 z-50"> {/* Color del menu superior */}
                     <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                         <div className="flex h-16 justify-between items-center">
                             {/* Links visibles solo en móvil */}
@@ -143,7 +143,7 @@ export default function AuthenticatedLayout({ header, children }) {
                             <div className="flex items-center">
                                 <Dropdown>
                                     <Dropdown.Trigger>
-                                        <button className="inline-flex items-center px-3 py-2 text-sm font-medium text-white hover:text-gray-300">  {/* Color de texto del usuario */}
+                                        <button className="inline-flex items-center px-3 py-2 text-sm font-medium z-50 text-white hover:text-gray-300">  {/* Color de texto del usuario */}
                                             {user.name}
                                             <svg className="ml-1 h-4 w-4" fill="currentColor" viewBox="0 0 20 20">
                                                 <path fillRule="evenodd" d="M5.23 7.21a.75.75 0 011.06.02L10 11.584l3.71-4.352a.75.75 0 011.14.976l-4.25 5a.75.75 0 01-1.14 0l-4.25-5a.75.75 0 01.02-1.06z" clipRule="evenodd" />

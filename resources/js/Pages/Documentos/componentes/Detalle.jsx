@@ -26,13 +26,13 @@ const Detalle = () => {
             <Head title="Documentos de personal"/>
 
             {/* Formulario de nuevo documento  */}
-                <div className="bg-gray-100 p-4 rounded mb-1 flex-items-center">
+                <div className="bg-white shadow-md p-4 rounded-lg max-w-md mx-auto">
                     <h2 className="text-2xl font-semibold mb-3">Acciones</h2>
                     <Link href={route('documentos-personal.create', {personal: personal.personal_id} )}>
                         <button className="hover:brightness-90 text-black font-bold py-2 px-4 rounded-lg transition duration-300"
                         style={{backgroundColor: '#FBC02D'}}
                         type="button">
-                            Añadir nuevo Documento
+                            Nuevo Documento
                         </button>
                     </Link>
                 </div> 
