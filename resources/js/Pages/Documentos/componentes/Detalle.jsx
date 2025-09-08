@@ -51,7 +51,7 @@ const Detalle = () => {
                                         <th className="p-2 border">ID documento</th>
                                         <th className="p-2 border">Tipo de documento</th>
                                         <th className="p-2 border"> Nombre documento</th>
-                                        <th className="p-2 border"> Entregado</th>
+                                        <th className="p-2 border"> Entregado (copia fisica)</th>
                                         <th className="p-2 border"> Fecha de entrega</th>
                                         <th className="p-2 border"> Acciones</th>
 
