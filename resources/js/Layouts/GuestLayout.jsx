@@ -1,15 +1,21 @@
 import ApplicationLogo from '@/Components/ApplicationLogo';
 import { Link } from '@inertiajs/react';
-// ---importar logo de bomberos---   import logo from '@assets/images/logo-bomberos.png';
+
 
 export default function GuestLayout({ children }) {
     return (
         <div className='min-h-screen flex flex-col justify-center items-center bg-gradient-to-br from-black via-gray-900 to-red-900 p-6'>
             {/* --------Logo y titulo -----*/}
             <div className='mb-6 text-center'>
-                <Link href="/">
-                    <ApplicationLogo className="h-20 w-20 fill-current text-gray-500" />
-                </Link>
+
+                {/*----------Logo de bomberos jmm ---------- */}
+                <img
+                    src="/storage/image/logo_bomberos.jpg"
+                    alt="logo bomberos"
+                    className="w-40 h-48 mx-auto mb-4  border-4 border-red-600 shadow-lg"
+                />
+
+                {/* ---------- TITULOS Y TEXTO ----------- */}
                 <h1 className='text-2xl font-bold text-red-500'> Sistema de Gestión Integral del Cuerpo de Bomberos de José Maria Morelos</h1>
                 <p className='text-gray-300 italic'> Siempre listos para servir </p>
             </div>

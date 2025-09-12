@@ -76,25 +76,24 @@ export default function Login({ status, canResetPassword }) {
                                     checked={data.remember}
                                     onChange={(e) =>
                                         setData('remember', e.target.checked)}
-                                        className='text-red-600 focus:ring-red-500 border-gray-300 rounded'
+                                        className='text-red-600 focus:ring-red-500'
                                 />
-                                <span className="ms-2 text-sm text-gray-600">
-                                    Recuerdame
-                                </span>
+                                <span className="ml-2 text-sm text-gray-300"> Recuérdame </span>
                             </label>
                         </div>
-
-                        <div className="mt-4 flex items-center justify-end">
+                        
+                        {/* --------------------ACCIONES----------------------- */}
+                        <div className="mt-4 flex items-center justify-between">
                             {canResetPassword && (
                                 <Link
                                     href={route('password.request')}
-                                    className="rounded-md text-sm text-gray-600 underline hover:text-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                                    className="text-sm  text-red-500 hover:text-red-400 underline-offset-2"
                                 >
                                     Olvidaste tu contraseña?
                                 </Link>
                             )}
 
-                            <PrimaryButton className="ms-4" disabled={processing}>
+                            <PrimaryButton className="bg-red-700 hover:bg-red-400 focus:ring-2 focus:ring-yellow-400 transition transform hover:scale-105" disabled={processing}>
                                 Iniciar sesión
                             </PrimaryButton>
                         </div>
