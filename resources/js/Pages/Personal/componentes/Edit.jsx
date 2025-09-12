@@ -362,12 +362,14 @@ const Edit = ({ persona }) => {
                                 <label className="block">Parentesco de Contacto de Emergencia:</label>
                                 <input
                                     type="text"
-                                    value={data.parentesco_contacto_emergencia}
-                                    onChange={(e) => setData('parentesco_contacto_emergencia', e.target.value)}
-                                    className="border rounded px-4 py-2 w-full"
-                                    placeholder="Parentesco de Contacto de Emergencia"
+                                    value={data.contactos.parentesco_contacto_emergencia}
+                                    onChange={(e) => setData('contactos', {
+                                        ...data.contactos,
+                                        parentesco_contacto_emergencia: e.target.value
+                                    })
+                                }
+                                className="border rounded px-4 py-2 w-full"
                                 />
-                                {errors.parentesco_contacto_emergencia && <span className="text-red-500">{errors.parentesco_contacto_emergencia}</span>}
                             </div>
 
                             {/* Celular de Contacto de Emergencia */}
@@ -375,12 +377,15 @@ const Edit = ({ persona }) => {
                                 <label className="block">Celular de Contacto de Emergencia:</label>
                                 <input
                                     type="text"
-                                    value={data.celular_contacto_emergencia}
-                                    onChange={(e) => setData('celular_contacto_emergencia', e.target.value)}
+                                    value={data.contactos.celular_contacto_emergencia}
+                                    onChange={(e) => setData('contactos', {
+                                    ...data.contactos, 
+                                    celular_contacto_emergencia: e.target.value
+                                    })
+                                }
                                     className="border rounded px-4 py-2 w-full"
-                                    placeholder="Celular de Contacto de Emergencia"
+
                                 />
-                                {errors.celular_contacto_emergencia && <span className="text-red-500">{errors.celular_contacto_emergencia}</span>}
                             </div>
 
                             {/* -------- DATOS DE LICENCIA DE CONDUCRI (UNO A UNO) ---------- */}
