@@ -92,7 +92,13 @@ export default function Show({persona}) { // Recibe los servicios como props
                             <div className="grid grid-cols-2 gap-4 text-sm">
                                 {persona.licencias ? (
                                     <div className="">
-                                        <p><b>¿Tiene licencia de conducir?: </b>{persona.licencias.licencia_conducir || 'N/A'}</p>
+                                        <p><b>¿Tiene licencia de conducir?: </b>
+                                            {persona.licencias.licencia_conducir === true
+                                            ? "Sí"
+                                            : persona.licencias.licencia_conducir === false
+                                            ? "No"
+                                            : "N/A"}
+                                        </p>
                                         <p><b>Tipo de licencia: </b>{persona.licencias.tipo || 'N/A'}</p>
                                         <p><b>Número de licencia: </b>{persona.licencias.licencia_numero || 'N/A'}</p>
                                         <p><b>Fecha de expedición: </b>{formatearFecha(persona.licencias.fecha_expedicion)}</p>

@@ -21,6 +21,10 @@ class LicenciaConducir extends Model
         
     ];
 
+    protected $casts = [
+    'licencia_conducir' => 'boolean',
+];
+
     // Relación con el modelo Personal
     public function personal()
     {

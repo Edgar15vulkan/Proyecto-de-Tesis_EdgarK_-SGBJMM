@@ -40,7 +40,7 @@ export default function Create() {
         },
              // Datos de licencia de conducir
         licencia: {
-        licencia_conducir:'',
+        licencia_conducir: false,
         tipo:'',
         licencia_numero:'',
         fecha_expedicion:'',
@@ -381,7 +381,7 @@ export default function Create() {
                     <label className="block">¿Tiene licencia de conducir? (si no tiene deje los siguientes campos vacíos ):</label>
                     <select
                         value={data.licencia_conducir}
-                        onChange={(e) => setData('licencia_conducir', e.target.value === 'true')}
+                        onChange={(e) => setData('licencia_conducir', e.target.value === 'false')}
                         className = "border rounded px-4 py-2 w-full"
                     >
                         <option value="">Seleccione</option>

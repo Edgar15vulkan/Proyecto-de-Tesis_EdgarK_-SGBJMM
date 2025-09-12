@@ -230,8 +230,6 @@ class PersonalController extends Controller //Se crea el controlador de personal
         
         //----datos de licencias-----
         $licencias = $request->input('licencias', []);
-        $licencias['licencia_conducir'] = !empty($licencias['licencia_conducir']) ? 1 : 0;
-
         $persona->licencias()->updateOrCreate(
             ['personal_id' => $persona->personal_id],
             $licencias
