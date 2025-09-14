@@ -51,7 +51,6 @@ export default function Show({persona}) { // Recibe los servicios como props
                                         <p><b>Fecha de ingreso: </b>{formatearFecha(persona.servicios.fecha_ingreso)}</p>
                                         <p><b>Cargo: </b>{persona.servicios.cargo || 'N/A'}</p>
                                         <p><b>Rol: </b>{persona.servicios.rol || 'N/A'}</p>
-                                        <p><b>Voluntario: </b>{persona.servicios.voluntario ? 'Sí' : 'No'}</p>
                                         <p><b>Estado: </b>{persona.servicios.estado || 'N/A'}</p>
                                         <p><b>Zona de adscripción: </b>{persona.servicios.zona_adscripcion || 'N/A'}</p>
                                         <p className="col-span-2"><b>Observaciones: </b>{persona.servicios.observaciones || 'N/A'}</p>
@@ -92,18 +91,10 @@ export default function Show({persona}) { // Recibe los servicios como props
                             <div className="grid grid-cols-2 gap-4 text-sm">
                                 {persona.licencias ? (
                                     <div className="">
-                                        <p><b>¿Tiene licencia de conducir?: </b>
-                                            {persona.licencias.licencia_conducir === true
-                                            ? "Sí"
-                                            : persona.licencias.licencia_conducir === false
-                                            ? "No"
-                                            : "N/A"}
-                                        </p>
                                         <p><b>Tipo de licencia: </b>{persona.licencias.tipo || 'N/A'}</p>
                                         <p><b>Número de licencia: </b>{persona.licencias.licencia_numero || 'N/A'}</p>
                                         <p><b>Fecha de expedición: </b>{formatearFecha(persona.licencias.fecha_expedicion)}</p>
                                         <p><b>Fecha de Vencimiento: </b>{formatearFecha(persona.licencias.fecha_vencimiento)}</p>
-                                    
                                     </div>
                                 ) : (
                                     <p>No hay datos registrados</p>

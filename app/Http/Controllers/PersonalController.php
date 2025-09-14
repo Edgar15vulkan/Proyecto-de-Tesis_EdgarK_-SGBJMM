@@ -56,7 +56,6 @@ class PersonalController extends Controller //Se crea el controlador de personal
             'cargo' => 'nullable|string|max:100',
             'rol' => 'nullable|string|max:100',
             'estado' => 'required|in:Activo,Inactivo,Retirado,Suspendido,Fallecido,Comision',
-            'voluntario' => 'nullable|boolean',
             'zona_adscripcion' => 'nullable|string|max:100',
             'observaciones' => 'nullable|string|max:255',
 
@@ -71,8 +70,7 @@ class PersonalController extends Controller //Se crea el controlador de personal
             'celular_contacto_emergencia' => 'nullable|string|max:15',
 
             // Datos de licencia de conducir
-            'licencia_conducir' => 'required|boolean',
-            'tipo' => 'nullable|in:Tipo A,Tipo B,Tipo C,Tipo D, Tipo E',
+            'tipo' => 'nullable|in:Tipo A,Tipo B,Tipo C,Tipo D,Tipo E',
             'licencia_numero' => 'nullable|string|max:50',
             'fecha_expedicion' => 'nullable|date',
             'fecha_vencimiento' => 'nullable|date|after_or_equal:fecha_expedicion',
@@ -93,7 +91,6 @@ class PersonalController extends Controller //Se crea el controlador de personal
             'fecha_ingreso' => $request->fecha_ingreso,
             'cargo' => $request->cargo,
             'rol' => $request->rol,
-            'voluntario' => $request->voluntario ?? false, // Asignar valor por defecto si no se proporciona
             'estado' => $request->estado,
             'zona_adscripcion' => $request->zona_adscripcion,
             'observaciones' => $request->observaciones,
@@ -114,7 +111,6 @@ class PersonalController extends Controller //Se crea el controlador de personal
         //creación de los datos de licencia de conducir asociados a la persona
         $persona->licencias()->create([
             //campos
-            'licencia_conducir' => $request->licencia_conducir,
             'tipo' => $request->tipo,
             'licencia_numero' => $request->licencia_numero,
             'fecha_expedicion' => $request->fecha_expedicion,
@@ -171,7 +167,6 @@ class PersonalController extends Controller //Se crea el controlador de personal
             'servicios.cargo' => 'nullable|string|max:100',
             'servicios.rol' => 'nullable|string|max:100',
             'servicios.estado' => 'required|in:Activo,Inactivo,Retirado,Suspendido,Fallecido,Comision',
-            'servicios.voluntario' => 'nullable|boolean',
             'servicios.zona_adscripcion' => 'nullable|string|max:100',
             'servicios.observaciones' => 'nullable|string|max:255',
 
@@ -188,8 +183,7 @@ class PersonalController extends Controller //Se crea el controlador de personal
             
             //validar datos de licencias
             'licencias' => 'required|array',
-            'licencias.licencia_conducir' => 'required|boolean',
-            'licencias.tipo' => 'nullable|in:Tipo A,Tipo B,Tipo C,Tipo D, Tipo E',
+            'licencias.tipo' => 'nullable|in:Tipo A,Tipo B,Tipo C,Tipo D,Tipo E',
             'licencias.licencia_numero' => 'nullable|string|max:50',
             'licencias.fecha_expedicion' => 'nullable|date',
             'licencias.fecha_vencimiento' => 'nullable|date|after_or_equal:fecha_expedicion',
@@ -212,8 +206,6 @@ class PersonalController extends Controller //Se crea el controlador de personal
 
          //-----ajustar voluntario----
         $servicios = $request->input('servicios', []);
-        $servicios['voluntario'] = !empty($servicios['voluntario']) ? 1 : 0;
-
 
         //-----actualizar o crear  datos de servicio--------
         $persona->servicios()->updateOrCreate(
@@ -227,8 +219,8 @@ class PersonalController extends Controller //Se crea el controlador de personal
             ['personal_id' => $persona->personal_id],
             $contactos
         );
-        
-        //----datos de licencias-----
+
+         //----datos de licencias-----
         $licencias = $request->input('licencias', []);
         $persona->licencias()->updateOrCreate(
             ['personal_id' => $persona->personal_id],

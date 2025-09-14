@@ -23,7 +23,6 @@ const Edit = ({ persona }) => {
             cargo: persona.servicios?.cargo ?? "",
             rol: persona.servicios?.rol ?? "",
             estado: persona.servicios?.estado ?? "",
-            voluntario: persona.servicios?.voluntario ?? false,
             zona_adscripcion: persona.servicios?.zona_adscripcion ?? "",
             observaciones: persona.servicios?.observaciones ?? "",
         },
@@ -40,7 +39,6 @@ const Edit = ({ persona }) => {
         },
 
         licencias: {
-            licencia_conducir: persona.licencias?.licencia_conducir ?? false,
             tipo: persona.licencias?.tipo ?? "",
             licencia_numero: persona.licencias?.licencia_numero ?? "",
             fecha_expedicion: persona.licencias?.fecha_expedicion ?? "",
@@ -51,7 +49,6 @@ const Edit = ({ persona }) => {
     //mensaje 
     const handleSubmit = (e) => {
         e.preventDefault();
-
 
         put(route('personal.update', persona.personal_id), {
 
@@ -246,23 +243,7 @@ const Edit = ({ persona }) => {
                                 </select>
                             </div>
                             
-                            {/* Voluntario checkbox */}
-                            <div className="mb-4 flex items-center gap-2">
-                                <label className="font-semibold">Voluntario</label>
-                                <input
-                                    type="checkbox"
-                                    checked={Number(data.servicios.voluntario) === 1}
-                                    onChange={(e) =>
-                                        setData("servicios", {
-                                            ...data.servicios,
-                                            voluntario: e.target.checked ? 1 : 0,
-                                        })
-                                    }
-                                />
-                            
-                            </div>
-                            
-                             {/* Zona de adscripción */}
+                            {/* Zona de adscripción */}
                             <div className="mb-4">
                                 <label className="block font-semibold">Zona de adscripción</label>
                                 <input
@@ -278,7 +259,7 @@ const Edit = ({ persona }) => {
                                 />
                             </div>
 
-                             {/* Observaciones */}
+                            {/* Observaciones */}
                             <div className="mb-4">
                                 <label className="block font-semibold">Observaciones</label>
                                 <textarea
@@ -434,25 +415,7 @@ const Edit = ({ persona }) => {
 
                             {/* -------- DATOS DE LICENCIA DE CONDUCRI (UNO A UNO) ---------- */}
                             <h3 className="text-xl font-semibold mt-6 mb-2">Datos de Licencia de Conducir</h3>
-                            {/*¿tiene Licencia de Conducir? */}
-                            <div className='mb-4'>
-                                <label className="block font-semibold">¿Tiene licencia de conducir? (si no tiene deje los siguientes campos vacíos ):</label>
-                                <select
-                                    value={data.licencias.licencia_conducir}
-                                    onChange={(e) => 
-                                        setData('licencias', {
-                                        ...data.licencias,
-                                        licencia_conducir: e.target.value
-                                    })
-                                }
-                                    className = "border rounded px-4 py-2 w-full"
-                                >
-                                    <option value="">Seleccione</option>
-                                    <option value="true">Sí</option>
-                                    <option value="false">No</option>
-                                </select>
-                            </div>       
-                                
+                                   
                             {/* Tipo de Licencia */}
                             <div className='mb-4'>
                                 <label className="block font-semibold">Tipo de Licencia:</label>

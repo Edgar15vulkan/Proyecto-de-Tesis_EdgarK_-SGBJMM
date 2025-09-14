@@ -19,9 +19,6 @@ class DatosServicio extends Model
         'zona_adscripcion',
         'observaciones'
     ];
-    protected $casts = [    // Define los tipos de datos para los campos
-    'voluntario' => 'boolean',    // Campo booleano
-];
 
 public function personal()
 {

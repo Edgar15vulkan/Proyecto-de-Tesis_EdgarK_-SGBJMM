@@ -23,28 +23,26 @@ export default function Create() {
             cargo: '',
             rol: '',
             estado: '',
-            voluntario: false,
             zona_adscripcion: '',
             observaciones: '',
         },
         // Datos de contacto
         contacto: {
-        correo_electronico: '',
-        telefono: '',
-        ciudad: '',
-        colonia: '',
-        calle: '',
-        nombre_contacto_emergencia: '',
-        parentesco_contacto_emergencia: '',
-        celular_contacto_emergencia: '',
+            correo_electronico: '',
+            telefono: '',
+            ciudad: '',
+            colonia: '',
+            calle: '',
+            nombre_contacto_emergencia: '',
+            parentesco_contacto_emergencia: '',
+            celular_contacto_emergencia: '',
         },
-             // Datos de licencia de conducir
+        // Datos de licencia de conducir
         licencia: {
-        licencia_conducir: false,
-        tipo:'',
-        licencia_numero:'',
-        fecha_expedicion:'',
-        fecha_vencimiento:'',
+            tipo:'',
+            licencia_numero:'',
+            fecha_expedicion:'',
+            fecha_vencimiento:'',
         },
 
         //Datos de documentos
@@ -234,21 +232,6 @@ export default function Create() {
                     {errors.estado && <span className="text-red-500">{errors.estado}</span>}
                 </div>
 
-                {/* Voluntario */}
-                <div className='mb-4'>
-                    <label className="inline-flex items-center">
-                    <input
-                        type="checkbox"
-                        checked={data.voluntario}
-                        onChange={(e) => setData('voluntario', e.target.checked)}
-                        className="form-checkbox h-5 w-5 text-blue-600"
-                        placeholder="Voluntario"
-                    />
-                    <span className="ml-2">Voluntario</span>
-                    </label>
-                    {errors.voluntario && <span className="text-red-500">{errors.voluntario}</span>}
-                </div>
-
                 {/* Zona de Adscripción */}
                 <div className='mb-4'>
                     <label className="block">Zona de Adscripción:</label>
@@ -392,21 +375,7 @@ export default function Create() {
 
                 {/* -------- DATOS DE LICENCIA DE CONDUCRI (UNO A UNO) ---------- */}
                 <h3 className="text-xl font-semibold mt-6 mb-2">Datos de Licencia de Conducir</h3>
-                {/*¿tiene Licencia de Conducir? */}
-                <div className='mb-4'>
-                    <label className="block">¿Tiene licencia de conducir? (si no tiene deje los siguientes campos vacíos ):</label>
-                    <select
-                        value={data.licencia_conducir}
-                        onChange={(e) => setData('licencia_conducir', e.target.value === 'false')}
-                        className = "border rounded px-4 py-2 w-full"
-                    >
-                        <option value="">Seleccione</option>
-                        <option value="true">Sí</option>
-                        <option value="false">No</option>
-                    </select>
-                    {errors.licencia_conducir && <span className="text-red-500">{errors.licencia_conducir}</span>}
-                </div>       
-                    
+                      
                 {/* Tipo de Licencia */}
                 <div className='mb-4'>
                     <label className="block">Tipo de Licencia:</label>
