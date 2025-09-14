@@ -27,7 +27,7 @@ export default function Login({ status, canResetPassword }) {
             <Head title="Inicio de sesión" /> 
 
                 {/*------------------CARD FORMULARIO ------------- */}
-                <div className='w-full max-w-md p-6 bg-black/70 rounded-2xl shadow-lg border border-red-700'>
+                <div className='w-full max-w-md p-6  rounded-2xl  border-red-700'>
                     {/*----STATUS  mensaje de estado----- */}
                     {status && (
                         <div className="mb-4 text-sm font-medium text-green-600">

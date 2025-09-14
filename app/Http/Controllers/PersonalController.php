@@ -220,13 +220,6 @@ class PersonalController extends Controller //Se crea el controlador de personal
             $contactos
         );
 
-         //----datos de licencias-----
-        $licencias = $request->input('licencias', []);
-        $persona->licencias()->updateOrCreate(
-            ['personal_id' => $persona->personal_id],
-            $licencias
-        );
-
         //---------RETURN -----------------
         return redirect()->route('personal.show', $id)
             ->with('success', 'Información actualizada correctamente.');

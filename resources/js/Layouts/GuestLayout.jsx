@@ -21,7 +21,7 @@ export default function GuestLayout({ children }) {
             </div>
 
             {/*----------CONTENEDOR DEL CONTENIDO -------- */}
-            <div className="w-full max-w-md bg-black/70 p-6 rounded-2xl shadow-lg border border-red-700">
+            <div className="w-full max-w-md bg-black/50 p-6 rounded-2xl shadow-lg border border-red-700">
                 {children}
             </div>
         </div>
