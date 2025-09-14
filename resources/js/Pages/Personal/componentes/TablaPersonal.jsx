@@ -9,9 +9,9 @@ const Index = () => {
 
     // ---- Función para manejar la eliminación de un personal del sistema ----
     const handleDelete = (id) => {
-        if (confirm('¿Estas seguro de que quieres eliminar este servicio?')){
+        if (confirm('¿Estás seguro de eliminar a esta persona del sistema?')){
             router.delete(route('personal.destroy', id), {
-                onSuccess:  () => alert ('servicio eliminado con exito'), //mensaje de exito
+                onSuccess:  () => alert ('persona eliminada con exito'), //mensaje de exito
                 });
             }
         };
@@ -27,23 +27,14 @@ const Index = () => {
                         <th className="border px-4 py-2">Apellidos(s)</th>
                         <th className="border px-4 py-2">Grupo</th>
                         <th className="border px-4 py-2">Cargo</th>
-                        
                         <th className="border px-4 py-2">Estado</th>
                         <th className="border px-4 py-2">Fecha Ingreso</th>
-                        
-                        {/*<th className="border px-4 py-2">CURP</th>
-                        *<th className="border px-4 py-2">Fecha de Nacimiento</th>
-                        <th className="border px-4 py-2">Lugar de Nacimiento</th>
-                         Agregar más encabezados según los campos de la tabla */}
-
-             
-                     
                         <th className="border px-4 py-2">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
                     {listaPersonal.map((persona, ) => (
-                        <tr key={persona.id}>
+                        <tr key={persona.personal_id}>
                             <td className="border px-4 py-2">{persona.personal_id}</td>
                             <td className="border px-4 py-2">{persona.nombre}</td>
                             <td className="border px-4 py-2">{persona.apellido_paterno} {persona.apellido_materno}</td> {/* Concatenar apellido paterno y materno */}
@@ -51,10 +42,6 @@ const Index = () => {
                             <td className="border px-4 py-2">{persona?.servicios?.cargo || 'sin cargo'}</td>
                             <td className="border px-4 py-2">{persona?.servicios?.estado || 'sin estado'}</td>
                             <td className="border px-4 py-2">{formatearFecha(persona?.servicios?.fecha_ingreso)}</td>
-                            {/*<td className="border px-4 py-2">{persona.lugar_nacimiento}</td>
-                             -- Aquí puedes agregar más celdas según los campos de la tabla */}
-                  
-
                             <td className="p-2 border flex space-x-2">
                                 {/* Botón Ver detalles */}
                                 <Link href= {route("personal.show", persona.personal_id)}>
@@ -62,14 +49,12 @@ const Index = () => {
                                         Ver
                                     </button>
                                 </Link>
-
                                 {/* Botón Editar */}
                                <Link href={route("personal.edit", persona.personal_id)}>
                                     <button className="bg-yellow-500 hover:bg-yellow-700 text-white py-1 px-3 rounded">
                                         Editar
                                     </button>
                                 </Link>
-                                    
                                 {/* Botón Eliminar */}
                                 <button 
                                     onClick={() => handleDelete(persona.personal_id)}   //Actualizar campo según el ID  de la tabla
@@ -77,7 +62,6 @@ const Index = () => {
                                     Eliminar 
                                 </button>
                             </td>
-                            
                         </tr>
                     ))}
                 </tbody>
