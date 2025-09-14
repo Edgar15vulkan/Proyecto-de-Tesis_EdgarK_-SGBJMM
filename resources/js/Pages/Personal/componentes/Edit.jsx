@@ -83,6 +83,7 @@ const Edit = ({ persona }) => {
                         <form onSubmit={handleSubmit} className='bg-white overflow-hidden shadow-sm sm:rounded-lg p-6'>
                             
                             <h3 className="text-xl font-semibold mt-6 mb-2">Datos Personales</h3>
+                            {/* NOMBRES */}
                             <div className="mb-4">
                                 <label className="block font-semibold">Nombre</label>
                                 <input
@@ -94,6 +95,7 @@ const Edit = ({ persona }) => {
                                 {errors.nombre && <div className="text-red-500">{errors.nombre}</div>}
                             </div>
 
+                            {/* APELLIDO PATERNO */}
                             <div className="mb-4">
                                 <label className="block font-semibold">Apellido paterno</label>
                                 <input
@@ -104,6 +106,7 @@ const Edit = ({ persona }) => {
                                 />
                             </div>
 
+                            {/* APELLIDO MATERNO */}
                             <div className="mb-4">
                                 <label className="block font-semibold">Apellido Materno</label>
                                 <input
@@ -114,6 +117,7 @@ const Edit = ({ persona }) => {
                                 />
                             </div>
 
+                            {/* SEXO */}
                             <div className="mb-4">
                                 <label className="block font-semibold">Sexo</label>
                                 <select
@@ -131,6 +135,7 @@ const Edit = ({ persona }) => {
 
                             </div>
 
+                            {/* CURP */}
                             <div className="mb-4">
                                 <label className="block font-semibold">CURP</label>
                                 <input
@@ -138,6 +143,28 @@ const Edit = ({ persona }) => {
                                     value={data.CURP}
                                     onChange={(e) => setData("CURP", e.target.value)}
                                     className="w-full border p-2 rounded"
+                                />
+                            </div>
+
+                            {/* Fecha de Nacimiento */}
+                            <div className='mb-4'>    
+                                <label className="block font-semibold">Fecha de Nacimiento:</label> 
+                                <input   
+                                    type="date"  
+                                    value={data.fecha_nacimiento}
+                                    onChange={(e) => setData('fecha_nacimiento', e.target.value)}
+                                    className="border rounded px-4 py-2 w-full"
+                                />
+                            </div>
+
+                            {/* Lugar de Nacimiento */}
+                            <div className='mb-4'>    
+                                <label className="block font-semibold">Lugar de Nacimiento:</label> 
+                                <input   
+                                    type="text"  
+                                    value={data.lugar_nacimiento}
+                                    onChange={(e) => setData('lugar_nacimiento', e.target.value)}
+                                    className="border rounded px-4 py-2 w-full"
                                 />
                             </div>
 
@@ -159,20 +186,26 @@ const Edit = ({ persona }) => {
                                 />
                             </div>
 
-                            {/* Cargo */}
-                            <div className="mb-4">
-                                <label className="block font-semibold">Cargo</label>
-                                <input
-                                    type="text"
+                            {/* Cargos */}
+                            <div className='mb-4'>    
+                                <label className="block font-semibold">Cargo:</label> 
+                                <select       
                                     value={data.servicios.cargo}
                                     onChange={(e) => 
-                                        setData("servicios",{
+                                        setData('servicios', {
                                             ...data.servicios,
-                                            cargo: e.target.value,
+                                            cargo: e.target.value
                                         })
                                     }
-                                    className="border p-2 w-full rounded"
-                                />
+                                    className="border rounded px-4 py-2 w-full"     
+                                >
+                                    <option value="Sin asignar">Sin asignar</option>
+                                    <option value="Director">Director</option>
+                                    <option value="Responsable de grupo">Responsable de grupo</option>
+                                    <option value="Bombero operativo">Bombero operativo</option>
+                                    <option value="Bombero paramédico">Bombero paramédico</option>
+                                    <option value="Voluntario">Voluntario</option>
+                                </select>
                             </div>
                             
                             {/* Rol */}
@@ -263,7 +296,7 @@ const Edit = ({ persona }) => {
                             {/*--------------- Datos de contacto -----------*/}
                             {/* --------Correo electronico---- */}
                             <div className='mb-4'>
-                                <label className="block">Correo Electrónico:</label>
+                                <label className="block font-semibold">Correo Electrónico:</label>
                                 <input
                                     type="email"
                                     value={data.contactos.correo_electronico}
@@ -279,7 +312,7 @@ const Edit = ({ persona }) => {
 
                             {/*------- Teléfono------ */}
                             <div className='mb-4'>
-                                <label className="block">Teléfono:</label>
+                                <label className="block font-semibold">Teléfono:</label>
                                 <input
                                     type="text"
                                     value={data.contactos.telefono}
@@ -295,7 +328,7 @@ const Edit = ({ persona }) => {
 
                             {/*---- Ciudad ----- */} 
                             <div className='mb-4'>
-                                <label className="block">Ciudad:</label>
+                                <label className="block font-semibold">Ciudad:</label>
                                 <input
                                     type="text"
                                     value={data.contactos.ciudad}
@@ -311,7 +344,7 @@ const Edit = ({ persona }) => {
 
                             {/* Colonia */}
                             <div className='mb-4'>
-                                <label className="block">Colonia:</label>
+                                <label className="block font-semibold">Colonia:</label>
                                 <input
                                     type="text"
                                     value={data.contactos.colonia}
@@ -327,7 +360,7 @@ const Edit = ({ persona }) => {
 
                             {/* Calle */}
                             <div className='mb-4'>
-                                <label className="block">Calle:</label>
+                                <label className="block font-semibold">Calle:</label>
                                 <input
                                     type="text"
                                     value={data.contactos.calle}
@@ -343,7 +376,7 @@ const Edit = ({ persona }) => {
 
                             {/* Nombre de Contacto de Emergencia */}
                             <div className='mb-4'>
-                                <label className="block">Nombre de Contacto de Emergencia:</label>
+                                <label className="block font-semibold">Nombre de Contacto de Emergencia:</label>
                                 <input
                                     type="text"
                                     value={data.contactos.nombre_contacto_emergencia}
@@ -359,22 +392,33 @@ const Edit = ({ persona }) => {
 
                             {/* Parentesco de Contacto de Emergencia */}
                             <div className='mb-4'>
-                                <label className="block">Parentesco de Contacto de Emergencia:</label>
-                                <input
+                                <label className="block font-semibold">Parentesco de Contacto de Emergencia:</label>
+                                <select
                                     type="text"
                                     value={data.contactos.parentesco_contacto_emergencia}
-                                    onChange={(e) => setData('contactos', {
-                                        ...data.contactos,
-                                        parentesco_contacto_emergencia: e.target.value
-                                    })
-                                }
-                                className="border rounded px-4 py-2 w-full"
-                                />
+                                    onChange={(e) => 
+                                        setData('contactos', {
+                                            ...data.contactos,
+                                            parentesco_contacto_emergencia: e.target.value
+                                        })
+                                    }
+                                    className="border rounded px-4 py-2 w-full"
+                                >
+                                    <option value="">Seleccione</option>
+                                    <option value="Padre">Padre</option>
+                                    <option value="Madre">Madre</option>
+                                    <option value="Tutor legal">Tutor legal</option>
+                                    <option value="Hermano/a">Hermano/a</option>
+                                    <option value="Abuelo/a">Abuelo/a</option>
+                                    <option value="Tío/a">Tío/a</option>
+                                    <option value="Primo/a">Primo/a</option>
+                                    <option value="Amigo/a cercano/a">Amigo/a cercano/a</option>
+                                </select>
                             </div>
 
                             {/* Celular de Contacto de Emergencia */}
                             <div className='mb-4'>
-                                <label className="block">Celular de Contacto de Emergencia:</label>
+                                <label className="block font-semibold">Celular de Contacto de Emergencia:</label>
                                 <input
                                     type="text"
                                     value={data.contactos.celular_contacto_emergencia}
@@ -392,7 +436,7 @@ const Edit = ({ persona }) => {
                             <h3 className="text-xl font-semibold mt-6 mb-2">Datos de Licencia de Conducir</h3>
                             {/*¿tiene Licencia de Conducir? */}
                             <div className='mb-4'>
-                                <label className="block">¿Tiene licencia de conducir? (si no tiene deje los siguientes campos vacíos ):</label>
+                                <label className="block font-semibold">¿Tiene licencia de conducir? (si no tiene deje los siguientes campos vacíos ):</label>
                                 <select
                                     value={data.licencias.licencia_conducir}
                                     onChange={(e) => 
@@ -411,7 +455,7 @@ const Edit = ({ persona }) => {
                                 
                             {/* Tipo de Licencia */}
                             <div className='mb-4'>
-                                <label className="block">Tipo de Licencia:</label>
+                                <label className="block font-semibold">Tipo de Licencia:</label>
                                 <select
                                     value={data.licencias.tipo}
                                     onChange={(e) => 
@@ -432,7 +476,7 @@ const Edit = ({ persona }) => {
 
                             {/* Número de Licencia */}
                             <div className='mb-4'>
-                                <label className="block">Número de Licencia:</label>
+                                <label className="block font-semibold">Número de Licencia:</label>
                                 <input
                                     type="text"
                                     value={data.licencias.licencia_numero}
@@ -448,7 +492,7 @@ const Edit = ({ persona }) => {
 
                             {/* Fecha de Expedición */}
                             <div className='mb-4'>
-                                <label className="block">Fecha de Expedición:</label>
+                                <label className="block font-semibold">Fecha de Expedición:</label>
                                 <input
                                     type="date"
                                     value={data.licencias.fecha_expedicion}
@@ -464,7 +508,7 @@ const Edit = ({ persona }) => {
 
                             {/* Fecha de Vencimiento */}
                             <div className='mb-4'>
-                                <label className="block">Fecha de Vencimiento:</label>
+                                <label className="block font-semibold">Fecha de Vencimiento:</label>
                                 <input
                                     type="date"
                                     value={data.licencias.fecha_vencimiento}

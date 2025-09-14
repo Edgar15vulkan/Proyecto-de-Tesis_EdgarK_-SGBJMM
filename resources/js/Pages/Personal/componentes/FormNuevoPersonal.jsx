@@ -167,6 +167,7 @@ export default function Create() {
                      />
                      {errors.lugar_nacimiento && <span className="text-red-500">{errors.lugar_nacimiento}</span>}
                 </div>
+                
                 {/* -------- DATOS DE SERVICIO ---------- */}
                 <h3 className="text-xl font-semibold mt-6 mb-2">Datos de Servicio</h3>
 
@@ -183,17 +184,22 @@ export default function Create() {
                      {errors.fecha_ingreso && <span className="text-red-500">{errors.fecha_ingreso}</span>}
                 </div>
 
-                {/* Cargo */}
+                {/* Cargos */}
                 <div className='mb-4'>    
-                     <label className="block">Cargo:</label> 
-                     <input   
-                          type="text"  
-                          value={data.cargo}
-                          onChange={(e) => setData('cargo', e.target.value)}
-                          className="border rounded px-4 py-2 w-full"
-                          placeholder="Cargo" 
-                     />
-                     {errors.cargo && <span className="text-red-500">{errors.cargo}</span>}
+                    <label className="block">Cargo:</label> 
+                    <select       
+                        value={data.cargo}
+                        onChange={(e) => setData('cargo', e.target.value)}
+                        className="border rounded px-4 py-2 w-full"     
+                    >
+                        <option value="Sin asignar">Sin asignar</option>
+                        <option value="Director">Director</option>
+                        <option value="Responsable de grupo">Responsable de grupo</option>
+                        <option value="Bombero operativo">Bombero operativo</option>
+                        <option value="Bombero paramédico">Bombero paramédico</option>
+                        <option value="Voluntario">Voluntario</option>
+                    </select>
+                    {errors.cargo && <span className="text-red-500">{errors.cargo}</span>}
                 </div>
 
                 {/* Rol */}
@@ -348,16 +354,26 @@ export default function Create() {
                     {errors.nombre_contacto_emergencia && <span className="text-red-500">{errors.nombre_contacto_emergencia}</span>}
                 </div>
 
-                {/* Parentesco de Contacto de Emergencia */}
+                {/* Parentesco de Contacto de Emergencia **** Modificar */}
                 <div className='mb-4'>
                     <label className="block">Parentesco de Contacto de Emergencia:</label>
-                    <input
+                    <select
                         type="text"
                         value={data.parentesco_contacto_emergencia}
                         onChange={(e) => setData('parentesco_contacto_emergencia', e.target.value)}
                         className="border rounded px-4 py-2 w-full"
-                        placeholder="Parentesco de Contacto de Emergencia"
-                    />
+                   
+                    >
+                        <option value="">Seleccione</option>
+                        <option value="Padre">Padre</option>
+                        <option value="Madre">Madre</option>
+                        <option value="Tutor legal">Tutor legal</option>
+                        <option value="Hermano/a">Hermano/a</option>
+                        <option value="Abuelo/a">Abuelo/a</option>
+                        <option value="Tío/a">Tío/a</option>
+                        <option value="Primo/a">Primo/a</option>
+                        <option value="Amigo/a cercano/a">Amigo/a cercano/a</option>
+                    </select>
                     {errors.parentesco_contacto_emergencia && <span className="text-red-500">{errors.parentesco_contacto_emergencia}</span>}
                 </div>
 
