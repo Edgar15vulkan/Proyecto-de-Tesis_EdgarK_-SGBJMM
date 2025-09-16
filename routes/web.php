@@ -84,7 +84,7 @@ Route::delete('/documentos-personal/{id}', [DocumentoPersonalController::class, 
 
 //--------------------------------------------------------------------------- 
 //--------------------- Rutas de Reportes de Incidentes -------------------
-Route::prefix('reportes')->name('reportes.')->group(function () {
+Route::prefix('reportes-incidentes')->name('reportes.')->group(function () {
     Route::get('/', [ReporteIncidenteController::class, 'index'])->name('index');
     Route::get('/create', [ReporteIncidenteController::class, 'create'])->name('create');
     Route::post('/', [ReporteIncidenteController::class, 'store'])->name('store');

@@ -18,7 +18,7 @@ class ReporteIncidenteController extends Controller
         ->orderBy('fecha')  //ordenar por fecha u otro dato
         ->paginate(10); // paginacion de 10
 
-        return Inertia::render('Reportes/Index,', [
+        return Inertia::render('Reportes/Index', [
             'reportes' => $reportes
         ]);
     }
