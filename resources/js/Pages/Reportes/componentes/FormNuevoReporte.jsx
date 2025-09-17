@@ -1,7 +1,7 @@
 import { useForm , Link, router} from '@inertiajs/react';
 import React from 'react';
 
-export default function Create({ onReporteSubido, personalId, personales, reportes }) {
+export default function Create({ onReporteSubido, personalId, personal, reportes }) {
 
     const { data, setData, post, processing, reset, errors } = useForm({
         personal_id: personalId ?? "",
@@ -14,12 +14,12 @@ export default function Create({ onReporteSubido, personalId, personales, report
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        post(route('reportes-incidentes.store'), {
+        post(route('reportes.store'), {
             forceFormData: true, // necesario para enviar archivos
             onSuccess: () => {
                 reset();
                 if (onReporteSubido) onReporteSubido(); // actualiza la tabla de reportes 
-                router.visit(route('reportes-incidentes.index'))
+                router.visit(route('reportes.index'))
             },
         });
     };
@@ -40,9 +40,9 @@ export default function Create({ onReporteSubido, personalId, personales, report
                             className="border rounded px-4 py-2 w-full"
                         >
                             <option value="">Selecciona un autor</option>
-                            {personales?.map((persona) => (
-                                <option key={persona.personal_id} value={persona.personal_id}>
-                                    {persona.nombre} {persona.apellido_paterno} {persona.apellido_materno}
+                            {personal?.map((p) => (
+                                <option key={p.personal_id} value={p.personal_id}>
+                                    {p.nombre} {p.apellido_paterno} {p.apellido_materno}
                                 </option>
                             ))}
                         </select>

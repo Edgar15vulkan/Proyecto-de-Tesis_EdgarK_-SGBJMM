@@ -88,7 +88,7 @@ Route::prefix('reportes-incidentes')->name('reportes.')->group(function () {
     Route::get('/', [ReporteIncidenteController::class, 'index'])->name('index');
     Route::get('/create', [ReporteIncidenteController::class, 'create'])->name('create');
     Route::post('/', [ReporteIncidenteController::class, 'store'])->name('store');
-    Route::get('/{reporte}', [ReporteIncidenteController::class, 'show'])->name('show');
+    Route::get('/{reporte}/archivo', [ReporteIncidenteController::class, 'archivo'])->name('archivo');
     Route::get('/{reporte}/edit', [ReporteIncidenteController::class, 'edit'])->name('edit');
     Route::put('/{reporte}', [ReporteIncidenteController::class, 'update'])->name('update');
     Route::delete('/{reporte}', [ReporteIncidenteController::class, 'destroy'])->name('destroy');

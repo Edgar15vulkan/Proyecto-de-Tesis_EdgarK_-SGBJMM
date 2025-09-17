@@ -67,12 +67,19 @@ class ReporteIncidenteController extends Controller
     }
 
     //------------- SHOW ----- MOSTRAR A DETALLE UN REPORTE ---------------
-    public function show(ReporteIncidente $reporte)
+  
+    public function archivo($id)
     {
-        $reporte->load('autor'); // cargar relacion de autor 
-        return Inertia::render('Reportes/componentes/Show', [
-            'reporte' => $reporte,
+        $reporte = ReporteIncidente::findOrFail($id);
 
+        if (!$reporte->archivo || !Storage::disk('public')->exists($reporte->archivo)) {
+            abort(404, 'Archivo no encontrado.');
+        }
+
+        $ruta = Storage::disk('public')->path($reporte->archivo);
+
+        return response()->file($ruta, [
+            'Content-Disposition' => 'inline; filename="'.basename($reporte->archivo).'"'
         ]);
     }
 
@@ -119,17 +126,6 @@ class ReporteIncidenteController extends Controller
         return redirect()->route('reportes.index')->with('success', 'Reporte actualizado correctamente');      
     }
 
-    //------------- DESTROY ----- ELIMINAR UN REPORTE ---------------
-    public function destroy(ReporteIncidente $reporte)
-    {
-        if ($reporte->archivo && Storage::disk('public')->exists($reporte->archivo)) {
-            Storage::disk('public')->delete($reporte->archivo);
-        }
-
-        $reporte->delete();
-
-        return redirect()->route('reportes.index')->with('sucess', 'Reporte eliminado correctamente');
-    }
     //------------- DOWNLOAD ARCHIVO ----- DESCARGAR ARCHIVO ---------------
     public function download(ReporteIncidente $reporte)
     {
@@ -141,6 +137,18 @@ class ReporteIncidenteController extends Controller
                 Storage::disk('public')->path($reporte->archivo),
                 $reporte->titulo . '.' . pathinfo($reporte->archivo, PATHINFO_EXTENSION)
         );
-    } 
+    }
+    
+    //------------- DESTROY ----- ELIMINAR UN REPORTE ---------------
+    public function destroy(ReporteIncidente $reporte)
+    {
+        if ($reporte->archivo && Storage::disk('public')->exists($reporte->archivo)) {
+            Storage::disk('public')->delete($reporte->archivo);
+        }
+
+        $reporte->delete();
+
+        return redirect()->route('reportes.index')->with('success', 'Reporte eliminado correctamente');
+    }
 
 }

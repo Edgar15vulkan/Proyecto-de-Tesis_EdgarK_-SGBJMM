@@ -10,7 +10,7 @@ const Index = () => {
     // ---- Función para manejar la eliminación de un personal del sistema ----
     const handleDelete = (id) => {
         if (confirm('¿Estás seguro de eliminar a este reporte del sistema?')){
-            router.delete(route('personal.destroy', id), {
+            router.delete(route('reportes.destroy', id), {
                 onSuccess:  () => alert ('Reporte de Incidente eliminado con exito'), //mensaje de exito
                 });
             }
@@ -33,29 +33,48 @@ const Index = () => {
                 </thead>
                 <tbody>
                     {listaReportes.map((reporte, ) => (
-                        <tr key={id}>
+                        <tr key={reporte.id}>
                             <td className="border px-4 py-2">{reporte.id}</td>
-                            <td className="border px-4 py-2">{reporte.titulo}</td>
-                            <td className="border px-4 py-2">{reporte.fecha}</td>
-                            <td className="border px-4 py-2">{reporte.autor}</td>
-                            <td className="border px-4 py-2">{reporte.descripcion || 'sin estado'}</td>
-                            <td className="border px-4 py-2">{reporte.archivo}</td>
+                            <td className="border px-4 py-2">{reporte.titulo || 'Sin titulo'}</td>
+                            <td className="border px-4 py-2">{reporte.fecha || 'N/A'}</td>
+                            <td className="border px-4 py-2">{reporte.autor
+                                                                ? `${reporte.autor.nombre} 
+                                                                ${reporte.autor.apellido_paterno || ''} 
+                                                                ${reporte.autor.apellido_materno || ''}`
+                                                                : 'N/A'}
+                                                                </td>
+                            <td className="border px-4 py-2">{reporte?.descripcion || 'sin descripcion'}</td>
+                            {/*<td className="border px-4 py-2">{reporte?.archivo || 'Sin archivo'}</td> */}
                             <td className="p-2 border flex space-x-2">
-                                {/* Botón Ver detalles */}
-                                <Link href= {route("personal.show", reporte.id)}>
-                                    <button className="bg-blue-500 hover:bg-blue-700 text-white py-1 px-3 rounded">
+                                {/* --------Botón Ver documento en otra pestaña-------*/}
+                                {/* --------Botón Ver documento -------*/}
+                                {/*---------- Botón Descargar documento----- */}
+                                {/* --------Botón Ver documento -------*/}
+                               {reporte.archivo && (
+                                    <a 
+                                        href={route("reportes.archivo", reporte.id)}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="bg-blue-500 hover:bg-blue-700 text-white py-1 px-3 rounded"   
+                                    >
                                         Ver
-                                    </button>
-                                </Link>
-                                {/* Botón Editar */}
-                               <Link href={route("personal.edit", persona.personal_id)}>
-                                    <button className="bg-yellow-500 hover:bg-yellow-700 text-white py-1 px-3 rounded">
-                                        Editar
-                                    </button>
-                                </Link>
-                                {/* Botón Eliminar */}
+                                    </a>
+                                )}
+
+
+                                {/*---------- Botón Descargar documento----- */}
+                                {reporte.archivo && (
+                                    <a 
+                                        href={route("reportes.download", reporte.id)}
+                                        className="bg-green-500 hover:bg-green-700 text-white py-1 px-3 rounded"   
+                                    >
+                                        Descargar
+                                    </a>
+                                )}
+                                    
+                                {/*----- Botón Eliminar documento----- */}
                                 <button 
-                                    onClick={() => handleDelete(persona.personal_id)}   //Actualizar campo según el ID  de la tabla
+                                    onClick={() => handleDelete(reporte.id)}   //Actualizar campo según el ID  de la tabla
                                     className="bg-red-500 hover:bg-red-700 text-white py-1 px-3 rounded">
                                     Eliminar 
                                 </button>
@@ -82,5 +101,4 @@ const Index = () => {
         </div>
     );
 }
-
 export default Index;
