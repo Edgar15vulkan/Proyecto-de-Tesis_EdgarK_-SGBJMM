@@ -73,7 +73,13 @@ export default function Index({reportes}) { // Recibe los reportes como props
                         {/*----------- Mostrar el personal registrado en una tabla ------------*/}
                         <div className="bg-gray-100 p-4 rounded mb-4">
                             <h2 className='text-2xl font-semibold mb-3'>Personal de Estación registrado</h2>
-                            Aqui se muestra una tabla paginada del personal de la estación
+                            <p className='mb-4 text-lg text-gray-700'>
+                                En este apartado se muestran todos los
+                                reportes registrados en el sistema. Puedes
+                                consultar la información básica de cada uno, 
+                                así como acceder a sus detalles completos, editarlos
+                                o descargar la información según lo requieras.
+                            </p>
                             <ReportesTabla reportes = {reportes} /> 
                         </div>
                         

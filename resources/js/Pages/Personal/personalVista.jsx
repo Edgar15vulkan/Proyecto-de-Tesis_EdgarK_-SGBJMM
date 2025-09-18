@@ -73,7 +73,12 @@ export default function Index({personal}) { // Recibe al personal como props
                         {/*------------ Mostrar el personal registrado en una tabla ------------ */}
                         <div className="bg-gray-100 p-4 rounded mb-4">
                             <h2 className='text-2xl font-semibold mb-3'>Personal de Estación registrado</h2>
-                            Aqui se muestra una tabla paginada del personal de la estación
+                            <p className='mb-4 text-lg text-gray-700'>
+                                En esta sección se encuentra el registro completo del personal. 
+                                Desde aquí puedes consultar la información básica de cada integrante,
+                                acceder a sus datos detallados y realizar 
+                                acciones como edición, actualización o descarga de su información.
+                            </p>
                             <PersonalTabla personal = {personal} /> {/* Verificar ruta en web.php*/} 
                         </div>
 

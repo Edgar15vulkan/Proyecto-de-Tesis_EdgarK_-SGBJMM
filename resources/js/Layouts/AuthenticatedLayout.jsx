@@ -79,7 +79,7 @@ export default function AuthenticatedLayout({ header, children }) {
                         className={'w-full flex items-center justify-between px-3 py-2 rounded-md hover:bg-red-500 transition'}
                     >
                         <span className="flex items-center gap-2">
-                            <FileText className="w-5 h-5" /> Reportes de Incidentes
+                            <FileText className="w-5 h-5" />Reportes de Incid.
                         </span>
                         {/* ------------- menu Desplegable -------------- */}
                         <ChevronDown 
@@ -94,7 +94,7 @@ export default function AuthenticatedLayout({ header, children }) {
 
                             {/*------- Reportes Index tabla ----- */}
                             <Link href={route('reportes.index')} className="flex items-center gap-2 px-3 py-1 rounded-md hover:bg-red-500 transition">
-                                <List className='w-6 h-6'/> Lista de reportes
+                                <List className='w-6 h-6'/>Lista de reportes
                             </Link>
 
                             {/*-------- Formulario Nuevo reporte------ */}

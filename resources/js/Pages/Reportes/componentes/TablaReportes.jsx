@@ -1,6 +1,7 @@
 import { formatearFecha } from "@/Utils/fechas";
 import { Head, usePage, Link, router } from "@inertiajs/react";
 
+
 import React from "react";
 
 const Index = () => {
@@ -27,7 +28,6 @@ const Index = () => {
                         <th className="border px-4 py-2">Fecha de creación</th>
                         <th className="border px-4 py-2">Autor</th>
                         <th className="border px-4 py-2">Descripción</th>
-                        <th className="border px-4 py-2">Archivo</th>
                         <th className="border px-4 py-2">Acciones</th>
                     </tr>
                 </thead>
@@ -36,7 +36,7 @@ const Index = () => {
                         <tr key={reporte.id}>
                             <td className="border px-4 py-2">{reporte.id}</td>
                             <td className="border px-4 py-2">{reporte.titulo || 'Sin titulo'}</td>
-                            <td className="border px-4 py-2">{reporte.fecha || 'N/A'}</td>
+                            <td className="border px-4 py-2">{formatearFecha(reporte.fecha || 'N/A')}</td>
                             <td className="border px-4 py-2">{reporte.autor
                                                                 ? `${reporte.autor.nombre} 
                                                                 ${reporte.autor.apellido_paterno || ''} 
