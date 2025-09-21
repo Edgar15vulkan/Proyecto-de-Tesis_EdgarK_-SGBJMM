@@ -50,8 +50,6 @@ export default function AuthenticatedLayout({ header, children }) {
                             className={`w-4 h-4 transform transition-transform ${open === "personal" ? "rotate-180" : ""}`}
                         />
                     </button>
-
-                    
                         <div 
                             className={`ml-8 flex flex-col text-sm overflow-hidden transition-all duration-300 ${
                             open === "personal" ? "max-h-40" : "max-h-0"
@@ -78,12 +76,33 @@ export default function AuthenticatedLayout({ header, children }) {
                     {/* ------- Reportes de incidentes ------------*/}
                     <button
                         onClick={() => toggleMenu("reportes")}
-                        className={'w-full flex items-center justify-between px-3 py-2 rounded-md  hover:bg-red-500 transition'}
+                        className={'w-full flex items-center justify-between px-3 py-2 rounded-md hover:bg-red-500 transition'}
                     >
                         <span className="flex items-center gap-2">
-                            <FileText className="w-5 h-5" /> Reportes de Incidentes
+                            <FileText className="w-5 h-5" />Reportes de Incid.
                         </span>
+                        {/* ------------- menu Desplegable -------------- */}
+                        <ChevronDown 
+                            className={`w-4 h-4 transform transition-transform ${open === "personal" ? "rotate-180" : ""}`}
+                        />
                     </button>
+                        <div 
+                            className={`ml-8 flex flex-col text-sm overflow-hidden transition-all duration-300 ${
+                            open === "reportes" ? "max-h-40" : "max-h-0"
+                                }`}
+                            >
+
+                            {/*------- Reportes Index tabla ----- */}
+                            <Link href={route('reportes.index')} className="flex items-center gap-2 px-3 py-1 rounded-md hover:bg-red-500 transition">
+                                <List className='w-6 h-6'/>Lista de reportes
+                            </Link>
+
+                            {/*-------- Formulario Nuevo reporte------ */}
+                            <Link href={route('reportes.create')} className="flex items-center gap-2 px-3 py-1 rounded-md hover:bg-red-500 transition">
+                                <Plus className="w-6 h-6 "/> Nuevo reporte
+                            </Link>
+                        </div>
+
 
                     {/*------------------- Vehiculos ------------*/}
                     <button

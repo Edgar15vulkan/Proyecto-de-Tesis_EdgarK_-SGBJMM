@@ -2,25 +2,25 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head, usePage, Link, router } from '@inertiajs/react';
 import { useState } from 'react';
-import PersonalTabla         from './componentes/TablaPersonal'; // Importar el componente Index de Clientes/Index.jsx
-import BuscadorPersonal      from './componentes/BuscadorPersonal'; // Importar el componente BuscadorCliente de Clientes/BuscadorCliente.jsx
+import ReportesTabla from './componentes/TablaReportes'; // Importar el componente Index de Reportes/Index.jsx
+//import BuscadorPersonal      from './componentes/BuscadorPersonal'; // Importar el componente BuscadorReporte
 import React from 'react';
 
-export default function Index({personal}) { // Recibe al personal como props
+export default function Index({reportes}) { // Recibe los reportes como props
 
      //mensajes de consola
-        console.log("Personal:", personal); // muestra al personal en la consola
+        console.log("Reportes:", reportes); // muestra los reportes en la consola
 
         {/* ------------- Encabezado de la pagina ---------------- */}
     return (
         <AuthenticatedLayout
             header={
                 <h2 className="text-xl font-semibold leading-tight text-gray-800"> {/* Color del texto */}
-                    Lista del personal registrado
+                    Lista del reportes de incidentes registrados
                 </h2>
             }
         >
-            <Head title="Personal" />
+            <Head title="Reportes de incidentes" />
 
             <div className="py-5    ">
                 <div className="mx-auto max-w-7xl sm:px-6 lg:px-8">
@@ -64,23 +64,25 @@ export default function Index({personal}) { // Recibe al personal como props
 
                         </div> */}
 
-                        {/*---------- Buscador de personal por ID ----------*/}
+                        {/*---------- Buscador de personal por ID ----------
                         <div className='bg-gray-100 p-4 rounded mb-4'>
                             <h2 className='text-2xl font-semibold mb-4'>Buscar personal por ID</h2>
-                            <BuscadorPersonal /> {/* Verificar ruta en web.php*/}
-                        </div>
+                            <BuscadorPersonal /> Verificar ruta en web.php*
+                        </div>  */}
 
-                        {/*------------ Mostrar el personal registrado en una tabla ------------ */}
+                        {/*----------- Mostrar el personal registrado en una tabla ------------*/}
                         <div className="bg-gray-100 p-4 rounded mb-4">
                             <h2 className='text-2xl font-semibold mb-3'>Personal de Estación registrado</h2>
                             <p className='mb-4 text-lg text-gray-700'>
-                                En esta sección se encuentra el registro completo del personal. 
-                                Desde aquí puedes consultar la información básica de cada integrante,
-                                acceder a sus datos detallados y realizar 
-                                acciones como edición, actualización o descarga de su información.
+                                En este apartado se muestran todos los
+                                reportes registrados en el sistema. Puedes
+                                consultar la información básica de cada uno, 
+                                así como acceder a sus detalles completos, editarlos
+                                o descargar la información según lo requieras.
                             </p>
-                            <PersonalTabla personal = {personal} /> {/* Verificar ruta en web.php*/} 
+                            <ReportesTabla reportes = {reportes} /> 
                         </div>
+                        
 
                     
                 </div>

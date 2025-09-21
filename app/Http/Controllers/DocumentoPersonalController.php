@@ -91,7 +91,7 @@ class DocumentoPersonalController extends Controller
 
         //  3 Crear el registro en BD
         $documento = DocumentoPersonal::create([
-            'personal_id' => $validated['personal_id'],
+            'personal_id' => $validated['personal_id'], // FK a datos_personales
             'tipo_documento' => $validated['tipo_documento'],
             'nombre_documento' => $validated['nombre_documento'],
             'archivo' => $path, // guarda la ruta relativa

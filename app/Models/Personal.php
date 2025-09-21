@@ -47,4 +47,10 @@ class Personal extends Model
     {
         return $this->hasMany(DocumentoPersonal::class, 'personal_id'); // Relación uno a muchos con DocumentosPersonal
     }
+    // Relación uno a muchos con ReporteIncidente
+    public function reportesIncidentes()
+    {
+        return $this->hasMany(ReporteIncidente::class, 'personal_id', 'personal_id');
+    }
+
 }

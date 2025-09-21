@@ -13,11 +13,8 @@ return new class extends Migration
     {
         Schema::table('datos_contacto', function (Blueprint $table) {
             //
-             $table->unsignedBigInteger('personal_id')->after('id'); // o colócala donde prefieras
-                    $table->foreign('personal_id')
-                        ->references('personal_id')
-                    ->on('datos_personales')
-                    ->onDelete('cascade');
+            $table->unsignedBigInteger('personal_id')->after('id'); // o colócala donde prefieras
+            $table->foreign('personal_id')->references('personal_id')->on('datos_personales')->onDelete('cascade');
         });
     }
 

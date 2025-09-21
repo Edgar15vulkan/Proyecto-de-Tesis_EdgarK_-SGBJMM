@@ -7,7 +7,9 @@ use Inertia\Inertia;
 
 //controladores
 use App\Http\Controllers\PersonalController;    // Controlador de Personal
-use App\Http\Controllers\DocumentoPersonalController;
+use App\Http\Controllers\DocumentoPersonalController; // Controlador de Documentos del personal
+use App\Http\Controllers\ReporteIncidenteController; // Controlador de Reporte de Incidentes
+
 
 Route::get('/', function () {
     return Inertia::render('Welcome', [
@@ -23,7 +25,7 @@ Route::get('/dashboard', function () {
 })->middleware(['auth', 'verified'])->name('dashboard');
 
 //rutas del sistema
-
+//--------------------------------------------------------------------------- 
 //-------------------Rutas de Personal ----------------------------- 
 //Listar personal registrado     --- INDEX ----
 Route::get('/personal', [PersonalController::class, 'index'])->name('personal.index');
@@ -46,7 +48,7 @@ Route::put('/personal/{id}', [PersonalController::class, 'update'])->name('perso
 //Eliminar personal por ID  ----- DESTROY ----                        
 Route::delete('/personal/{id}', [PersonalController::class, 'destroy'])->name('personal.destroy'); 
                          
-                            
+//---------------------------------------------------------------------------                          
 //----------------Rutas de Documentos-personal  TODOS   --------------------
 Route::get('/documentos-personal', [DocumentoPersonalController::class, 'index'])
     ->name('documentos-personal.index');
@@ -79,7 +81,24 @@ Route::get('/documentos-personal/{documento}/descargar', [DocumentoPersonalContr
 Route::delete('/documentos-personal/{id}', [DocumentoPersonalController::class, 'destroy'])
     ->name('documentos-personal.destroy');
 
-//
+
+//--------------------------------------------------------------------------- 
+//--------------------- Rutas de Reportes de Incidentes -------------------
+Route::prefix('reportes-incidentes')->name('reportes.')->group(function () {
+    Route::get('/', [ReporteIncidenteController::class, 'index'])->name('index');
+    Route::get('/create', [ReporteIncidenteController::class, 'create'])->name('create');
+    Route::post('/', [ReporteIncidenteController::class, 'store'])->name('store');
+    Route::get('/{reporte}/archivo', [ReporteIncidenteController::class, 'archivo'])->name('archivo');
+    Route::get('/{reporte}/edit', [ReporteIncidenteController::class, 'edit'])->name('edit');
+    Route::put('/{reporte}', [ReporteIncidenteController::class, 'update'])->name('update');
+    Route::delete('/{reporte}', [ReporteIncidenteController::class, 'destroy'])->name('destroy');
+    Route::get('/{reporte}/download', [ReporteIncidenteController::class, 'download'])->name('download');
+});
+
+
+
+
+
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
