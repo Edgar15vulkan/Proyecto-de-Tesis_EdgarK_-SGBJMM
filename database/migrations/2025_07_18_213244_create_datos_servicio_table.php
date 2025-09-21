@@ -13,9 +13,7 @@ return new class extends Migration
     {
         Schema::create('datos_servicio', function (Blueprint $table) {
             $table->id();
-            //persoana_id FK
             $table->date('fecha_ingreso'); // Fecha de ingreso al servicio
-            //grupo_id FK
             $table->string('cargo', 100); // Cargo desempeñado
             $table->string('rol', 100); // Rol desempeñado
             $table->boolean('voluntario')->default(false); // Indica si es voluntario
@@ -31,6 +29,13 @@ return new class extends Migration
             $table->string ('observaciones', 255)->nullable(); // Observaciones
 
             $table->timestamps();
+
+            //Relación con datos personales
+            $table->unsignedBigInteger('personal_id');
+            $table->foreign('personal_id')
+                    ->references('personal_id')
+                    ->on('datos_personales')
+                    ->onDelete('cascade');
         });
     }
 
