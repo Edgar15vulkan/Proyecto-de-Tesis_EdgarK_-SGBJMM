@@ -452,7 +452,7 @@ export default function Create() {
                {/* Enlace para volver a Personal Vista */}
                <Link href={route('personal.index')} className="ml-4">
                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300"
-                   type="button">Cancelar registro de Personal</button>
+                   type="button">Cancelar registro</button>
                </Link>
            </form>
        </div>

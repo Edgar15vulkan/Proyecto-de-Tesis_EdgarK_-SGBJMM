@@ -26,9 +26,7 @@ export default function Create({ onReporteSubido, personalId, personal, reportes
 
     return (
         <div className='container mx-auto p-4'>
-            <h2 className="text-2xl font-bold mb-4">Cargar un nuevo Reporte</h2>
-
-            <form onSubmit={handleSubmit} className="bg-white p-6 rounded shadow-md">
+            <form onSubmit={handleSubmit} className="bg-white p-1 rounded shadow-md">
 
                 {/* ----------- Autor ----------- */}
                 {!personalId &&(
@@ -112,7 +110,7 @@ export default function Create({ onReporteSubido, personalId, personal, reportes
                  {/* Enlace para volver a Personal Vista */}
                <Link href={route('reportes.index')} className="ml-4">
                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300"
-                   type="button">Cancelar nuevo documento</button>
+                   type="button">Cancelar registro</button>
                </Link>
 
             </form>

@@ -10,7 +10,7 @@ const Index = () => {
 
     // ---- Función para manejar la eliminación de un personal del sistema ----
     const handleDelete = (id) => {
-        if (confirm('¿Estás seguro de eliminar a este reporte del sistema?')){
+        if (confirm('¿Estás seguro de eliminar este reporte del sistema?')){
             router.delete(route('reportes.destroy', id), {
                 onSuccess:  () => alert ('Reporte de Incidente eliminado con exito'), //mensaje de exito
                 });
@@ -46,10 +46,8 @@ const Index = () => {
                             <td className="border px-4 py-2">{reporte?.descripcion || 'sin descripcion'}</td>
                             {/*<td className="border px-4 py-2">{reporte?.archivo || 'Sin archivo'}</td> */}
                             <td className="p-2 border flex space-x-2">
-                                {/* --------Botón Ver documento en otra pestaña-------*/}
-                                {/* --------Botón Ver documento -------*/}
-                                {/*---------- Botón Descargar documento----- */}
-                                {/* --------Botón Ver documento -------*/}
+                              
+                                {/* --------Botón Ver documento -------
                                {reporte.archivo && (
                                     <a 
                                         href={route("reportes.archivo", reporte.id)}
@@ -60,6 +58,7 @@ const Index = () => {
                                         Ver
                                     </a>
                                 )}
+                                ---------------------------------------*/}
 
 
                                 {/*---------- Botón Descargar documento----- */}

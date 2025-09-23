@@ -7,6 +7,7 @@ use App\Models\DatosServicio; // Importar el modelo DatosServicio
 use App\Models\DatosContacto; // Importar el modelo DatosContacto
 use App\Models\LicenciaConducir; // Importar el modelo LicenciaConducir
 use App\Models\DocumentoPersonal; // Importar el modelo DocumentoPersonal
+use App\Utils\TextHelper; // Importar elk helper de texto
 
 class Personal extends Model
 {
@@ -25,13 +26,12 @@ class Personal extends Model
         'fecha_nacimiento',
         'lugar_nacimiento'
     ];
-
+    //---------------------- RELACIONES CON OTROS MODELOS ---------------------
     // Relación uno a uno con DatosServicio
     public function servicios()
     {
         return $this->hasOne(DatosServicio::class, 'personal_id', 'personal_id'); // Relación uno a uno con DatosServicio                                                                      
     }
-
     // Relación uno a uno con DatosContacto
     public function contactos()
     {
@@ -52,5 +52,22 @@ class Personal extends Model
     {
         return $this->hasMany(ReporteIncidente::class, 'personal_id', 'personal_id');
     }
+    //----------------------  FIN RELACIONES ---------------------
 
+    //----------------------- MUTATORS ------------------------------
+    public function setNombreAttribute($value)
+    {
+        $this->attributes['nombre'] = TextHelper::toUpper($value);
+    }
+
+    public function setApellidoPaternoAttribute($value)
+    {
+        $this->attributes['apellido_paterno'] = TextHelper::toUpper($value);
+    }
+
+    public function setApellidoMaternoAttribute($value)
+    {
+        $this->attributes['apellido_materno'] = TextHelper::toUpper($value);
+    }
+    //-----------------------------------------------------------------------
 }
