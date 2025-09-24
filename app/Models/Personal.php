@@ -48,6 +48,13 @@ class Personal extends Model
     {
         return $this->hasMany(DocumentoPersonal::class, 'personal_id'); // Relación uno a muchos con DocumentosPersonal
     }
+    // Relación con documentos personal foto
+    public function foto()
+    {
+        return $this->hasOne(DocumentoPersonal::class, 'personal_id', 'personal_id')
+                    ->where('tipo_documento', 'Foto personal');
+    }
+
     // Relación uno a muchos con ReporteIncidente
     public function reportesIncidentes()
     {

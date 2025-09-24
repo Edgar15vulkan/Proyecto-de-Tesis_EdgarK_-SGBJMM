@@ -23,12 +23,13 @@ export default function Create({ onDocumentoSubido, personalId, personales }) {
         'Licencia de conducir',
         'Pasaporte',
         'Certificado médico',
+        'Foto personal',
         //Solicitud de empleo
         //Constancia de no inmobiliario
         //Curriculum Vitae
         //Carta de recomendación
         //Cartilla militar
-        //FOTO
+        
         'Otros',
     ];
 
@@ -148,7 +149,7 @@ export default function Create({ onDocumentoSubido, personalId, personales }) {
                  {/* Enlace para volver a Personal Vista */}
                <Link href={route('documentos-personal.index')} className="ml-4">
                    <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-lg transition duration-300"
-                   type="button">Cancelar nuevo documento</button>
+                   type="button">Cancelar registro</button>
                </Link>
 
             </form>

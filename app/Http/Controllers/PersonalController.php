@@ -125,8 +125,7 @@ class PersonalController extends Controller //Se crea el controlador de personal
     //Mostrar a detalle una persona  
     public function show($personal_id)
     {
-        $persona = Personal::with(['servicios', 'contactos', 'licencias', 'documentos'])->findOrFail($personal_id);
-   
+        $persona = Personal::with(['servicios', 'contactos', 'licencias', 'documentos', 'foto'])->findOrFail($personal_id);
         return Inertia::render('Personal/componentes/Show', [
             'persona' => $persona
         ]);

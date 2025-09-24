@@ -21,6 +21,9 @@ class DocumentoPersonal extends Model{
         'fecha_entrega',
     ];
     //
+    protected $appends = ['archivo_url'];
+
+    //
     protected $casts = [
         'entregado' => 'boolean', // Campo booleano para 'entregado'
         'fecha_entrega' => 'date', // Campo de fecha para 'fecha_entrega'

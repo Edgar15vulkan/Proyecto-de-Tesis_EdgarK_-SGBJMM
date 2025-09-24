@@ -101,6 +101,24 @@ export default function Show({persona}) { // Recibe los servicios como props
                                 )}
                             </div>
                         </div>
+
+                        {/* -------Mostrar FOTOS ----- */}
+                       <div  className="bg-white shadow-md rounded-2xl p-4 mb-4">
+                            <h1 className="text-lg font-bold text-red-600 mb-2"> FOTOGRAFIAS :</h1>
+                            <div className="grid grid-cols-2 gap-4 text-lg">
+                                {persona?.foto ? (
+                                <img
+                                    src={persona.foto.archivo_url}
+                                    alt={persona.foto.nombre_documento || "Foto del personal"}
+                                    className="mt-4 w-48 h-48 object-cover rounded-full border"
+                                />
+                                ) : (
+                                    <p className="mt-4 text-gray-500">No hay foto disponible</p>
+                                )}
+
+
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

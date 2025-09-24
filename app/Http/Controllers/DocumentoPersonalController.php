@@ -37,7 +37,7 @@ class DocumentoPersonalController extends Controller
             'Certificado de estudios',
             'Carta de antecedentes no penales',
             'Licencia de conducir',
-            //'Pasaporte',
+            'Foto personal',
             'Certificado médico',
             //'Otros',
         ];
