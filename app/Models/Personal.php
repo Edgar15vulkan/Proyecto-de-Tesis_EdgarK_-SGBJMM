@@ -7,7 +7,8 @@ use App\Models\DatosServicio; // Importar el modelo DatosServicio
 use App\Models\DatosContacto; // Importar el modelo DatosContacto
 use App\Models\LicenciaConducir; // Importar el modelo LicenciaConducir
 use App\Models\DocumentoPersonal; // Importar el modelo DocumentoPersonal
-use App\Utils\TextHelper; // Importar elk helper de texto
+use App\Utils\TextHelper;
+
 
 class Personal extends Model
 {

@@ -77,7 +77,7 @@ export default function Create() {
                    <label className="block">Nombre(s):</label>   {/*etiqueta para el campo de texto, block hace que label ocupe toda la linea con el input debajo*/} 
                    <input   
                        type="text"  
-                       value={data.nombre}
+                       value={data.nombre || ""}
                        onChange={(e) => setData('nombre', e.target.value)}
                        className="border rounded px-4 py-2 w-full"
                        placeholder="Nombre(s)" 
@@ -90,7 +90,7 @@ export default function Create() {
                     <label className="block">Apellido Paterno:</label> 
                     <input   
                         type="text"  
-                        value={data.apellido_paterno}
+                        value={data.apellido_paterno || ""}
                         onChange={(e) => setData('apellido_paterno', e.target.value)}
                         className="border rounded px-4 py-2 w-full"
                         placeholder="Apellido Paterno" 
@@ -103,7 +103,7 @@ export default function Create() {
                     <label className="block">Apellido Materno:</label> 
                     <input   
                         type="text"  
-                        value={data.apellido_materno}
+                        value={data.apellido_materno || ""}
                         onChange={(e) => setData('apellido_materno', e.target.value)}
                         className="border rounded px-4 py-2 w-full"
                         placeholder="Apellido Materno" 
