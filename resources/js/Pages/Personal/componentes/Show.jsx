@@ -31,7 +31,7 @@ export default function Show({persona}) { // Recibe los servicios como props
                         {/* -------Mostrar DATOS PERSONALES ----- */}
                         <div className="bg-white shadow-md rounded-2xl p-4 mb-4">
                             <h1 className="text-lg font-bold text-red-600 mb-2"> DATOS PERSONALES:</h1>
-                            <div className="grid grid-cols-2 gap-4 text-sm">
+                            <div className="grid grid-cols-2 gap-4 text-lg">
                                 <p><b>Personal ID:</b> {persona.personal_id}</p>
                                 <p><b>Nombre(s):</b> {persona.nombre}</p>
                                 <p><b>Apellidos</b> {persona.apellido_paterno} {persona.apellido_materno}</p>
@@ -45,15 +45,15 @@ export default function Show({persona}) { // Recibe los servicios como props
                         {/* -------Mostrar DATOS DE SERVICIO ----- */}
                         <div  className="bg-white shadow-md rounded-2xl p-4 mb-4">
                             <h1 className="text-lg font-bold text-red-600 mb-2"> DATOS DE SERVICIO:</h1>
-                            <div className="grid grid-cols-2 gap-4 text-sm">
+                            <div className="grid grid-cols-2 gap-4 text-lg">
                                 {persona.servicios ? (
                                     <div>
                                         <p><b>Fecha de ingreso: </b>{formatearFecha(persona.servicios.fecha_ingreso)}</p>
-                                        <p><b>Cargo: </b>{persona.servicios.cargo || 'N/A'}</p>
-                                        <p><b>Rol: </b>{persona.servicios.rol || 'N/A'}</p>
-                                        <p><b>Estado: </b>{persona.servicios.estado || 'N/A'}</p>
+                                        <p><b>Cargo: </b>{persona.servicios.cargo || 'Sin asignar'}</p>
+                                        <p><b>Rol: </b>{persona.servicios.rol || 'Sin asignar'}</p>
+                                        <p><b>Estado: </b>{persona.servicios.estado || 'Sin asignar'}</p>
                                         <p><b>Zona de adscripción: </b>{persona.servicios.zona_adscripcion || 'N/A'}</p>
-                                        <p className="col-span-2"><b>Observaciones: </b>{persona.servicios.observaciones || 'N/A'}</p>
+                                        <p className="col-span-2"><b>Observaciones: </b>{persona.servicios.observaciones || 'Ninguna mencionada'}</p>
                                     </div>
                                 ) : (
                                     <p>No hay datos registrados</p>
@@ -64,7 +64,7 @@ export default function Show({persona}) { // Recibe los servicios como props
                         {/* -------Mostrar DATOS DE CONTACTOS ----- */}
                        <div  className="bg-white shadow-md rounded-2xl p-4 mb-4">
                             <h1 className="text-lg font-bold text-red-600 mb-2"> DATOS DE CONTACTO:</h1>
-                            <div className="grid grid-cols-2 gap-4 text-sm">
+                            <div className="grid grid-cols-2 gap-4 text-lg">
                                 {/* Mapear los datos de servicio que son un Array */}
                                 {persona.contactos ? (
                                     <div className="">
@@ -72,11 +72,11 @@ export default function Show({persona}) { // Recibe los servicios como props
                                         <p><b>Telefono: </b>{persona.contactos.telefono || 'N/A'}</p>
                                         <p><b>Ciudad: </b>{persona.contactos.ciudad || 'N/A'}</p>
                                         <p><b>Colonia: </b>{persona.contactos.colonia || 'N/A'}</p>
-                                        <p><b>calle: </b>{persona.contactos.calle || 'N/A'}</p>
-                                        <h2 className="text-xl font-bold "> Contacto de emergencia:</h2>
+                                        <p><b>Calle: </b>{persona.contactos.calle || 'N/A'}</p>
+                                        <h2 className="text-lg font-bold py-2 text-red-600"> CONTACTO DE EMERGENCIA:</h2>
                                         <p><b>Nombre: </b>{persona.contactos.nombre_contacto_emergencia || 'N/A'}</p>
                                         <p><b>Parentesco: </b>{persona.contactos.parentesco_contacto_emergencia || 'N/A'}</p>
-                                        <p><b>Telefono: </b>{persona.contactos.celular_contacto_emergencia || 'N/A'}</p>
+                                        <p><b>Teléfono: </b>{persona.contactos.celular_contacto_emergencia || 'N/A'}</p>
                                 
                                     </div>
                                 ) : (
@@ -88,7 +88,7 @@ export default function Show({persona}) { // Recibe los servicios como props
                         {/* -------Mostrar DATOS DE LICENCIAS ----- */}
                        <div  className="bg-white shadow-md rounded-2xl p-4 mb-4">
                             <h1 className="text-lg font-bold text-red-600 mb-2"> LICENCIA DE CONDUCIR:</h1>
-                            <div className="grid grid-cols-2 gap-4 text-sm">
+                            <div className="grid grid-cols-2 gap-4 text-lg">
                                 {persona.licencias ? (
                                     <div className="">
                                         <p><b>Tipo de licencia: </b>{persona.licencias.tipo || 'N/A'}</p>

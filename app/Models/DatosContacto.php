@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Personal; // Importar el modelo Personal
+use App\Utils\TextHelper;
 
 class DatosContacto extends Model
 {
@@ -23,9 +24,15 @@ class DatosContacto extends Model
         'celular_contacto_emergencia'
     ];
 
+    //----------------------- RELACIONES --------------------------
     public function personal()
     {
         return $this->belongsTo (Personal::class, 'personal_id' , 'personal_id'); // Relación inversa con Personal
     }
 
+    //----------------------- MUTATORS ----------------------------
+    public function setNombreContactoEmergenciaAttribute($value)
+    {
+        $this->attributes['nombre_contacto_emergencia'] = TextHelper::toUpper($value);
+    }
 }

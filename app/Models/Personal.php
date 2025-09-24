@@ -70,5 +70,9 @@ class Personal extends Model
     {
         $this->attributes['apellido_materno'] = TextHelper::toUpper($value);
     }
+    public function SetCURPAttribute($value)
+    {
+        $this->attributes['CURP'] = TextHelper::toUpper($value);
+    }
     //-----------------------------------------------------------------------
 }
