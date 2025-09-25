@@ -68,7 +68,10 @@ const Index = ({ auth, documentos, personal_id, }) => {
                 <div className="overflow-hidden bg-white shadow-sm sm:rounded-lg p-6">
                     
                     {/* TablaDocumentos*/}
-                    <h2 className="text-lg font-semibold mt-6"> Tabla resumen de documentos (checklist) </h2>
+                    <h1 className="text-2xl font-semibold mb-3"> Tabla resumen de documentos (checklist) </h1>
+                    <p className='mb-4 text-lg text-gray-700'> En esta sección puedes gestionar,
+                        consultar y actualizar los documentos vinculados a cada persona,
+                         asegurando un control organizado y seguro de la información.</p>
                     <TablaResumenDoc
                         documentos = {documentos}
                          />
