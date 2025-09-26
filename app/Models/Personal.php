@@ -7,6 +7,8 @@ use App\Models\DatosServicio; // Importar el modelo DatosServicio
 use App\Models\DatosContacto; // Importar el modelo DatosContacto
 use App\Models\LicenciaConducir; // Importar el modelo LicenciaConducir
 use App\Models\DocumentoPersonal; // Importar el modelo DocumentoPersonal
+use App\Models\vehiculo; // importar el modelo vehiculo
+
 use App\Utils\TextHelper;
 
 
@@ -60,6 +62,12 @@ class Personal extends Model
     {
         return $this->hasMany(ReporteIncidente::class, 'personal_id', 'personal_id');
     }
+
+    public function vehiculo()
+    {
+        return $this->hasMany(Vehiculo::class, 'personal_id', 'personal_id');
+    }
+
     //----------------------  FIN RELACIONES ---------------------
 
     //----------------------- MUTATORS ------------------------------
