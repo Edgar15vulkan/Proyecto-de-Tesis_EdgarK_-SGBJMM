@@ -9,6 +9,7 @@ use Inertia\Inertia;
 use App\Http\Controllers\PersonalController;    // Controlador de Personal
 use App\Http\Controllers\DocumentoPersonalController; // Controlador de Documentos del personal
 use App\Http\Controllers\ReporteIncidenteController; // Controlador de Reporte de Incidentes
+use App\Http\Controllers\VehiculoController;
 
 
 Route::get('/', function () {
@@ -85,14 +86,27 @@ Route::delete('/documentos-personal/{id}', [DocumentoPersonalController::class, 
 //--------------------------------------------------------------------------- 
 //--------------------- Rutas de Reportes de Incidentes -------------------
 Route::prefix('reportes-incidentes')->name('reportes.')->group(function () {
-    Route::get('/', [ReporteIncidenteController::class, 'index'])->name('index');
-    Route::get('/create', [ReporteIncidenteController::class, 'create'])->name('create');
-    Route::post('/', [ReporteIncidenteController::class, 'store'])->name('store');
-    Route::get('/{reporte}/archivo', [ReporteIncidenteController::class, 'archivo'])->name('archivo');
-    Route::get('/{reporte}/edit', [ReporteIncidenteController::class, 'edit'])->name('edit');
-    Route::put('/{reporte}', [ReporteIncidenteController::class, 'update'])->name('update');
-    Route::delete('/{reporte}', [ReporteIncidenteController::class, 'destroy'])->name('destroy');
-    Route::get('/{reporte}/download', [ReporteIncidenteController::class, 'download'])->name('download');
+    Route::get('/', [ReporteIncidenteController::class, 'index'])->name('index');  //----- Listar
+    Route::get('/create', [ReporteIncidenteController::class, 'create'])->name('create'); //----------- Crear
+    Route::post('/', [ReporteIncidenteController::class, 'store'])->name('store'); //------------------ Guardar
+    Route::get('/{reporte}/archivo', [ReporteIncidenteController::class, 'archivo'])->name('archivo'); //------ Archivo
+    Route::get('/{reporte}/edit', [ReporteIncidenteController::class, 'edit'])->name('edit');  //------------- editar
+    Route::put('/{reporte}', [ReporteIncidenteController::class, 'update'])->name('update'); //------------- actualizar 
+    Route::delete('/{reporte}', [ReporteIncidenteController::class, 'destroy'])->name('destroy'); //----------- eliminar
+    Route::get('/{reporte}/download', [ReporteIncidenteController::class, 'download'])->name('download'); //--------------descargar documento
+});
+
+//-------------------------------------------------------------------------------
+//------------------------ Rutas de Vehiculos -----------------------------------
+Route::prefix('vehiculos')->name('vehiculos.')->group(function () {
+    Route::get('/', [VehiculoController::class, 'index'])->name('index');  //----- Listar
+    Route::get('/create', [VehiculoController::class, 'create'])->name('create'); //----------- Crear
+    Route::post('/', [VehiculoController::class, 'store'])->name('store'); //------------------ Guardar
+    //Route::get('/{reporte}/archivo', [ReporteIncidenteController::class, 'archivo'])->name('archivo'); //------ Archivo
+    //Route::get('/{reporte}/edit', [ReporteIncidenteController::class, 'edit'])->name('edit');  //------------- editar
+    //Route::put('/{reporte}', [ReporteIncidenteController::class, 'update'])->name('update'); //------------- actualizar 
+    //Route::delete('/{reporte}', [ReporteIncidenteController::class, 'destroy'])->name('destroy'); //----------- eliminar
+    //Route::get('/{reporte}/download', [ReporteIncidenteController::class, 'download'])->name('download'); //--------------descargar documento
 });
 
 

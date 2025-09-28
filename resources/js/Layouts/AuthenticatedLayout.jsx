@@ -37,7 +37,7 @@ export default function AuthenticatedLayout({ header, children }) {
                         <Home className='w-5 h-5'/> Dashboard
                     </NavLink>
 
-                    {/*------- Menu personal con submenú ------------ */}
+                    {/*------- MENU personal con submenú ------------ */}
                     <button
                         onClick={() => toggleMenu("personal")}
                         className={'w-full flex items-center justify-between px-3 py-2 rounded-md hover:bg-red-500 transition'}
@@ -71,9 +71,8 @@ export default function AuthenticatedLayout({ header, children }) {
                                 <Folder className="w-6 h-6"/>  Documentos de personal
                             </Link>
                         </div>
-                    
 
-                    {/* ------- Reportes de incidentes ------------*/}
+                    {/* ------- MENU Reportes de incidentes ------------*/}
                     <button
                         onClick={() => toggleMenu("reportes")}
                         className={'w-full flex items-center justify-between px-3 py-2 rounded-md hover:bg-red-500 transition'}
@@ -83,7 +82,7 @@ export default function AuthenticatedLayout({ header, children }) {
                         </span>
                         {/* ------------- menu Desplegable -------------- */}
                         <ChevronDown 
-                            className={`w-4 h-4 transform transition-transform ${open === "personal" ? "rotate-180" : ""}`}
+                            className={`w-4 h-4 transform transition-transform ${open === "reportes" ? "rotate-180" : ""}`}
                         />
                     </button>
                         <div 
@@ -104,16 +103,35 @@ export default function AuthenticatedLayout({ header, children }) {
                         </div>
 
 
-                    {/*------------------- Vehiculos ------------*/}
+                    {/*------- Menu personal con submenú ------------ */}
                     <button
                         onClick={() => toggleMenu("vehiculos")}
-                        className={'w-full flex items-center justify-between px-3 py-2 rounded-md hover:bg-red-500 transition '}
+                        className={'w-full flex items-center justify-between px-3 py-2 rounded-md hover:bg-red-500 transition'}
                     >
-                        <span className="flex items-center gap-2 ">
+                        <span className="flex items-center gap-2">
                             <Users className="w-5 h-5"/> Vehiculos
                         </span>
-                        
+                        {/* ------------- menu Desplegable -------------- */}
+                        <ChevronDown 
+                            className={`w-4 h-4 transform transition-transform ${open === "vehiculos" ? "rotate-180" : ""}`}
+                        />
                     </button>
+                        <div 
+                            className={`ml-8 flex flex-col text-sm overflow-hidden transition-all duration-300 ${
+                            open === "vehiculos" ? "max-h-40" : "max-h-0"
+                                }`}
+                            >
+
+                            {/*------- Personal Index tabla ----- */}
+                            <Link href={route('vehiculos.index')} className="flex items-center gap-2 px-3 py-1 rounded-md hover:bg-red-500 transition">
+                                <List className='w-6 h-6'/> Lista de vehiculos
+                            </Link>
+
+                            {/*-------- Formulario Nuevo personal------ */}
+                            <Link href={route('vehiculos.create')} className="flex items-center gap-2 px-3 py-1 rounded-md hover:bg-red-500 transition">
+                                <Plus className="w-6 h-6 "/> Nuevo vehiculo
+                            </Link>
+                        </div>
 
                     {/* --------------Linea divisora de sección del menu-------------------- */}
                     <div className="text-lg font-bold border-b border-gray-400 p-10">
