@@ -98,7 +98,7 @@ Route::prefix('reportes-incidentes')->name('reportes.')->group(function () {
 
 //-------------------------------------------------------------------------------
 //------------------------ Rutas de Vehiculos -----------------------------------
-Route::prefix('vehiculos')->name('vehiculos.')->group(function () {
+Route::prefix('vehiculos-emergencia')->name('vehiculos.')->group(function () {
     Route::get('/', [VehiculoController::class, 'index'])->name('index');  //----- Listar
     Route::get('/create', [VehiculoController::class, 'create'])->name('create'); //----------- Crear
     Route::post('/', [VehiculoController::class, 'store'])->name('store'); //------------------ Guardar

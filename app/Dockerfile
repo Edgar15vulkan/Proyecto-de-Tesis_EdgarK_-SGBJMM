@@ -34,5 +34,8 @@ RUN chown -R www-data:www-data storage bootstrap/cache
 # Exponer puerto (Railway usará la variable PORT)
 EXPOSE 8080
 
-# Ejecutar Laravel en el puerto que defina Railway
-CMD php artisan serve --host=0.0.0.0 --port=${PORT}
+# Copiar entrypoint y darle permisos
+COPY docker/entrypoint.sh /entrypoint.sh
+RUN chmod +x /entrypoint.sh
+
+ENTRYPOINT ["/entrypoint.sh"]

@@ -24,23 +24,46 @@ class VehiculoController extends Controller
     }
 
     //------------- CREATE ----- FORMULARIO PARA NUEVO REPORTE ---------------
-
+    public function create(): Response
+    {
+        //retornar la vista de crear venta
+        return Inertia::render('Vehiculos/componentes/CreatePage'); //renderiza la ubicación y vista del formulario de nuevo cliente
+    }
     //------------- STORE ------ GUARDAR NUEVO REPORTE ---------------
- 
-    
+    public function store (Request $request){
         // 1 validar los campos
-   
+        $request->validate([
+            'numero_economico' => 'required|string|max:10',
+            'tipo_vehiculo' => 'required|string|max:255',
+            'marca' => 'required|string|max:150',
+            'modelo' => 'nullable|string|max:150',
+            'placas' => 'required|string|max:10|unique:vehiculos,placas',
+            'estado_vehiculo' => 'required|string|max:150',
+            'anio' => 'nullable|string|max:4',
+            'fecha_adquisicion' => 'required|date',
+            'km_inicial' => 'required|string',
+        ]);
 
         // 2 guardar archivo en storage/app/public/reportes_incidentes
       
 
         // 3 Crear el registro en la BD
-   
+        Vehiculo::create([
+            'numero_economico' => $request->numero_economico,
+            'tipo_vehiculo' => $request->tipo_vehiculo,
+            'marca' => $request->marca,
+            'modelo' => $request->modelo,
+            'placas' => $request->placas,
+            'estado_vehiculo' => $request->estado_vehiculo,
+            'anio' =>$request->anio,
+            'fecha_adquisicion' => $request->fecha_adquisicion,
+            'km_inicial' => $request->km_inicial,
+        ]);
 
         // Redirigir o devolver respuesta
+        return back()->with('success', 'Vehiculo de emergencia creado correctamente.');
+    }
        
-    
-
     //------------- SHOW ----- MOSTRAR A DETALLE UN REPORTE ---------------
 
     //------------- EDIT ----- FORMULARIO PARA EDITAR UN REPORTE ---------------

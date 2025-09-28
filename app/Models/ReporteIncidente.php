@@ -12,7 +12,7 @@ class ReporteIncidente extends Model
 
     protected $table = 'reporte_incidentes'; // nombre de la tabla
 
-    protected $primaryKey = 'id'; // PK por defecto, no es necesario pero lo dejamos claro
+    protected $primaryKey = 'id'; // PK 
 
     protected $fillable = [
         'titulo',

@@ -2,8 +2,8 @@
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import { Head, usePage, Link, router } from '@inertiajs/react';
 import { useState } from 'react';
-//import PersonalTabla         from './componentes/TablaPersonal'; // Importar el componente Index de Clientes/Index.jsx
-//import BuscadorPersonal      from './componentes/BuscadorPersonal'; // Importar el componente BuscadorCliente de Clientes/BuscadorCliente.jsx
+import VehiculosTabla         from './componentes/TablaVehiculos'; // Importar el componente Index de Clientes/Index.jsx
+
 import React from 'react';
 
 export default function Index({vehiculos}) { // Recibe al personal como props

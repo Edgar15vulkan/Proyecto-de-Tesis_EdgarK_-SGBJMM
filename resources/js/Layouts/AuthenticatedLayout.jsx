@@ -128,7 +128,7 @@ export default function AuthenticatedLayout({ header, children }) {
                             </Link>
 
                             {/*-------- Formulario Nuevo personal------ */}
-                            <Link href={route('vehiculos.create')} className="flex items-center gap-2 px-3 py-1 rounded-md hover:bg-red-500 transition">
+                            <Link href={route('reportes.create')} className="flex items-center gap-2 px-3 py-1 rounded-md hover:bg-red-500 transition">
                                 <Plus className="w-6 h-6 "/> Nuevo vehiculo
                             </Link>
                         </div>

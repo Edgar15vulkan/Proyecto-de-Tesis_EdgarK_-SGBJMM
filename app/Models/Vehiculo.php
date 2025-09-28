@@ -28,7 +28,7 @@ class Vehiculo extends Model
         'km_inicial',
     ];
     //---------------------- RELACIONES CON OTROS MODELOS ---------------------
-    public function responsable()
+    public function responsables()
     {
         return $this->belongsTo(Personal::class, 'personal_id', 'personal_id'); // Relación inversa con Personal
     }
