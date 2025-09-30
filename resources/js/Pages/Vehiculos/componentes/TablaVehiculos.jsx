@@ -24,10 +24,11 @@ const Index = () => {
                 <thead>
                     <tr>
                         <th className="border px-4 py-2">ID</th>
-                        <th className="border px-4 py-2">Titulo</th>
-                        <th className="border px-4 py-2">Fecha de creación</th>
-                        <th className="border px-4 py-2">Autor</th>
-                        <th className="border px-4 py-2">Descripción</th>
+                        <th className="border px-4 py-2">Número economico</th>
+                        <th className="border px-4 py-2">Tipo</th>
+                        <th className="border px-4 py-2">Marca y modelo</th>
+                        <th className="border px-4 py-2">Placas de circulación</th>
+                        <th className="border px-4 py-2">Estado</th>
                         <th className="border px-4 py-2">Acciones</th>
                     </tr>
                 </thead>
