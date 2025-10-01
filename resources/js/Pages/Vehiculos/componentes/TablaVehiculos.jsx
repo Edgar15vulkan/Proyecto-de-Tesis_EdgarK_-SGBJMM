@@ -47,17 +47,13 @@ const Index = () => {
                         <td className="p-2 border flex space-x-2">
                             
                             {/* --------Botón Ver documento -------
-                            {reporte.archivo && (
-                                <a 
-                                    href={route("reportes.archivo", reporte.id)}
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="bg-blue-500 hover:bg-blue-700 text-white py-1 px-3 rounded"   
-                                >
+                              {/* Botón Ver detalles */}
+                            <Link href= {route("vehiculos.show", vehiculo.id)}>
+                                <button className="bg-blue-500 hover:bg-blue-700 text-white py-1 px-3 rounded">
                                     Ver
-                                </a>
-                            )}
-                            ---------------------------------------*/}
+                                </button>
+                            </Link>
+                        
 
                             {/*----- Botón Eliminar documento----- */}
                             <button 

@@ -63,6 +63,13 @@ class VehiculoController extends Controller
     }
        
     //------------- SHOW ----- MOSTRAR A DETALLE UN REPORTE ---------------
+    public function show($id)
+    {
+        $vehiculo = Vehiculo::all()->findOrFail($id);
+        return Inertia::render('Vehiculos/componentes/Show', [
+            'vehiculo' => $vehiculo
+        ]);
+    }
 
     //------------- EDIT ----- FORMULARIO PARA EDITAR UN REPORTE ---------------
 

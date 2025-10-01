@@ -16,7 +16,7 @@ class Vehiculo extends Model
     protected $keyType = 'int'; // de tipo entero
 
     protected $fillable = [  // Define los campos que se pueden llenar masivamente
-        'personal_id', // Clave foránea a la tabla de datos personales
+        
         'numero_economico',
         'tipo_vehiculo',
         'marca',
