@@ -29,11 +29,45 @@ const Index = () => {
                         <th className="border px-4 py-2">Marca y modelo</th>
                         <th className="border px-4 py-2">Placas de circulación</th>
                         <th className="border px-4 py-2">Estado</th>
+                        <th className="border px-4 py-2">Fecha adquisición</th>
                         <th className="border px-4 py-2">Acciones</th>
                     </tr>
                 </thead>
                 <tbody>
-    
+                    {listaVehiculos.map((vehiculo, ) => (
+                    <tr key={vehiculo.id}>
+                        <td className="border px-4 py-2">{vehiculo.id}</td>
+                        <td className="border px-4 py-2">{vehiculo.numero_economico || 'Sin numero econ.'}</td>
+                        <td className="border px-4 py-2">{vehiculo?.tipo_vehiculo || 'N/A'}</td>
+                        <td className="border px-4 py-2">{vehiculo.marca || 'Sin marca'}</td>
+                         <td className="border px-4 py-2">{vehiculo?.placas || 'N/A'}</td>
+                          <td className="border px-4 py-2">{vehiculo?.estado_vehiculo || 'N/A'}</td>
+                        <td className="border px-4 py-2">{formatearFecha(vehiculo.fecha_adquisicion || 'N/A')}</td>
+                    
+                        <td className="p-2 border flex space-x-2">
+                            
+                            {/* --------Botón Ver documento -------
+                            {reporte.archivo && (
+                                <a 
+                                    href={route("reportes.archivo", reporte.id)}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="bg-blue-500 hover:bg-blue-700 text-white py-1 px-3 rounded"   
+                                >
+                                    Ver
+                                </a>
+                            )}
+                            ---------------------------------------*/}
+
+                            {/*----- Botón Eliminar documento----- */}
+                            <button 
+                                onClick={() => handleDelete(vehiculo.id)}   //Actualizar campo según el ID  de la tabla
+                                className="bg-red-500 hover:bg-red-700 text-white py-1 px-3 rounded">
+                                Eliminar 
+                            </button>
+                        </td>
+                    </tr>
+                    ))}
                 </tbody>
             </table>
             {/* Paginación */}

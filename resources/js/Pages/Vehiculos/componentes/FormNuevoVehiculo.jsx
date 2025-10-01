@@ -33,24 +33,6 @@ export default function Create({ onVehiculoSubido, personalId, personal, vehicul
             <form onSubmit={handleSubmit} className="bg-white p-1 rounded shadow-md">
 
                 {/* -----------  ----------- */}
-                {!personalId &&(
-                    <div className="mb-4">
-                        <label className="block font-bold mb-1">Autor del reporte:</label>
-                        <select
-                            value={data.personal_id}
-                            onChange={(e) => setData('personal_id', e.target.value)}
-                            className="border rounded px-4 py-2 w-full"
-                        >
-                            <option value="">Selecciona un autor</option>
-                            {personal?.map((p) => (
-                                <option key={p.personal_id} value={p.personal_id}>
-                                    {p.nombre} {p.apellido_paterno} {p.apellido_materno}
-                                </option>
-                            ))}
-                        </select>
-                        {errors.personal_id && <span className="text-red-500">{errors.personal_id}</span>}
-                    </div>      
-                )}
 
                 {/* ----------Numero economico --------*/}
                 <div className="mb-4">
@@ -188,7 +170,7 @@ export default function Create({ onVehiculoSubido, personalId, personal, vehicul
                     className={`bg-blue-500 text-white px-4 py-2 rounded ${processing ? 'opacity-50 cursor-not-allowed' : ''}`}
                     disabled={processing}
                 >
-                    Subir Documento
+                    Completar registro
                 </button>
                 {processing && <span className="ml-2">Procesando...</span>}
                 {errors.general && <span className="text-red-500">{errors.general}</span>}

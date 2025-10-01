@@ -14,9 +14,7 @@ class VehiculoController extends Controller
     //Muestrar una tabla con los registros de los vehiculos
     public function Index(Request $request)  //Recibe un objeto Request para manejar los datos de la solicitud
     {   
-        $query = Vehiculo::with(['vehiculos']); // Creamos una consulta base para el modelo Personal
- 
-        $vehiculos = $query -> paginate(5)->withQueryString(); //Mandamos a la vista que se paginen 5 o mas registros por pagina y que mantenga la cadena de consulta para el paginador
+        $vehiculos = Vehiculo::paginate(5)->withQueryString(); //Mandamos a la vista que se paginen 5 o mas registros por pagina y que mantenga la cadena de consulta para el paginador
         //retornar la vista de personal con los registros obtenidos
         return Inertia::render('Vehiculos/Index', [    //referencia de la vista
             'vehiculos' => $vehiculos
@@ -37,11 +35,11 @@ class VehiculoController extends Controller
             'tipo_vehiculo' => 'required|string|max:255',
             'marca' => 'required|string|max:150',
             'modelo' => 'nullable|string|max:150',
-            'placas' => 'required|string|max:10|unique:vehiculos,placas',
+            'placas' => 'nullable|string|max:10|unique:vehiculos,placas',
             'estado_vehiculo' => 'required|string|max:150',
             'anio' => 'nullable|string|max:4',
             'fecha_adquisicion' => 'required|date',
-            'km_inicial' => 'required|string',
+            'km_inicial' => 'nullable|string|max:150',
         ]);
 
         // 2 guardar archivo en storage/app/public/reportes_incidentes

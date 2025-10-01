@@ -63,11 +63,6 @@ class Personal extends Model
         return $this->hasMany(ReporteIncidente::class, 'personal_id', 'personal_id');
     }
 
-    public function vehiculos()
-    {
-        return $this->hasMany(Vehiculo::class, 'personal_id', 'personal_id');
-    }
-
     //----------------------  FIN RELACIONES ---------------------
 
     //----------------------- MUTATORS ------------------------------
