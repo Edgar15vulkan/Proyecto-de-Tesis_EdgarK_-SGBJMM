@@ -105,7 +105,7 @@ Route::prefix('vehiculos-emergencia')->name('vehiculos.')->group(function () {
     Route::get('/{id}', [VehiculoController::class, 'show'])->name('show'); //------ Ver
     //Route::get('/{reporte}/edit', [ReporteIncidenteController::class, 'edit'])->name('edit');  //------------- editar
     //Route::put('/{reporte}', [ReporteIncidenteController::class, 'update'])->name('update'); //------------- actualizar 
-    //Route::delete('/{reporte}', [ReporteIncidenteController::class, 'destroy'])->name('destroy'); //----------- eliminar
+    Route::delete('/{id}', [VehiculoController::class, 'destroy'])->name('destroy'); //----------- eliminar
     //Route::get('/{reporte}/download', [ReporteIncidenteController::class, 'download'])->name('download'); //--------------descargar documento
 });
 

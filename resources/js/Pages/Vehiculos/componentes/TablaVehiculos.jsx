@@ -11,8 +11,8 @@ const Index = () => {
     // ---- Función para manejar la eliminación de un personal del sistema ----
     const handleDelete = (id) => {
         if (confirm('¿Estás seguro de eliminar este reporte del sistema?')){
-            router.delete(route('reportes.destroy', id), {
-                onSuccess:  () => alert ('Reporte de Incidente eliminado con exito'), //mensaje de exito
+            router.delete(route('vehiculos.destroy', id), {
+                onSuccess:  () => alert ('Registro de vehículo de emergencia eliminado con exito'), //mensaje de exito
                 });
             }
         };

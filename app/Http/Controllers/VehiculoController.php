@@ -76,5 +76,13 @@ class VehiculoController extends Controller
     //------------- UPDATE ----- ACTUALIZAR UN REPORTE ---------------
    
     //------------- DESTROY ----- ELIMINAR UN REPORTE ---------------
+    // elimina un registro de vehiculo del sistema
+    public function destroy($id)
+    {
+        $vehiculo = Vehiculo::findOrFail($id);
+        $vehiculo->delete();
+        
+        return redirect()->route('vehiculos.index')->with('sucess' , 'Vehiculo eliminado con éxito.');
+    }
 
 }
