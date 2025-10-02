@@ -72,9 +72,49 @@ class VehiculoController extends Controller
     }
 
     //------------- EDIT ----- FORMULARIO PARA EDITAR UN REPORTE ---------------
+    public function edit($id)
+    {
+        $vehiculo = Vehiculo::all()->findOrFail($id);
 
+        return Inertia::render('Vehiculos/componentes/Edit', [
+            'vehiculo' => $vehiculo
+        ]);
+    }
     //------------- UPDATE ----- ACTUALIZAR UN REPORTE ---------------
-   
+   public function update(Request $request, $id)
+   {
+        $request->validate([
+            'numero_economico' => 'required|string|max:10',
+            'tipo_vehiculo' => 'required|string|max:255',
+            'marca' => 'required|string|max:150',
+            'modelo' => 'nullable|string|max:150',
+            'placas' => 'nullable|string|max:10|unique:vehiculos,placas',
+            'estado_vehiculo' => 'required|string|max:150',
+            'anio' => 'nullable|string|max:4',
+            'fecha_adquisicion' => 'required|date',
+            'km_inicial' => 'nullable|string|max:150'
+
+        ]);
+        
+        //actualizar datos de vehiculo
+        $vehiculo = Vehiculo::findOrFail($id);
+
+        $vehiculo->update($request->only([
+            'numero_economico',
+            'tipo_vehiculo',
+            'marca',
+            'modelo',
+            'placas',
+            'estado_vehiculo',
+            'anio',
+            'fecha_adquisicion',
+            'km_inicial',
+        ]));
+
+        //RETURN ------
+        return redirect()->route('vehiculos.show', $id)
+            -with('success', 'Información actualizada correctamente.');
+   }
     //------------- DESTROY ----- ELIMINAR UN REPORTE ---------------
     // elimina un registro de vehiculo del sistema
     public function destroy($id)

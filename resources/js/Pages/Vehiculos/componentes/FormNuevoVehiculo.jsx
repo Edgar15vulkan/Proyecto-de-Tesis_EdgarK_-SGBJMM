@@ -4,7 +4,7 @@ import React from 'react';
 export default function Create({ onVehiculoSubido, personalId, personal, vehiculos }) {
 
     const { data, setData, post, processing, reset, errors } = useForm({
-        personal_id: personalId ?? "",
+    
         numero_economico: '',
         tipo_vehiculo: '',
         marca: '',
