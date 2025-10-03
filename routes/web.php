@@ -102,10 +102,10 @@ Route::prefix('vehiculos-emergencia')->name('vehiculos.')->group(function () {
     Route::get('/', [VehiculoController::class, 'index'])->name('index');  //----- Listar
     Route::get('/create', [VehiculoController::class, 'create'])->name('create'); //----------- Crear
     Route::post('/', [VehiculoController::class, 'store'])->name('store'); //------------------ Guardar
-    //Route::get('/{reporte}/archivo', [ReporteIncidenteController::class, 'archivo'])->name('archivo'); //------ Archivo
-    //Route::get('/{reporte}/edit', [ReporteIncidenteController::class, 'edit'])->name('edit');  //------------- editar
-    //Route::put('/{reporte}', [ReporteIncidenteController::class, 'update'])->name('update'); //------------- actualizar 
-    //Route::delete('/{reporte}', [ReporteIncidenteController::class, 'destroy'])->name('destroy'); //----------- eliminar
+    Route::get('/{id}', [VehiculoController::class, 'show'])->name('show'); //------ Ver
+    Route::get('/{id}/edit', [VehiculoController::class, 'edit'])->name('edit');  //------------- editar
+    Route::put('/{id}', [VehiculoController::class, 'update'])->name('update'); //------------- actualizar 
+    Route::delete('/{id}', [VehiculoController::class, 'destroy'])->name('destroy'); //----------- eliminar
     //Route::get('/{reporte}/download', [ReporteIncidenteController::class, 'download'])->name('download'); //--------------descargar documento
 });
 

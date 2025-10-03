@@ -27,14 +27,15 @@ export default function Index({vehiculos}) { // Recibe al personal como props
 
                         {/*------------ Mostrar el personal registrado en una tabla ------------ */}
                         <div className="bg-gray-100 p-4 rounded mb-4">
-                            <h2 className='text-2xl font-semibold mb-3'>Personal de Estación registrado</h2>
+                            <h2 className='text-2xl font-semibold mb-3'>Gestión de Vehículos</h2>
                             <p className='mb-4 text-lg text-gray-700'>
-                                En esta sección se encuentra el registro completo del personal. 
-                                Desde aquí puedes consultar la información básica de cada integrante,
-                                acceder a sus datos detallados y realizar 
-                                acciones como edición, actualización o descarga de su información.
+                                En esta sección se muestra el listado de vehículos 
+                                registrados en la institución. Permite consultar la información 
+                                básica de cada unidad, así como acceder a opciones para agregar, 
+                                editar o dar de baja vehículos, asegurando un control organizado 
+                                y actualizado del parque vehicular.
                             </p>
-                            {/*<PersonalTabla personal = {personal} />  Verificar ruta en web.php*/} 
+                            <VehiculosTabla vehiculos = {vehiculos} /> {/* Verificar ruta en web.php*/} 
                         </div>
 
                     

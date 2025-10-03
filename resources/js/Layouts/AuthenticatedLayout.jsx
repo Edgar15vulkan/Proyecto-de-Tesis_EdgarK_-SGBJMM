@@ -4,7 +4,7 @@ import NavLink from '@/Components/NavLink';
 import ResponsiveNavLink from '@/Components/ResponsiveNavLink';
 import { Link, usePage } from '@inertiajs/react';
 import { useState } from 'react';
-import { Plus, List, Folder ,ChevronDown, Users, FileText, Settings, Home } from 'lucide-react';
+import { Plus, List, Folder ,ChevronDown, Truck, Users, FileText, Settings, Home } from 'lucide-react';
 
 export default function AuthenticatedLayout({ header, children }) {
     const user = usePage().props.auth.user;  
@@ -109,7 +109,7 @@ export default function AuthenticatedLayout({ header, children }) {
                         className={'w-full flex items-center justify-between px-3 py-2 rounded-md hover:bg-red-500 transition'}
                     >
                         <span className="flex items-center gap-2">
-                            <Users className="w-5 h-5"/> Vehiculos
+                            <Truck className="w-5 h-5"/> Vehiculos
                         </span>
                         {/* ------------- menu Desplegable -------------- */}
                         <ChevronDown 
@@ -128,7 +128,7 @@ export default function AuthenticatedLayout({ header, children }) {
                             </Link>
 
                             {/*-------- Formulario Nuevo personal------ */}
-                            <Link href={route('reportes.create')} className="flex items-center gap-2 px-3 py-1 rounded-md hover:bg-red-500 transition">
+                            <Link href={route('vehiculos.create')} className="flex items-center gap-2 px-3 py-1 rounded-md hover:bg-red-500 transition">
                                 <Plus className="w-6 h-6 "/> Nuevo vehiculo
                             </Link>
                         </div>
