@@ -123,7 +123,7 @@ export default function AuthenticatedLayout({ header, children }) {
                             >
 
                             {/*------- Personal Index tabla ----- */}
-                            <Link href={route('reportes.index')} className="flex items-center gap-2 px-3 py-1 rounded-md hover:bg-red-500 transition">
+                            <Link href={route('vehiculos.index')} className="flex items-center gap-2 px-3 py-1 rounded-md hover:bg-red-500 transition">
                                 <List className='w-6 h-6'/> Lista de vehiculos
                             </Link>
 

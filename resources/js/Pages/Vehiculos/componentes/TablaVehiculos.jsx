@@ -41,8 +41,8 @@ const Index = () => {
                         <td className="border px-4 py-2">{vehiculo.numero_economico || 'Sin numero econ.'}</td>
                         <td className="border px-4 py-2">{vehiculo?.tipo_vehiculo || 'N/A'}</td>
                         <td className="border px-4 py-2">{vehiculo.marca || 'Sin marca'}</td>
-                        <td className="border px-4 py-2">{vehiculo?.placas || 'N/A'}</td>
-                        <td className="border px-4 py-2">{vehiculo?.estado_vehiculo || 'N/A'}</td>
+                        <td className="border px-4 py-2">{vehiculo?.placas || 'Sin placas'}</td>
+                        <td className="border px-4 py-2">{vehiculo?.estado_vehiculo || 'Sin asignar'}</td>
                         <td className="border px-4 py-2">{formatearFecha(vehiculo.fecha_adquisicion || 'N/A')}</td>
                         <td className="border px-4 py-2">{vehiculo?.km_inicial ? Number(vehiculo.km_inicial).toLocaleString() : '-'}</td>
                     
