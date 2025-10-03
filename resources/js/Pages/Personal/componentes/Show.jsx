@@ -32,13 +32,13 @@ export default function Show({persona}) { // Recibe los servicios como props
                         <div className="bg-white shadow-md rounded-2xl p-4 mb-4">
                             <h1 className="text-lg font-bold text-red-600 mb-2"> DATOS PERSONALES:</h1>
                             <div className="grid grid-cols-2 gap-4 text-lg">
-                                <p><b>Personal ID:</b> {persona.personal_id}</p>
-                                <p><b>Nombre(s):</b> {persona.nombre}</p>
-                                <p><b>Apellidos</b> {persona.apellido_paterno} {persona.apellido_materno}</p>
-                                <p><b>Sexo:</b> {persona.sexo}</p>
-                                <p><b>CURP:</b> {persona.CURP}</p>
-                                <p><b>Fecha de nacimiento:</b>{formatearFecha(persona.fecha_nacimiento)}</p>
-                                <p><b>Lugar de nacimiento:</b> {persona.lugar_nacimiento}</p>
+                                <p><b>Personal ID: </b> {persona.personal_id}</p>
+                                <p><b>Nombre(s): </b> {persona.nombre}</p>
+                                <p><b>Apellidos: </b> {persona.apellido_paterno} {persona.apellido_materno}</p>
+                                <p><b>Sexo: </b> {persona.sexo}</p>
+                                <p><b>CURP: </b> {persona.CURP}</p>
+                                <p><b>Fecha de nacimiento: </b>{formatearFecha(persona.fecha_nacimiento)}</p>
+                                <p><b>Lugar de nacimiento: </b> {persona.lugar_nacimiento}</p>
                             </div>
                         </div>
 

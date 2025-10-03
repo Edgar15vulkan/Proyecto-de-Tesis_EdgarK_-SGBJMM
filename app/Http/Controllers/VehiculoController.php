@@ -29,23 +29,30 @@ class VehiculoController extends Controller
     }
     //------------- STORE ------ GUARDAR NUEVO REPORTE ---------------
     public function store (Request $request){
-        // 1 validar los campos
+
+         // 1. Limpieza de comas
+        $request->merge([
+            'km_inicial' => $request->km_inicial 
+                ? str_replace(',', '', $request->km_inicial) 
+                : null,
+        ]);
+        // 2 validar los campos
         $request->validate([
             'numero_economico' => 'required|string|max:10',
             'tipo_vehiculo' => 'required|string|max:255',
             'marca' => 'required|string|max:150',
             'modelo' => 'nullable|string|max:150',
-            'placas' => 'nullable|string|max:10|unique:vehiculos,placas',
+            'placas' => 'nullable|string|max:10',
             'estado_vehiculo' => 'required|string|max:150',
             'anio' => 'nullable|string|max:4',
             'fecha_adquisicion' => 'required|date',
-            'km_inicial' => 'nullable|string|max:150',
+            'km_inicial' => 'nullable|integer|min:0',
         ]);
 
-        // 2 guardar archivo en storage/app/public/reportes_incidentes
+        // 3 guardar archivo en storage/app/public/reportes_incidentes
       
 
-        // 3 Crear el registro en la BD
+        // 4 Crear el registro en la BD
         Vehiculo::create([
             'numero_economico' => $request->numero_economico,
             'tipo_vehiculo' => $request->tipo_vehiculo,
@@ -57,6 +64,8 @@ class VehiculoController extends Controller
             'fecha_adquisicion' => $request->fecha_adquisicion,
             'km_inicial' => $request->km_inicial,
         ]);
+
+
 
         // Redirigir o devolver respuesta
         return back()->with('success', 'Vehiculo de emergencia creado correctamente.');
@@ -82,17 +91,24 @@ class VehiculoController extends Controller
     }
     //------------- UPDATE ----- ACTUALIZAR UN REPORTE ---------------
    public function update(Request $request, $id)
-   {
+   {    
+
+         // 1. Limpieza de comas
+        $request->merge([
+            'km_inicial' => $request->km_inicial 
+                ? str_replace(',', '', $request->km_inicial) 
+                : null,
+        ]);
         $request->validate([
             'numero_economico' => 'required|string|max:10',
             'tipo_vehiculo' => 'required|string|max:255',
             'marca' => 'required|string|max:150',
             'modelo' => 'nullable|string|max:150',
-            'placas' => 'nullable|string|max:10|unique:vehiculos,placas',
+            'placas' => 'nullable|string|max:10',
             'estado_vehiculo' => 'required|string|max:150',
             'anio' => 'nullable|string|max:4',
             'fecha_adquisicion' => 'required|date',
-            'km_inicial' => 'nullable|string|max:150'
+            'km_inicial' => 'nullable|integer|min:0'
 
         ]);
         
@@ -113,7 +129,7 @@ class VehiculoController extends Controller
 
         //RETURN ------
         return redirect()->route('vehiculos.show', $id)
-            -with('success', 'Información actualizada correctamente.');
+            ->with('success', 'Información actualizada correctamente.');
    }
     //------------- DESTROY ----- ELIMINAR UN REPORTE ---------------
     // elimina un registro de vehiculo del sistema

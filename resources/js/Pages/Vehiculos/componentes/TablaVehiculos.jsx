@@ -30,6 +30,7 @@ const Index = () => {
                         <th className="border px-4 py-2">Placas de circulación</th>
                         <th className="border px-4 py-2">Estado</th>
                         <th className="border px-4 py-2">Fecha adquisición</th>
+                        <th className="border px-4 py-2">KM Inicial</th>
                         <th className="border px-4 py-2">Acciones</th>
                     </tr>
                 </thead>
@@ -40,9 +41,10 @@ const Index = () => {
                         <td className="border px-4 py-2">{vehiculo.numero_economico || 'Sin numero econ.'}</td>
                         <td className="border px-4 py-2">{vehiculo?.tipo_vehiculo || 'N/A'}</td>
                         <td className="border px-4 py-2">{vehiculo.marca || 'Sin marca'}</td>
-                         <td className="border px-4 py-2">{vehiculo?.placas || 'N/A'}</td>
-                          <td className="border px-4 py-2">{vehiculo?.estado_vehiculo || 'N/A'}</td>
+                        <td className="border px-4 py-2">{vehiculo?.placas || 'N/A'}</td>
+                        <td className="border px-4 py-2">{vehiculo?.estado_vehiculo || 'N/A'}</td>
                         <td className="border px-4 py-2">{formatearFecha(vehiculo.fecha_adquisicion || 'N/A')}</td>
+                        <td className="border px-4 py-2">{vehiculo?.km_inicial ? Number(vehiculo.km_inicial).toLocaleString() : '-'}</td>
                     
                         <td className="p-2 border flex space-x-2">
                             

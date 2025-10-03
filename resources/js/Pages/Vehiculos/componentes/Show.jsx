@@ -33,16 +33,16 @@ export default function Show({vehiculo}) { // Recibe los servicios como props
                             <h1 className="text-lg font-bold text-red-600 mb-2"> DATOS DE VEHICULO:</h1>
                             <div className="grid grid-cols-2 gap-4 text-lg">
                         
-                                <p><b>ID:</b> {vehiculo.id}</p>
-                                <p><b>Número economico:</b> {vehiculo?.numero_economico || 'No asignado'}</p>
-                                <p><b>Tipo de vehiculo</b> {vehiculo?.tipo_vehiculo || 'No asignado'}</p>
-                                <p><b>Marca:</b> {vehiculo.marca || 'No asignado'}</p>
-                                <p><b>Modelo:</b> {vehiculo.modelo || 'No asignado'}</p>
-                                <p><b>Placas:</b> {vehiculo.placas || 'No asignado'}</p>
-                                <p><b>Estado del vehiculo:</b> {vehiculo.estado_vehiculo || 'No asignado'}</p>
-                                <p><b>Año:</b> {vehiculo.anio || 'No asignado'}</p>
-                                <p><b>Fecha de adquisicion:</b>{formatearFecha(vehiculo.fecha_adquisicion || 'No asignado')}</p>
-                                <p><b>KM inicial:</b> {vehiculo.km_inicial || 'No asignado'}</p>
+                                <p><b>ID: </b> {vehiculo.id}</p>
+                                <p><b>Número economico: </b> {vehiculo?.numero_economico || 'No asignado'}</p>
+                                <p><b>Tipo de vehiculo: </b> {vehiculo?.tipo_vehiculo || 'No asignado'}</p>
+                                <p><b>Marca: </b> {vehiculo.marca || 'No asignado'}</p>
+                                <p><b>Modelo: </b> {vehiculo.modelo || 'No asignado'}</p>
+                                <p><b>Placas: </b> {vehiculo.placas || 'No asignado'}</p>
+                                <p><b>Estado del vehiculo: </b> {vehiculo.estado_vehiculo || 'No asignado'}</p>
+                                <p><b>Año: </b> {vehiculo.anio || 'No asignado'}</p>
+                                <p><b>Fecha de adquisicion: </b>{formatearFecha(vehiculo.fecha_adquisicion || 'No asignado')}</p>
+                                <p><b>KM inicial :</b> {vehiculo.km_inicial  || 'No asignado'}</p>
                             </div>
                         </div>
 

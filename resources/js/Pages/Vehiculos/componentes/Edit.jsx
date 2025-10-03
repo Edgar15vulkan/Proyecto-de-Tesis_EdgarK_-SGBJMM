@@ -25,7 +25,7 @@ const Edit = ({ vehiculo }) => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        put(route('vehiculos.update', vehiculos.id), {
+        put(route('vehiculos.update', vehiculo.id), {
 
             onSuccess: () => alert('Datos actualizados con éxito'),
             onError: () => alert('Error al actualizar los datos')
